@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influx-deployment
+  labels:
+    app: influx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: influx
+  template:
+    metadata:
+      labels:
+        app: influx
+    spec:
+      containers:
+      - name: influx
+        image: influxdb:1.7.6
+        ports:
+        - containerPort: 8086
+        - containerPort: 2003
+        volumeMounts:
+        - name: influx-data
+          mountPath: /var/lib/influxdb
+        - name: graphite-config
+          mountPath: /etc/influxdb/influxdb.conf
+          subPath: influx-graphite-config 
+        env:
+        - name: INFLUXDB_REPORTING_DISABLED
+          value: "true"
+      volumes:
+        - name: graphite-config
+          configMap:
+            name: influx-graphite-config 
+        - name: influx-data
+          persistentVolumeClaim:
+            claimName: influx-data

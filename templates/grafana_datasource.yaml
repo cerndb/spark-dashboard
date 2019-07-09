@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: influx-datasource-config 
+data:
+  influx-datasource-config: |
+    apiVersion: 1
+    
+    datasources:
+    - name: influx
+      type: influxdb
+      access: proxy
+      orgId: 1
+      url: http://influx:8086
+      password:
+      user:
+      database:
+        graphite
+      basicAuth:
+      # <string> basic auth username
+      basicAuthUser:
+      # <string> Deprecated, use secureJsonData.basicAuthPassword
+      basicAuthPassword:
+      # <bool> enable/disable with credentials headers
+      withCredentials:
+      # <bool> mark as default datasource. Max one per org
+      isDefault:
+      version: 1
+      editable: true
