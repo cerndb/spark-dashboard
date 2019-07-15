@@ -1,16 +1,19 @@
 grafana:
   image: "grafana/grafana:latest"
   service:
-    type: "LoadBalancer"
-    lbSourceRange: 128.141.0.0/16
+#   type: "LoadBalancer"
+#   lbSourceRange: "128.141.0.0/16"
+    type: "NodePort"
     port: 3000
     targetPort: 3000
 influxdb:
   image: "influxdb:1.7.6"
   disableReporting: "true"
+  dbName: "graphite"
   service:
-    type: "LoadBalancer"
-    lbSourceRange: 128.141.0.0/16
+#   type: "LoadBalancer"   
+#   lbSourceRange: "128.141.0.0/16"
+    type: "NodePort"
     influx:
       port: 8086
       targetPort: 8086
@@ -18,8 +21,9 @@ influxdb:
       port: 2003
       targetPort: 2003
   storage:
-    class: "oci"
+#   class: "oci"
+    class: "meyrin-cephfs"
     type: "ReadWriteOnce"
-    size: "50Gi"
-    zone: "EU-FRANKFURT-1-AD-2"
+    size: "5Gi"
+#   zone: "EU-FRANKFURT-1-AD-2"
 

@@ -20,4 +20,4 @@ spec:
     name: graphite
     port: {{ .service.graphite.port }}
     targetPort: {{ .service.graphite.targetPort }}
-
+{{- end }}

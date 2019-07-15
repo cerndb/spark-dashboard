@@ -11,19 +11,29 @@ data:
       type: influxdb
       access: proxy
       orgId: 1
-      url: http://influx:8086
+      url: http://{{ .Release.Name }}-influx:8086
       password:
       user:
       database:
         graphite
       basicAuth:
-      # <string> basic auth username
       basicAuthUser:
-      # <string> Deprecated, use secureJsonData.basicAuthPassword
       basicAuthPassword:
-      # <bool> enable/disable with credentials headers
       withCredentials:
-      # <bool> mark as default datasource. Max one per org
       isDefault:
       version: 1
       editable: true
+  spark-dashboard-config: |
+    apiVersion: 1
+    
+    providers:
+    - name: spark-dashboard
+      orgId: 1
+      folder: ''
+      folderUid: ''
+      type: file
+      disableDeletion: false
+      editable: true
+      updateIntervalSeconds: 10
+      options:
+        path: /var/lib/grafana/dashboards

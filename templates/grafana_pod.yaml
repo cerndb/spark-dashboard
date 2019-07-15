@@ -21,9 +21,17 @@ spec:
         - name: datasource-conf
           mountPath: /etc/grafana/provisioning/datasources/influx.yaml
           subPath: influx-datasource-config
+        - name: datasource-conf
+          mountPath: /etc/grafana/provisioning/dashboards/spark.yaml
+          subPath: spark-dashboard-config
+        - name: spark-dashboard
+          mountPath: /var/lib/grafana/dashboards
         ports:
-        - containerPort: {{ .Values.grafana.port }}
+        - containerPort: {{ .Values.grafana.service.port }}
       volumes:
         - name: datasource-conf
           configMap:
             name: {{ .Release.Name }}-datasource
+        - name: spark-dashboard
+          configMap:
+            name: {{ .Release.Name }}-dashboard

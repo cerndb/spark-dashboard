@@ -29,7 +29,9 @@ spec:
           subPath: influx-graphite-config 
         env:
         - name: INFLUXDB_REPORTING_DISABLED
-          value: {{ .disableReporting }}
+          value: {{ .disableReporting | quote}}
+        - name: INFLUXDB_DB
+          value: {{ .dbName | quote }}
 {{- end }}
       volumes:
         - name: graphite-config
