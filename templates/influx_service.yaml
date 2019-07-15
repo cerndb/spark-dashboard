@@ -1,20 +1,23 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: influx
+  name: {{ .Release.Name }}-influx
+{{ with .Values.influxdb }}
 spec:
   selector:
     app: influx
-  type: LoadBalancer
+  type: {{ .service.type }}
+  {{- if and .service.lbSourceRange (eq .service.type "LoadBalancer") }}
   loadBalancerSourceRanges:
-  - "128.141.0.0/16" 
+  - {{ .service.lbSourceRange }} 
+  {{- end }}
   ports:
   - protocol: TCP
     name: influx
-    port: 8086
-    targetPort: 8086
+    port: {{ .service.influx.port }}
+    targetPort: {{ .service.influx.targetPort }}
   - protocol: TCP
     name: graphite
-    port: 2003
-    targetPort: 2003
+    port: {{ .service.graphite.port }}
+    targetPort: {{ .service.graphite.targetPort }}
 

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: influx-datasource-config 
+  name: {{ .Release.Name }}-datasource
 data:
   influx-datasource-config: |
     apiVersion: 1

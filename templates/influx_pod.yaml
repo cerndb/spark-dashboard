@@ -1,9 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: influx-deployment
+  name: {{ .Release.Name }}-influx
   labels:
     app: influx
+{{- with .Values.influxdb }}
 spec:
   replicas: 1
   selector:
@@ -16,10 +17,10 @@ spec:
     spec:
       containers:
       - name: influx
-        image: influxdb:1.7.6
+        image: {{ .image }}
         ports:
-        - containerPort: 8086
-        - containerPort: 2003
+        - containerPort: {{ .service.graphite.port }}
+        - containerPort: {{ .service.influx.port }}
         volumeMounts:
         - name: influx-data
           mountPath: /var/lib/influxdb
@@ -28,11 +29,12 @@ spec:
           subPath: influx-graphite-config 
         env:
         - name: INFLUXDB_REPORTING_DISABLED
-          value: "true"
+          value: {{ .disableReporting }}
+{{- end }}
       volumes:
         - name: graphite-config
           configMap:
-            name: influx-graphite-config 
+            name: {{ .Release.Name }}-config 
         - name: influx-data
           persistentVolumeClaim:
-            claimName: influx-data
+            claimName: {{ .Release.Name }}-influx

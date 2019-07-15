@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: influx-graphite-config 
+  name: {{ .Release.Name }}-config 
 data:
   influx-graphite-config: |
     [meta]

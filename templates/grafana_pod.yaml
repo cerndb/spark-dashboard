@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: grafana-deployment
+  name: {{ .Release.Name }}-grafana
   labels:
     app: grafana
 spec:
@@ -16,14 +16,14 @@ spec:
     spec:
       containers:
       - name: grafana
-        image: grafana/grafana:latest
+        image: {{ .Values.grafana.image }}
         volumeMounts:
         - name: datasource-conf
           mountPath: /etc/grafana/provisioning/datasources/influx.yaml
           subPath: influx-datasource-config
         ports:
-        - containerPort: 3000
+        - containerPort: {{ .Values.grafana.port }}
       volumes:
         - name: datasource-conf
           configMap:
-            name: influx-datasource-config 
+            name: {{ .Release.Name }}-datasource
