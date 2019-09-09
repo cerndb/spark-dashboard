@@ -7,7 +7,23 @@ data:
     apiVersion: 1
     
     datasources:
-    - name: influx
+    - name: influx-sparkmeasure
+      type: influxdb
+      access: proxy
+      orgId: 1
+      url: http://{{ .Release.Name }}-influx:8086
+      password:
+      user:
+      database:
+        sparkmeasure
+      basicAuth:
+      basicAuthUser:
+      basicAuthPassword:
+      withCredentials:
+      isDefault:
+      version: 1
+      editable: true
+    - name: influx-graphite
       type: influxdb
       access: proxy
       orgId: 1

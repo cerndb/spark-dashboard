@@ -1,8 +1,6 @@
 grafana:
   image: "grafana/grafana:latest"
   service:
-#   type: "LoadBalancer"
-#   lbSourceRange: "128.141.0.0/16"
     type: "NodePort"
     port: 3000
     targetPort: 3000
@@ -21,9 +19,7 @@ influxdb:
       port: 2003
       targetPort: 2003
   storage:
-#   class: "oci"
-    class: "meyrin-cephfs"
+    class: "geneva-cephfs-testing"
     type: "ReadWriteOnce"
     size: "5Gi"
-#   zone: "EU-FRANKFURT-1-AD-2"
 

@@ -38,5 +38,10 @@ spec:
           configMap:
             name: {{ .Release.Name }}-config 
         - name: influx-data
+          {{- if .Values.influxdb.storage.class }}
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-influx
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+
