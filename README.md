@@ -11,7 +11,7 @@ More info at: [Spark Summit 2019 talk](https://databricks.com/session_eu19/perfo
 
 The chart can be installed using [helm](https://helm.sh/docs/intro/quickstart/) with:  
 ```
-helm install spark-dashboard -f values.yaml
+helm install spark-dashboard -f values.yaml .
 ```  
 
 Other options:
