@@ -1,7 +1,7 @@
 {
   "__inputs": [
     {
-      "name": "DS_SPARK_DROPWIZARD",
+      "name": "influx-graphite",
       "label": "spark_dropwizard",
       "description": "",
       "type": "datasource",
@@ -9,7 +9,7 @@
       "pluginName": "InfluxDB"
     },
     {
-      "name": "DS_ANNOTATION1",
+      "name": "influx-sparkmeasure",
       "label": "annotation1",
       "description": "",
       "type": "datasource",
@@ -46,7 +46,7 @@
   "annotations": {
     "list": [
       {
-        "datasource": "${DS_ANNOTATION1}",
+        "datasource": "influx-sparkmeasure",
         "enable": true,
         "hide": false,
         "iconColor": "#C0D8FF",
@@ -58,7 +58,7 @@
         "type": "tags"
       },
       {
-        "datasource": "${DS_ANNOTATION1}",
+        "datasource": "influx-sparkmeasure",
         "enable": false,
         "hide": false,
         "iconColor": "#1F60C4",
@@ -72,7 +72,7 @@
         "type": "tags"
       },
       {
-        "datasource": "${DS_ANNOTATION1}",
+        "datasource": "influx-sparkmeasure",
         "enable": false,
         "hide": false,
         "iconColor": "rgba(255, 96, 96, 1)",
@@ -102,7 +102,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1565617491632,
+  "iteration": 1565338350832,
   "links": [],
   "panels": [
     {
@@ -124,7 +124,7 @@
             "rgba(237, 129, 40, 0.89)",
             "#d44a3a"
           ],
-          "datasource": "${DS_SPARK_DROPWIZARD}",
+          "datasource": "influx-graphite",
           "description": "Latest sample of the value of number of active tasks, summed over all executors active in the selected time filter interval.",
           "format": "none",
           "gauge": {
@@ -235,7 +235,7 @@
             "rgba(237, 129, 40, 0.89)",
             "#d44a3a"
           ],
-          "datasource": "${DS_SPARK_DROPWIZARD}",
+          "datasource": "influx-graphite",
           "description": "Total executor CPU time computed from from executor metrics. Displays CPU time used by all the executors' JVMs active in the selected time filter interval. It contains CPU time used for tasks and other activities in the JVM, notably garbage collection. Note, values from executors that are no more active in the selected time window are not counted.",
           "format": "ns",
           "gauge": {
@@ -358,7 +358,7 @@
             "rgba(237, 129, 40, 0.89)",
             "#d44a3a"
           ],
-          "datasource": "${DS_SPARK_DROPWIZARD}",
+          "datasource": "influx-graphite",
           "description": "Total task CPU usage from task metrics. Displays CPU time used for all the completed tasks, from the task metrics data source. Note, values from executors that are no more active in the selected time window are not counted.\n",
           "format": "ns",
           "gauge": {
@@ -478,7 +478,7 @@
             "rgba(237, 129, 40, 0.89)",
             "#d44a3a"
           ],
-          "datasource": "${DS_SPARK_DROPWIZARD}",
+          "datasource": "influx-graphite",
           "description": "Total time spent in GC operations during task execution. Displays values for all the completed tasks, from the task metrics data source. Note, values from executors that are no more active in the selected time window are not counted.",
           "format": "ms",
           "gauge": {
@@ -598,7 +598,7 @@
             "rgba(237, 129, 40, 0.89)",
             "#d44a3a"
           ],
-          "datasource": "${DS_SPARK_DROPWIZARD}",
+          "datasource": "influx-graphite",
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -712,7 +712,7 @@
             "rgba(237, 129, 40, 0.89)",
             "#d44a3a"
           ],
-          "datasource": "${DS_SPARK_DROPWIZARD}",
+          "datasource": "influx-graphite",
           "format": "none",
           "gauge": {
             "maxValue": 100,
@@ -826,7 +826,7 @@
             "rgba(237, 129, 40, 0.89)",
             "#299c46"
           ],
-          "datasource": "${DS_SPARK_DROPWIZARD}",
+          "datasource": "influx-graphite",
           "description": "JVM metric from MemoryMXBean. Latest value of the % of heap memory used, averaging over executors and driver.",
           "format": "none",
           "gauge": {
@@ -956,7 +956,7 @@
             "rgba(237, 129, 40, 0.89)",
             "#d44a3a"
           ],
-          "datasource": "${DS_SPARK_DROPWIZARD}",
+          "datasource": "influx-graphite",
           "description": "Bytes read from HDFS. Note, values from executors that are no more active in the selected time window are not counted.",
           "format": "bytes",
           "gauge": {
@@ -1076,7 +1076,7 @@
             "rgba(237, 129, 40, 0.89)",
             "#d44a3a"
           ],
-          "datasource": "${DS_SPARK_DROPWIZARD}",
+          "datasource": "influx-graphite",
           "description": "Bytes written to HDFS. Note, values from executors that are no more active in the selected time window are not counted.",
           "format": "bytes",
           "gauge": {
@@ -1196,7 +1196,7 @@
             "rgba(237, 129, 40, 0.89)",
             "#d44a3a"
           ],
-          "datasource": "${DS_SPARK_DROPWIZARD}",
+          "datasource": "influx-graphite",
           "description": "Number of completed tasks, from JVM threadpool metrics. Note, values from executors that are no more active in the selected time window are not counted.",
           "format": "none",
           "gauge": {
@@ -1310,7 +1310,7 @@
             "rgba(237, 129, 40, 0.89)",
             "#d44a3a"
           ],
-          "datasource": "${DS_SPARK_DROPWIZARD}",
+          "datasource": "influx-graphite",
           "description": "Number of succeeded jobs, from the appsource metric introduced in Spark 3.0",
           "format": "none",
           "gauge": {
@@ -1443,7 +1443,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
+      "datasource": "influx-graphite",
       "description": "Number of active tasks per executor\n",
       "fill": 2,
       "fillGradient": 0,
@@ -1572,7 +1572,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
+      "datasource": "influx-graphite",
       "description": "Total executor CPU utilization computed from executors' metrics. The value is normalized in \"N# of core equivalent\", that is the number of cores running at 100% that would give an equivalent value of CPU utilization.\n",
       "fill": 2,
       "fillGradient": 0,
@@ -1705,7 +1705,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
+      "datasource": "influx-graphite",
       "description": "Time the JVM process has spent in garbage collection. The value is normalized in \"N# of core equivalent\", that is the hypothetical number of cores working at 100% on GC that would give an equivalent result.",
       "fill": 2,
       "fillGradient": 0,
@@ -1841,7 +1841,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
+      "datasource": "influx-graphite",
       "description": "Total task CPU utilization computed from task metrics. The value is normalized in \"N# of core equivalent\", that is the number of cores running at 100% that would give an equivalent value of CPU utilization.",
       "fill": 2,
       "fillGradient": 0,
@@ -1983,12 +1983,12 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
-      "description": "Executor run time and wait time components compared. The run time spent by Spark executors is aggregated per area of activity. The difference between tun time measuremets and wait time measuremts can be interpreted as due to time not instrumented (e.g. HDFS/filesystem I/O wait time). The values are normalized in \"N# of core equivalent\", that is the number of cores running at 100% that would yield an equivalent value for the given metric.",
+      "datasource": "influx-graphite",
+      "description": "Executor run time and wait time components compared. The run time spent by Spark executors is aggregated per area of activity. The difference between run time and wait time measurements can be interpreted as due to missing instrumentation (e.g. HDFS/filesystem I/O wait time). The values are normalized in \"N# of core equivalent\", that is the number of cores running at 100% that would yield an equivalent value for the given metric.",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 12,
+        "h": 11,
         "w": 12,
         "x": 0,
         "y": 24
@@ -2390,7 +2390,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
+      "datasource": "influx-graphite",
       "fill": 2,
       "fillGradient": 0,
       "gridPos": {
@@ -2525,593 +2525,14 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
-      "description": "Experimental HDFS read time +\nExecutor run time and wait time components compared. The run time spent by Spark executors is aggregated per area of activity. The difference between tun time measuremets and wait time measuremts can be interpreted as due to time not instrumented (e.g. HDFS/filesystem I/O wait time). The values are normalized in \"N# of core equivalent\", that is the number of cores running at 100% that would yield an equivalent value for the given metric.",
+      "datasource": "influx-graphite",
       "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 11,
-        "w": 12,
-        "x": 12,
-        "y": 35
-      },
-      "id": 68,
-      "interval": "15s",
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": false,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "paceLength": 10,
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "runTime",
-          "bars": false,
-          "lines": true,
-          "linewidth": 2,
-          "stack": false
-        },
-        {
-          "alias": "deserializeCpuTime",
-          "stack": false
-        }
-      ],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "deserializeCpuTime",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            }
-          ],
-          "measurement": "deserializeCpuTime.count",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "select sum(perprocessval) from (SELECT non_negative_derivative(last(\"value\"), 1s) / 1000000000 as perprocessval FROM \"deserializeCpuTime.count\" WHERE \"applicationid\" = '$ApplicationId' AND $timeFilter GROUP BY time($__interval), process) GROUP BY time($__interval)",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "deserializeTime",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            }
-          ],
-          "measurement": "deserializeTime.count",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "select sum(perprocessval) from (SELECT non_negative_derivative(last(\"value\"), 1s) / 1000 as perprocessval FROM \"deserializeTime.count\" WHERE \"applicationid\" = '$ApplicationId' AND $timeFilter GROUP BY time($__interval), process) GROUP BY time($__interval)",
-          "rawQuery": true,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "cpuTime",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            }
-          ],
-          "measurement": "cpuTime.count",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "select sum(perprocessval) from (SELECT non_negative_derivative(last(\"value\"), 1s) / 1000000000 as perprocessval FROM \"cpuTime.count\" WHERE \"applicationid\" = '$ApplicationId' AND $timeFilter GROUP BY time($__interval), process) GROUP BY time($__interval)",
-          "rawQuery": true,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "shuffleWriteTime",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            }
-          ],
-          "measurement": "shuffleWriteTime.count",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "select sum(perprocessval) from (SELECT non_negative_derivative(last(\"value\"), 1s) / 1000000000 as perprocessval FROM \"shuffleWriteTime.count\" WHERE \"applicationid\" = '$ApplicationId' AND $timeFilter GROUP BY time($__interval), process) GROUP BY time($__interval)",
-          "rawQuery": true,
-          "refId": "D",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "resultSerializationTime",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            }
-          ],
-          "measurement": "resultSerializationTime.count",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "select sum(perprocessval) from (SELECT non_negative_derivative(last(\"value\"), 1s) / 1000 as perprocessval FROM \"resultSerializationTime.count\" WHERE \"applicationid\" = '$ApplicationId' AND $timeFilter GROUP BY time($__interval), process) GROUP BY time($__interval)",
-          "rawQuery": true,
-          "refId": "E",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "shuffleFetchWaitTime",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            }
-          ],
-          "measurement": "shuffleFetchWaitTime.count",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "select sum(perprocessval) from (SELECT non_negative_derivative(last(\"value\"), 1s) / 1000 as perprocessval FROM \"shuffleFetchWaitTime.count\" WHERE \"applicationid\" = '$ApplicationId' AND $timeFilter GROUP BY time($__interval), process) GROUP BY time($__interval)",
-          "rawQuery": true,
-          "refId": "F",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "1s"
-                ],
-                "type": "non_negative_derivative"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "jvmGCTime",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "select sum(perprocessval) from (SELECT non_negative_derivative(last(\"value\"), 1s) / 1000 as perprocessval FROM \"jvmGCTime.count\" WHERE \"applicationid\" = '$ApplicationId' AND $timeFilter GROUP BY time($__interval), process) GROUP BY time($__interval)",
-          "rawQuery": true,
-          "refId": "G",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "alias": "runTime",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "select sum(perprocessval) from (SELECT non_negative_derivative(last(\"value\"), 1s) / 1000 as perprocessval FROM \"runTime.count\" WHERE \"applicationid\" = '$ApplicationId' AND $timeFilter GROUP BY time($__interval), process) GROUP BY time($__interval)",
-          "rawQuery": true,
-          "refId": "H",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        },
-        {
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "select sum(perprocessval) from (SELECT non_negative_derivative(last(\"value\"), 1s) / 1000000 as perprocessval FROM \"HDFSReadTimeMuSec\" WHERE \"applicationid\" = '$ApplicationId' AND $timeFilter GROUP BY time($__interval), process) GROUP BY time($__interval)",
-          "rawQuery": true,
-          "refId": "I",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "mean"
-              }
-            ]
-          ],
-          "tags": []
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Experimental: Executor run time and wait time components + HDFS read time",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": "Time component (N# cores equivalent)",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
-      "fill": 2,
       "fillGradient": 0,
       "gridPos": {
         "h": 11,
         "w": 12,
         "x": 0,
-        "y": 36
-      },
-      "id": 67,
-      "interval": "15s",
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "paceLength": 10,
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "shuffle write time - Executor $tag_process",
-          "groupBy": [
-            {
-              "params": [
-                "15s"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "process"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "shuffleFetchWaitTime.count",
-          "orderByTime": "ASC",
-          "policy": "autogen",
-          "query": "SELECT non_negative_derivative(\"value\", 1s) / 1000000000  FROM \"shuffleWriteTime.count\" WHERE \"applicationid\" = '$ApplicationId' AND $timeFilter GROUP BY process\n",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "15s"
-                ],
-                "type": "non_negative_derivative"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "applicationid",
-              "operator": "=~",
-              "value": "/^$ApplicationId$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Shuffle Write Time - from task metrics",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": "Shuffle Write Time (N# cores equivalent)",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": true,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 11,
-        "w": 12,
-        "x": 12,
-        "y": 46
+        "y": 35
       },
       "id": 21,
       "interval": "15s",
@@ -3243,34 +2664,20 @@
       }
     },
     {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 57
-      },
-      "id": 63,
-      "panels": [],
-      "title": "JVM and Spark memory",
-      "type": "row"
-    },
-    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
-      "description": "Total memory (heap + non-heap) used per executor.  From MemoryMXBean.",
+      "datasource": "influx-graphite",
       "fill": 2,
       "fillGradient": 0,
       "gridPos": {
-        "h": 12,
+        "h": 11,
         "w": 12,
-        "x": 0,
-        "y": 58
+        "x": 12,
+        "y": 35
       },
-      "id": 50,
+      "id": 67,
       "interval": "15s",
       "legend": {
         "avg": false,
@@ -3288,6 +2695,152 @@
       "options": {
         "dataLinks": []
       },
+      "paceLength": 10,
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "shuffle write time - Executor $tag_process",
+          "groupBy": [
+            {
+              "params": [
+                "15s"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "process"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "shuffleFetchWaitTime.count",
+          "orderByTime": "ASC",
+          "policy": "autogen",
+          "query": "SELECT non_negative_derivative(\"value\", 1s) / 1000000000  FROM \"shuffleWriteTime.count\" WHERE \"applicationid\" = '$ApplicationId' AND $timeFilter GROUP BY process\n",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "15s"
+                ],
+                "type": "non_negative_derivative"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "applicationid",
+              "operator": "=~",
+              "value": "/^$ApplicationId$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Shuffle Write Time - from task metrics",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": "Shuffle Write Time (N# cores equivalent)",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 46
+      },
+      "id": 63,
+      "panels": [],
+      "title": "JVM and Spark memory",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "influx-graphite",
+      "description": "Total memory (heap + non-heap) used per executor.  From MemoryMXBean.",
+      "fill": 2,
+      "gridPos": {
+        "h": 12,
+        "w": 12,
+        "x": 0,
+        "y": 47
+      },
+      "id": 50,
+      "interval": "15s",
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -3396,15 +2949,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
+      "datasource": "influx-graphite",
       "description": "Heap memory used per executor.  From MemoryMXBean.",
       "fill": 2,
-      "fillGradient": 0,
       "gridPos": {
         "h": 12,
         "w": 12,
         "x": 12,
-        "y": 58
+        "y": 47
       },
       "id": 65,
       "interval": "15s",
@@ -3421,9 +2973,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -3532,15 +3082,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
+      "datasource": "influx-graphite",
       "description": "Total memory (heap + non-heap) used by the driver.  From MemoryMXBean.",
       "fill": 2,
-      "fillGradient": 0,
       "gridPos": {
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 70
+        "y": 59
       },
       "id": 64,
       "interval": "15s",
@@ -3557,9 +3106,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -3668,15 +3215,14 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
+      "datasource": "influx-graphite",
       "description": "Storage memory and disk used by the block manager.",
       "fill": 2,
-      "fillGradient": 0,
       "gridPos": {
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 70
+        "y": 59
       },
       "id": 66,
       "interval": "15s",
@@ -3693,9 +3239,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -3876,148 +3420,12 @@
       }
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
-      "description": "Time spent in read calls to HDFS. The value is normalized in \"N# of core equivalent\", that is the hypothetical number of cores working at 100% on GC that would give an equivalent result.",
-      "fill": 2,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 11,
-        "w": 12,
-        "x": 0,
-        "y": 80
-      },
-      "id": 69,
-      "interval": "15s",
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "paceLength": 10,
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": true,
-      "steppedLine": false,
-      "targets": [
-        {
-          "alias": "HDFS read time - Executor $tag_process",
-          "groupBy": [
-            {
-              "params": [
-                "15s"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "process"
-              ],
-              "type": "tag"
-            }
-          ],
-          "measurement": "jvmGCTime.count",
-          "orderByTime": "ASC",
-          "policy": "autogen",
-          "query": "SELECT non_negative_derivative(\"value\", 1s)  / 1000000 FROM  \"HDFSReadTimeMuSec\" WHERE \"applicationid\" = '$ApplicationId' AND $timeFilter GROUP BY process\n",
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  "15s"
-                ],
-                "type": "non_negative_derivative"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "applicationid",
-              "operator": "=~",
-              "value": "/^$ApplicationId$/"
-            }
-          ]
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Experimental: HDFS read time normalized  (N# of cores equivalent) - from custom instrumentation of Hadoop HDFS",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": "HDFS Read Time (N# cores equivalent)",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 91
+        "y": 69
       },
       "id": 60,
       "panels": [],
@@ -4029,14 +3437,13 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
+      "datasource": "influx-graphite",
       "fill": 2,
-      "fillGradient": 0,
       "gridPos": {
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 92
+        "y": 70
       },
       "id": 16,
       "interval": "15s",
@@ -4053,9 +3460,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -4164,14 +3569,13 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
+      "datasource": "influx-graphite",
       "fill": 2,
-      "fillGradient": 0,
       "gridPos": {
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 92
+        "y": 70
       },
       "id": 61,
       "interval": "15s",
@@ -4188,9 +3592,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -4299,15 +3701,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
+      "datasource": "influx-graphite",
       "description": "",
       "fill": 2,
-      "fillGradient": 0,
       "gridPos": {
         "h": 11,
         "w": 12,
         "x": 0,
-        "y": 102
+        "y": 80
       },
       "id": 18,
       "interval": "15s",
@@ -4324,9 +3725,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -4435,14 +3834,13 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
+      "datasource": "influx-graphite",
       "fill": 2,
-      "fillGradient": 0,
       "gridPos": {
         "h": 11,
         "w": 12,
         "x": 12,
-        "y": 102
+        "y": 80
       },
       "id": 17,
       "interval": "15s",
@@ -4459,9 +3857,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -4570,14 +3966,13 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_SPARK_DROPWIZARD}",
+      "datasource": "influx-graphite",
       "fill": 1,
-      "fillGradient": 0,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 113
+        "y": 91
       },
       "id": 22,
       "interval": "15s",
@@ -4594,9 +3989,7 @@
       "linewidth": 3,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
+      "options": {},
       "paceLength": 10,
       "percentage": false,
       "pointradius": 5,
@@ -4749,7 +4142,7 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "${DS_SPARK_DROPWIZARD}",
+        "datasource": "influx-graphite",
         "definition": "",
         "hide": 0,
         "includeAll": false,
@@ -4771,7 +4164,7 @@
       {
         "allValue": null,
         "current": {},
-        "datasource": "${DS_SPARK_DROPWIZARD}",
+        "datasource": "influx-graphite",
         "definition": "",
         "hide": 0,
         "includeAll": false,
@@ -4793,8 +4186,8 @@
     ]
   },
   "time": {
-    "from": "2019-07-26T15:15:00.000Z",
-    "to": "2019-07-26T15:20:00.000Z"
+    "from": "now-5m",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -4822,7 +4215,7 @@
     ]
   },
   "timezone": "",
-  "title": "Spark_Perf_Dashboard_v01_with_annotations_test_HDFS_instrumentation",
-  "uid": "76r8i7OWz",
-  "version": 4
+  "title": "Spark_Perf_Dashboard_v01_with_annotations",
+  "uid": "iasdr",
+  "version": 10
 }
