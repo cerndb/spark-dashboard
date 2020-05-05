@@ -5,7 +5,7 @@ grafana:
     port: 3000
     targetPort: 3000
 influxdb:
-  image: "influxdb:1.7.6"
+  image: "influxdb:1.8.0"
   disableReporting: "true"
   dbName: "graphite"
   service:
@@ -19,7 +19,7 @@ influxdb:
       port: 2003
       targetPort: 2003
   storage:
-    class: "geneva-cephfs-testing"
-    type: "ReadWriteOnce"
-    size: "5Gi"
+#    class: "TESTTEST"
+#    type: "ReadWriteOnce"
+     size: "1Gi"
 
