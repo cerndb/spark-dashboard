@@ -3,7 +3,8 @@
 This repository contains a Helm chart to ease the deployment of a performance dashboard for Apache Spark on Kubernetes.
 The dashboard collects and displays workload data based on Spark metrics, using InfluxDB and Grafana.  
 Details of how this works at: [Spark Dashboard](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard)  
-More info at: [Spark Summit 2019 talk](https://databricks.com/session_eu19/performance-troubleshooting-using-apache-spark-metrics)
+More info at: [Spark Summit 2019 talk](https://databricks.com/session_eu19/performance-troubleshooting-using-apache-spark-metrics)  
+Authors and contacts: Riccardo.Castellotti@cern.ch, Luca.Canali@cern.ch, additional credits: Michal Bien.
 
 ![Spark metrics dashboard architecture](https://raw.githubusercontent.com/LucaCanali/Miscellaneous/master/Spark_Dashboard/images/Spark_metrics_dashboard_arch.PNG "Spark metrics dashboard architecture")
 
