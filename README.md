@@ -40,8 +40,8 @@ kubectl get configmaps |grep spark-dashboard
 The provided configuration is for testig purposes, for production use you may need further configuration, as typical for these type of components.
 - The storage for influxDB can be defined in the `values.yaml`
   - If no storageClass is provided, an `EmptyDir` will be allocated: the dashboard history will be lost when the
-   underlying pod is restarted. You may rather want to use a storage class in the configuration.
-- The services exposed by `grafana` and `influx` in the example use `NodePort`. You can use `LoadBalancer` type if your Kubernetes can support it.
+   underlying pod is restarted. You may rather want to use a persistent backend in the configuration.
+- The services exposed by `grafana` and `influx` in the example are of type `NodePort`. You can use `LoadBalancer` type if your Kubernetes distribution supports it.
 
 ## How to connect to the dashboard
 
@@ -54,7 +54,7 @@ When using NodePort and internal cluster IP addresses, this how you can port for
 As explained in [Spark Dashboard](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard) you need to set a few 
 Spark configuration parameter to use this type of instrumentation. In particular, you need to point Spark to
 write to the InfluxDB instance (with graphite endpoint).
-Find the (cluster) endpoint with `kubectl get service spark-dashboard-influx`. Optionally resolv the dns name with `nslookup` of such IP.
+Find the (cluster) endpoint with `kubectl get service spark-dashboard-influx`. Optionally resolve the dns name with `nslookup` of such IP.
 In this example configuration parameter list, the InfluxDB service host name is `spark-dashboard-influx.default.svc.cluster.local`
 ```
 --conf "spark.metrics.conf.driver.sink.graphite.class"="org.apache.spark.metrics.sink.GraphiteSink"         \
