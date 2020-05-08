@@ -2,15 +2,7 @@
   "__inputs": [
     {
       "name": "influx-graphite",
-      "label": "Spark_Dropwizard",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "influxdb",
-      "pluginName": "InfluxDB"
-    },
-    {
-      "name": "influx-sparkmeasure",
-      "label": "annotation1",
+      "label": "spark_dropwizard",
       "description": "",
       "type": "datasource",
       "pluginId": "influxdb",
@@ -62,46 +54,6 @@
         "name": "Annotations & Alerts",
         "showIn": 0,
         "type": "dashboard"
-      },
-      {
-        "$$hashKey": "object:373",
-        "datasource": "influx-sparkmeasure",
-        "enable": true,
-        "hide": false,
-        "iconColor": "rgba(255, 96, 96, 1)",
-        "limit": 100,
-        "name": "queries_started",
-        "query": "select queryId from queries_started where $timeFilter and applicationId =~ /$ApplicationId/",
-        "showIn": 0,
-        "tags": [],
-        "type": "tags"
-      },
-      {
-        "$$hashKey": "object:404",
-        "datasource": "influx-sparkmeasure",
-        "enable": false,
-        "hide": false,
-        "iconColor": "rgba(255, 96, 96, 1)",
-        "limit": 100,
-        "name": "jobs_started",
-        "query": "select jobID from jobs_started where $timeFilter and applicationId =~ /$ApplicationId/ ORDER BY time ASC",
-        "showIn": 0,
-        "tags": [],
-        "textColumn": "time",
-        "type": "tags"
-      },
-      {
-        "$$hashKey": "object:435",
-        "datasource": "influx-sparkmeasure",
-        "enable": false,
-        "hide": false,
-        "iconColor": "rgba(255, 96, 96, 1)",
-        "limit": 100,
-        "name": "stages_started",
-        "query": "select stageId from stages_ended where $timeFilter and applicationId =~ /$ApplicationId/",
-        "showIn": 0,
-        "tags": [],
-        "type": "tags"
       }
     ]
   },
@@ -109,7 +61,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1587730279047,
+  "iteration": 1587500337815,
   "links": [],
   "panels": [
     {
@@ -952,10 +904,6 @@
                 {
                   "color": "green",
                   "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
                 }
               ]
             },
@@ -5923,8 +5871,8 @@
     ]
   },
   "timezone": "",
-  "title": "Spark_Perf_Dashboard_Spark3.0_v02_with_annotations",
-  "uid": "5nWXQUqZk",
+  "title": "Spark_Perf_Dashboard_Spark3.0_v02",
+  "uid": "-H0ElOqmiv",
   "variables": {
     "list": []
   },

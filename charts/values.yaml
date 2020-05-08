@@ -19,7 +19,7 @@ influxdb:
       port: 2003
       targetPort: 2003
   storage:
-#    class: "TESTTEST"
+#    class: "MyStorageClass"
 #    type: "ReadWriteOnce"
      size: "1Gi"
 
