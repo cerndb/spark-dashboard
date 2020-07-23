@@ -3,6 +3,7 @@
 
 This repository supports the installation of an Apache Spark Performance Dashboard using containers technology.
 Use for measuring and troubleshooting Apache Spark applications. 
+Tested with Spark 3.0 and 2.4.  
 
 Two different installation options are packaged in this repository, use the one that suits your environment best:
 - [**dockerfiles**](dockerfiles) -> Docker build files for a Docker container image, use this to deploy the Spark Dashboard using Docker.
