@@ -1,11 +1,11 @@
 grafana:
-  image: "grafana/grafana:7.1.0"
+  image: "grafana/grafana:7.2.1"
   service:
     type: "NodePort"
     port: 3000
     targetPort: 3000
 influxdb:
-  image: "influxdb:1.8.1"
+  image: "influxdb:1.8.3"
   disableReporting: "true"
   dbName: "graphite"
   service:
