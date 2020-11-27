@@ -11,38 +11,40 @@ Two different installation options are packaged in this repository, use the one 
 
 The Spark Dashboard collects and displays Spark workload data exported via the [Spark metrics system](https://spark.apache.org/docs/latest/monitoring.html#metrics).
 Metrics are collected using InfluxDB and displayed using a set of pre-configured Grafana dashboards.
-Details of how this works at: [Spark Dashboard Notes](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard), 
-this [blog entry](https://db-blog.web.cern.ch/blog/luca-canali/2019-02-performance-dashboard-apache-spark)
-and at [Spark Summit EU 2019 talk](https://databricks.com/session_eu19/performance-troubleshooting-using-apache-spark-metrics).  
+Details of how this works at:
+  - [Spark Dashboard Notes](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard)
+  - this [blog entry](https://db-blog.web.cern.ch/blog/luca-canali/2019-02-performance-dashboard-apache-spark)
+  - [Spark Summit Europe 2019 talk](https://databricks.com/session_eu19/performance-troubleshooting-using-apache-spark-metrics)
+  - [Data+AI Summit Europe 2020 talk](https://databricks.com/session_eu20/what-is-new-with-apache-spark-performance-monitoring-in-spark-3-0)  
 Note that the provided installation instructions and code are intended as examples for testing and experimenting. 
 Hardening the installation will be necessary for production-quality use.
 
-Authors and contacts: Riccardo.Castellotti@cern.ch, Luca.Canali@cern.ch, additional credits: Michal Bien.
+Authors and contacts: Luca.Canali@cern.ch, Riccardo.Castellotti@cern.ch, additional credits: Michal Bien.
 
 ![Spark metrics dashboard architecture](https://raw.githubusercontent.com/LucaCanali/Miscellaneous/master/Spark_Dashboard/images/Spark_metrics_dashboard_arch.PNG "Spark metrics dashboard architecture")
 
-## Install and run
+## Install and run the dashboard
 
-Docker:
+Using Docker:
  - Quickstart: `docker run --network=host -d lucacanali/spark-dashboard:v01`
  - Details: [dockerfiles](dockerfiles)
 
-Helm:
+Using Helm:
  - Quickstart: `helm install spark-dashboard https://github.com/cerndb/spark-dashboard/raw/master/charts/spark-dashboard-0.3.0.tgz`
  - Details: [charts](charts)
 
-## How to log metrics data from Apache Spark into InfluxDB
+## How use the dashboard to monitor Apache Spark
 
 You will need to set a few Spark configuration parameter to use this type of instrumentation. 
 In particular, you need to point Spark to write to the InfluxDB instance (to a graphite endpoint).  
 
-Docker:
+**Docker:**
  - InfluxDB will use port 2003 (graphite endpoint), and port 8086 (http endpoint) of
    your machine/VM (when running using `--network=host`).
  - Note: the endpoints need to be available on the node where you started the Docker container and
    reachable by Spark executors and driver (mind the firewall). 
 
-Helm:
+**Helm:**
  - Find the InfluxDB endpoint IP with `kubectl get service spark-dashboard-influx`. 
    Optionally resolve the dns name with `nslookup` of such IP.
    For example, the InfluxDB service host name of a test installation is: `spark-dashboard-influx.default.svc.cluster.local`  
@@ -61,6 +63,7 @@ INFLUXDB_ENDPOINT=`hostname`
 #INFLUXDB_ENDPOINT=spark-dashboard-influx.default.svc.cluster.local
 #INFLUXDB_ENDPOINT=10.0.0.1
 
+bin/spark-shell (or spark-submit or pyspark) ...addtitional options...
 --conf "spark.metrics.conf.driver.sink.graphite.class"="org.apache.spark.metrics.sink.GraphiteSink" \
 --conf "spark.metrics.conf.executor.sink.graphite.class"="org.apache.spark.metrics.sink.GraphiteSink" \
 --conf "spark.metrics.conf.driver.sink.graphite.host"=$INFLUXDB_ENDPOINT \
