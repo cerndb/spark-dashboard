@@ -3,7 +3,7 @@
 
 This repository supports the installation of an Apache Spark Performance Dashboard using containers technology.
 Use for measuring and troubleshooting Apache Spark applications. 
-Tested with Spark 3.0 and 2.4.  
+Tested with Spark 3.x and 2.4.  
 
 Two different installation options are packaged in this repository, use the one that suits your environment best:
 - [**dockerfiles**](dockerfiles) -> Docker build files for a Docker container image, use this to deploy the Spark Dashboard using Docker.
@@ -13,7 +13,7 @@ The Spark Dashboard collects and displays Spark workload data exported via the [
 Metrics are collected using InfluxDB and displayed using a set of pre-configured Grafana dashboards.
 Details of how this works at:
   - [Spark Dashboard Notes](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard)
-  - this [blog entry](https://db-blog.web.cern.ch/blog/luca-canali/2019-02-performance-dashboard-apache-spark)
+  - [Blog entry on Spark Dashboard](https://db-blog.web.cern.ch/blog/luca-canali/2019-02-performance-dashboard-apache-spark)
   - [Spark Summit Europe 2019 talk](https://databricks.com/session_eu19/performance-troubleshooting-using-apache-spark-metrics)
   - [Data+AI Summit Europe 2020 talk](https://databricks.com/session_eu20/what-is-new-with-apache-spark-performance-monitoring-in-spark-3-0)  
 Note that the provided installation instructions and code are intended as examples for testing and experimenting. 
@@ -36,7 +36,7 @@ Using Helm:
 ## How use the dashboard to monitor Apache Spark
 
 You will need to set a few Spark configuration parameter to use this type of instrumentation. 
-In particular, you need to point Spark to write to the InfluxDB instance (to a graphite endpoint).  
+In particular, you need to point Spark to write to the InfluxDB instance (to a Graphite endpoint).  
 
 **Docker:**
  - InfluxDB will use port 2003 (graphite endpoint), and port 8086 (http endpoint) of
@@ -51,9 +51,8 @@ In particular, you need to point Spark to write to the InfluxDB instance (to a g
 
 Notes: 
 - More details on how this works and alternative configurations at [Spark Dashboard](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard)   
-- The majority of the instrumentation is for the executorSource metrics that are currently only exported when running 
-Spark on a cluster (Kubernets, YARN, Standalone, Mesos). when using this with Spark running in local mode you will only
-be able to log (and visualize) a smaller subset of metrics, 
+- The dashboard can be used when running Spark on a cluster (Kubernetes, YARN, Standalone, Mesos) or in local mode.
+  When using Spark in local mode, please use Spark version 3.1 or higher, see [SPARK-31711](https://issues.apache.org/jira/browse/SPARK-31711) 
 
 **Example** Spark configuration parameters:  
 
@@ -64,14 +63,12 @@ INFLUXDB_ENDPOINT=`hostname`
 #INFLUXDB_ENDPOINT=10.0.0.1
 
 bin/spark-shell (or spark-submit or pyspark) ...addtitional options...
---conf "spark.metrics.conf.driver.sink.graphite.class"="org.apache.spark.metrics.sink.GraphiteSink" \
---conf "spark.metrics.conf.executor.sink.graphite.class"="org.apache.spark.metrics.sink.GraphiteSink" \
---conf "spark.metrics.conf.driver.sink.graphite.host"=$INFLUXDB_ENDPOINT \
---conf "spark.metrics.conf.executor.sink.graphite.host"=$INFLUXDB_ENDPOINT \
+--conf "spark.metrics.conf.*.sink.graphite.class"="org.apache.spark.metrics.sink.GraphiteSink" \
+--conf "spark.metrics.conf.*.sink.graphite.host"=$INFLUXDB_ENDPOINT \
 --conf "spark.metrics.conf.*.sink.graphite.port"=2003 \
 --conf "spark.metrics.conf.*.sink.graphite.period"=10 \
 --conf "spark.metrics.conf.*.sink.graphite.unit"=seconds \
---conf "spark.metrics.conf.*.sink.graphite.prefix"="luca_20200508" \
+--conf "spark.metrics.conf.*.sink.graphite.prefix"="luca" \
 --conf "spark.metrics.conf.*.source.jvm.class"="org.apache.spark.metrics.source.JvmSource" \
 --conf spark.metrics.staticSources.enabled=false \
 ```
