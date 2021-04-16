@@ -53,6 +53,8 @@ Notes:
 - More details on how this works and alternative configurations at [Spark Dashboard](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard)   
 - The dashboard can be used when running Spark on a cluster (Kubernetes, YARN, Standalone, Mesos) or in local mode.
   When using Spark in local mode, please use Spark version 3.1 or higher, see [SPARK-31711](https://issues.apache.org/jira/browse/SPARK-31711) 
+- The configuration in the example below is done using `spark.metrics.conf...` parameters, as an alternative 
+  you can choose to configure the metrics system using the configuration file `$SPARK_HOME/conf/metrics.properties file`
 
 **Example** Spark configuration parameters:  
 
@@ -70,7 +72,6 @@ bin/spark-shell (or spark-submit or pyspark) ...addtitional options...
 --conf "spark.metrics.conf.*.sink.graphite.unit"=seconds \
 --conf "spark.metrics.conf.*.sink.graphite.prefix"="luca" \
 --conf "spark.metrics.conf.*.source.jvm.class"="org.apache.spark.metrics.source.JvmSource" \
---conf spark.metrics.staticSources.enabled=false \
 ```
 
 Optionally, you can add annotation instrumentation to the performance dashboard. This would provide additional info
