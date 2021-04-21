@@ -74,9 +74,9 @@ bin/spark-shell (or spark-submit or pyspark) ...addtitional options...
 --conf "spark.metrics.conf.*.source.jvm.class"="org.apache.spark.metrics.source.JvmSource" \
 ```
 
-Optionally, you can add annotation instrumentation to the performance dashboard. This would provide additional info
-on the queries, jobs and stages start and end times. To activate annotations, add the following additional
-configuration, needed for collecting and writing extra performance data:
+Optionally, you can add annotation instrumentation to the performance dashboard.
+Annotations provide additional info on start and end times for queries, jobs and stages.
+To activate annotations, add the following additional configuration, needed for collecting and writing extra performance data:
 ```
 INFLUXDB_HTTP_ENDPOINT="http://`hostname`:8086"
 #INFLUXDB_HTTP_ENDPOINT="http://10.0.0.1:8086"
@@ -101,7 +101,7 @@ Examples:
 
 Notes:
 - First logon: use user "admin", with password admin (you can change that after logon)
-- Choose one of the provided dashboards (for example Spark_Perf_Dashboard_Spark3-0_v02) and select the user,
+- Choose one of the provided dashboards (for example start with **Spark_Perf_Dashboard_v03**) and select the user,
   applicationId and timerange.
 - You will need a running Spark application configured to use the dashboard to be able to select and application
   and display the metrics.
