@@ -16,6 +16,7 @@ Details of how this works at:
   - [Blog entry on Spark Dashboard](https://db-blog.web.cern.ch/blog/luca-canali/2019-02-performance-dashboard-apache-spark)
   - [Spark Summit Europe 2019 talk](https://databricks.com/session_eu19/performance-troubleshooting-using-apache-spark-metrics)
   - [Data+AI Summit Europe 2020 talk](https://databricks.com/session_eu20/what-is-new-with-apache-spark-performance-monitoring-in-spark-3-0)  
+
 Note that the provided installation instructions and code are intended as examples for testing and experimenting. 
 Hardening the installation will be necessary for production-quality use.
 
@@ -38,25 +39,7 @@ Using Helm:
 You will need to set a few Spark configuration parameter to use this type of instrumentation. 
 In particular, you need to point Spark to write to the InfluxDB instance (to a Graphite endpoint).  
 
-**Docker:**
- - InfluxDB will use port 2003 (graphite endpoint), and port 8086 (http endpoint) of
-   your machine/VM (when running using `--network=host`).
- - Note: the endpoints need to be available on the node where you started the Docker container and
-   reachable by Spark executors and driver (mind the firewall). 
-
-**Helm:**
- - Find the InfluxDB endpoint IP with `kubectl get service spark-dashboard-influx`. 
-   Optionally resolve the dns name with `nslookup` of such IP.
-   For example, the InfluxDB service host name of a test installation is: `spark-dashboard-influx.default.svc.cluster.local`  
-
-Notes: 
-- More details on how this works and alternative configurations at [Spark Dashboard](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard)   
-- The dashboard can be used when running Spark on a cluster (Kubernetes, YARN, Standalone, Mesos) or in local mode.
-  When using Spark in local mode, please use Spark version 3.1 or higher, see [SPARK-31711](https://issues.apache.org/jira/browse/SPARK-31711) 
-- The configuration in the example below is done using `spark.metrics.conf...` parameters, as an alternative 
-  you can choose to configure the metrics system using the configuration file `$SPARK_HOME/conf/metrics.properties file`
-
-**Example** Spark configuration parameters:  
+**Example** Spark configuration parameters:
 
 ```
 # customize, as relevant for your system
@@ -74,6 +57,7 @@ bin/spark-shell (or spark-submit or pyspark) ...addtitional options...
 --conf "spark.metrics.conf.*.source.jvm.class"="org.apache.spark.metrics.source.JvmSource" \
 ```
 
+**Graph annotations: display query/job/stage start and end times:**  
 Optionally, you can add annotation instrumentation to the performance dashboard.
 Annotations provide additional info on start and end times for queries, jobs and stages.
 To activate annotations, add the following additional configuration, needed for collecting and writing extra performance data:
@@ -84,6 +68,24 @@ INFLUXDB_HTTP_ENDPOINT="http://`hostname`:8086"
 --conf spark.sparkmeasure.influxdbURL=$INFLUXDB_HTTP_ENDPOINT \
 --conf spark.extraListeners=ch.cern.sparkmeasure.InfluxDBSink \
 ```
+
+**Notes:**
+- More details on how this works and alternative configurations at [Spark Dashboard](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard)
+- The dashboard can be used when running Spark on a cluster (Kubernetes, YARN, Standalone, Mesos) or in local mode.
+  When using Spark in local mode, please use Spark version 3.1 or higher, see [SPARK-31711](https://issues.apache.org/jira/browse/SPARK-31711)
+- The configuration in the example below is done using `spark.metrics.conf...` parameters, as an alternative
+  you can choose to configure the metrics system using the configuration file `$SPARK_HOME/conf/metrics.properties file`
+
+**Docker:**
+- InfluxDB will use port 2003 (graphite endpoint), and port 8086 (http endpoint) of
+  your machine/VM (when running using `--network=host`).
+- Note: the endpoints need to be available on the node where you started the Docker container and
+  reachable by Spark executors and driver (mind the firewall).
+
+**Helm:**
+- Find the InfluxDB endpoint IP with `kubectl get service spark-dashboard-influx`.
+  Optionally resolve the dns name with `nslookup` of such IP.
+  For example, the InfluxDB service host name of a test installation is: `spark-dashboard-influx.default.svc.cluster.local`
 
 ## How to connect to the Grafana dashboard
 
