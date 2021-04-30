@@ -65,7 +65,7 @@ To activate annotations, add the following additional configuration, needed for 
 ```
 INFLUXDB_HTTP_ENDPOINT="http://`hostname`:8086"
 #INFLUXDB_HTTP_ENDPOINT="http://10.0.0.1:8086"
---packages ch.cern.sparkmeasure:spark-measure_2.12:0.16 \
+--packages ch.cern.sparkmeasure:spark-measure_2.12:0.17 \
 --conf spark.sparkmeasure.influxdbURL=$INFLUXDB_HTTP_ENDPOINT \
 --conf spark.extraListeners=ch.cern.sparkmeasure.InfluxDBSink \
 ```
