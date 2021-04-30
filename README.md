@@ -55,6 +55,7 @@ bin/spark-shell (or spark-submit or pyspark) ...addtitional options...
 --conf "spark.metrics.conf.*.sink.graphite.unit"=seconds \
 --conf "spark.metrics.conf.*.sink.graphite.prefix"="luca" \
 --conf "spark.metrics.conf.*.source.jvm.class"="org.apache.spark.metrics.source.JvmSource" \
+--conf spark.metrics.appStatusSource.enabled=true \
 ```
 
 **Graph annotations: display query/job/stage start and end times:**  
