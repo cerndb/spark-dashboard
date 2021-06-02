@@ -1,8 +1,8 @@
 # Spark Performance Dashboard
-## Run in a standalone Docker container or on Kubernetes using a Helm Chart 
+## Run as a Docker container or on Kubernetes using a Helm Chart 
 
-This repository supports the installation of an Apache Spark Performance Dashboard using containers technology.
-Use for measuring and troubleshooting Apache Spark applications. 
+This repository supports the installation of an Apache Spark Performance Dashboard using containers technology.  
+Use for measuring and troubleshooting Apache Spark applications.   
 Tested with Spark 3.x and 2.4.  
 
 Two different installation options are packaged in this repository, use the one that suits your environment best:
@@ -10,15 +10,17 @@ Two different installation options are packaged in this repository, use the one 
 - [**charts**](charts) -> a Helm chart for deploying the Spark Dashboard on Kubernetes.
 
 The Spark Dashboard collects and displays Spark workload data exported via the [Spark metrics system](https://spark.apache.org/docs/latest/monitoring.html#metrics).
-Metrics are collected using InfluxDB and displayed using a set of pre-configured Grafana dashboards.
-Details of how this works at:
-  - [Spark Dashboard Notes](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard)
-  - [Blog entry on Spark Dashboard](https://db-blog.web.cern.ch/blog/luca-canali/2019-02-performance-dashboard-apache-spark)
-  - [Spark Summit Europe 2019 talk](https://databricks.com/session_eu19/performance-troubleshooting-using-apache-spark-metrics)
-  - [Data+AI Summit Europe 2020 talk](https://databricks.com/session_eu20/what-is-new-with-apache-spark-performance-monitoring-in-spark-3-0)  
-
-Note that the provided installation instructions and code are intended as examples for testing and experimenting. 
+Metrics are collected using InfluxDB and displayed using a set of pre-configured Grafana dashboards.  
+Note that the provided installation instructions and code are intended as examples for testing and experimenting.
 Hardening the installation will be necessary for production-quality use.
+
+Further details at:
+  - **[Short demo of the Spark dashboard at this link](https://canali.web.cern.ch/docs/Spark_Dashboard_Demo.mp4)**
+  - [Blog entry on Spark Dashboard](https://db-blog.web.cern.ch/blog/luca-canali/2019-02-performance-dashboard-apache-spark)
+  - [Data+AI Summit 2021 talk](https://databricks.com/session_na21/monitor-apache-spark-3-on-kubernetes-using-metrics-and-plugins)
+  - [Spark Dashboard Notes](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard)
+
+
 
 Authors and contacts: Luca.Canali@cern.ch, Riccardo.Castellotti@cern.ch, additional credits: Michal Bien.
 
