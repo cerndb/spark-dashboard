@@ -17,10 +17,8 @@ Hardening the installation will be necessary for production-quality use.
 Further details at:
   - **[Short demo of the Spark dashboard at this link](https://canali.web.cern.ch/docs/Spark_Dashboard_Demo.mp4)**
   - [Blog entry on Spark Dashboard](https://db-blog.web.cern.ch/blog/luca-canali/2019-02-performance-dashboard-apache-spark)
-  - [Data+AI Summit 2021 talk](https://databricks.com/session_na21/monitor-apache-spark-3-on-kubernetes-using-metrics-and-plugins)
+  - Talk at [Data+AI Summit 2021](https://databricks.com/session_na21/monitor-apache-spark-3-on-kubernetes-using-metrics-and-plugins), [slides](http://canali.web.cern.ch/docs/Monitor_Spark3_on_Kubernetes_DataAI2021_LucaCanali.pdf)
   - [Spark Dashboard Notes](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard)
-
-
 
 Authors and contacts: Luca.Canali@cern.ch, Riccardo.Castellotti@cern.ch, additional credits: Michal Bien.
 
