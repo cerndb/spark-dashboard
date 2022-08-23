@@ -16,24 +16,27 @@ as time series, empowering Spark applications troubleshooting, including straggl
   - Talk at [Data+AI Summit 2021](https://databricks.com/session_na21/monitor-apache-spark-3-on-kubernetes-using-metrics-and-plugins), [slides](http://canali.web.cern.ch/docs/Monitor_Spark3_on_Kubernetes_DataAI2021_LucaCanali.pdf)
   - Notes on [Spark Dashboard](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard)
 
----
-**Architecture:**
-The Spark Dashboard collects and displays Spark workload data exported via the [Spark metrics system](https://spark.apache.org/docs/latest/monitoring.html#metrics).  
-Metrics are stored in InfluxDB and displayed using a set of pre-configured Grafana dashboards made available in this repo.  
-Note that the provided installation instructions and code are intended as examples for testing and experimenting.
-Hardening the installation will be necessary for production-quality use.
-
-![Spark metrics dashboard architecture](https://raw.githubusercontent.com/LucaCanali/Miscellaneous/master/Spark_Dashboard/images/Spark_metrics_dashboard_arch.PNG "Spark metrics dashboard architecture")
-
-
-**Main author and contact:** Luca.Canali@cern.ch  
-Previous contributors: Riccardo Castellotti, Michal Bien.
+Main author and contact: Luca.Canali@cern.ch  
+Previous contributors: Riccardo Castellotti, Michal Bien.  
 
 Related work: **[sparkMeasure](https://github.com/LucaCanali/sparkMeasure)** a tool for 
 performance troubleshooting of Apache Spark workloads
 
 ---
-## 1/3 Run the Spark dashboard using a container
+### Architecture
+The Spark Dashboard collects and displays Apache Spark workload metrics produced by
+the [Spark metrics system](https://spark.apache.org/docs/latest/monitoring.html#metrics).  
+Spark metrics are exported via a Graphite endpoint and stored in InfluxDB.
+Metrics are then queried from InfluxDB and displayed using a set of pre-configured Grafana dashboards distributed with this repo.   
+Note that the provided installation instructions and code are intended as examples for testing and experimenting.
+Hardening the installation will be necessary for production-quality use.
+
+![Spark metrics dashboard architecture](https://raw.githubusercontent.com/LucaCanali/Miscellaneous/master/Spark_Dashboard/images/Spark_metrics_dashboard_arch.PNG "Spark metrics dashboard architecture")
+
+---
+## Deploy the Spark Dashboard in 3 Steps
+
+## Step 1/3: Run the Spark dashboard using a container
 
 Two different installation options are packaged in this repository, use the one that best suits your environment:
 - [**dockerfiles**](dockerfiles) -> Docker build files for a Docker container image, use this to deploy the Spark Dashboard using Docker.
@@ -49,7 +52,7 @@ Two different installation options are packaged in this repository, use the one 
  - Details: [charts](charts)
 
 
-## 2/3 Spark configuration parameters
+## Step 2/3: Spark configuration parameters
 
 You will need to set a few Spark configuration parameters to hook the Spark metrics system instrumentation
 to the dashboard.
@@ -75,23 +78,23 @@ bin/spark-shell (or spark-submit or pyspark) ...addtitional options...
 ```
 
 
-## 3/3 Visualize the metrics using a Grafana dashboard
+## Step 3/3: Visualize the metrics using a Grafana dashboard
 
-Docker:
+### Docker:
  - The Grafana dashboard should be reachable at port 3000 of your machine/VM where you started the container
  - Point your browser to `http://hostname:3000` (edit `hostname` as relevant)
  - Credentials: use the default for the first login (user: admin, password: admin)
 
-Helm:
+### Helm:
  - The Grafana dashboard is reachable at port 3000 of the spark-dashboard-service.  
    See service details: `kubectl get service spark-dashboard-grafana`  
    When using NodePort and an internal cluster IP address, this is how you can port forward to the service from
    the local machine: `kubectl port-forward service/spark-dashboard-grafana 3000:3000`
 
-Examples:
+### Examples:
 - See some [examples of the graphs available in the dashboard at this link](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard#example-graphs)
 
-Notes:
+### Notes:
 - First logon: use user "admin", with password admin (you can change that after logon)
 - Choose one of the provided dashboards (for example start with **Spark_Perf_Dashboard_v03**) and select the user,
   applicationId and timerange.
