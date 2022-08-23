@@ -1,7 +1,8 @@
 # Spark Performance Dashboard
 
-This repository supports and simplifies the rollout of an Apache Spark Performance Dashboard using containers technology.   
-  
+This repository is meant to streamline the deployment of Apache Spark Performance Dashboard using containers technology.
+It is implemented using Grafana, InfluxDB, and the [Spark metrics system](https://spark.apache.org/docs/latest/monitoring.html#metrics).
+
 **Why:** Troubleshooting Spark jobs and understanding how system resources are used by Spark executors can be complicated.
 This type of data is precious for visualizing and understanding root causes of performance issues.
 Using the Spark Dashboard you can collect and visualize many of key metrics available by the Spark metrics system
@@ -10,24 +11,25 @@ as time series, empowering Spark applications troubleshooting, including straggl
 **Compatibility:** Use with Spark 3.x and 2.4. 
 
 **Demos and blogs:**
-  - **[Short demo of the Spark dashboard at this link](https://canali.web.cern.ch/docs/Spark_Dashboard_Demo.mp4)**
+  - **[Short demo of the Spark dashboard](https://canali.web.cern.ch/docs/Spark_Dashboard_Demo.mp4)**
   - [Blog entry on Spark Dashboard](https://db-blog.web.cern.ch/blog/luca-canali/2019-02-performance-dashboard-apache-spark)
   - Talk at [Data+AI Summit 2021](https://databricks.com/session_na21/monitor-apache-spark-3-on-kubernetes-using-metrics-and-plugins), [slides](http://canali.web.cern.ch/docs/Monitor_Spark3_on_Kubernetes_DataAI2021_LucaCanali.pdf)
-  - [Spark Dashboard Notes](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard)
+  - Notes on [Spark Dashboard](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard)
 
-The Spark Dashboard collects and displays Spark workload data exported via the [Spark metrics system](https://spark.apache.org/docs/latest/monitoring.html#metrics).
-Metrics are collected using InfluxDB and displayed using a set of pre-configured Grafana dashboards.  
+---
+**Architecture:**
+The Spark Dashboard collects and displays Spark workload data exported via the [Spark metrics system](https://spark.apache.org/docs/latest/monitoring.html#metrics).  
+Metrics are stored in InfluxDB and displayed using a set of pre-configured Grafana dashboards made available in this repo.  
 Note that the provided installation instructions and code are intended as examples for testing and experimenting.
 Hardening the installation will be necessary for production-quality use.
 
-**Architecture:**
 ![Spark metrics dashboard architecture](https://raw.githubusercontent.com/LucaCanali/Miscellaneous/master/Spark_Dashboard/images/Spark_metrics_dashboard_arch.PNG "Spark metrics dashboard architecture")
 
 
 **Main author and contact:** Luca.Canali@cern.ch  
 Previous contributors: Riccardo Castellotti, Michal Bien.
 
-Related work: [sparkMeasure](https://github.com/LucaCanali/sparkMeasure) a tool for 
+Related work: **[sparkMeasure](https://github.com/LucaCanali/sparkMeasure)** a tool for 
 performance troubleshooting of Apache Spark workloads
 
 ---
