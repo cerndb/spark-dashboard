@@ -1,7 +1,7 @@
 # Container image for Spark Dashboard
 # using InfluxDB and Grafana
 
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 ENV INFLUXDB_VERSION 1.8.10
 ENV GRAFANA_VERSION 9.1.1
