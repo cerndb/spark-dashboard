@@ -1,5 +1,5 @@
 grafana:
-  image: "grafana/grafana:9.0.6"
+  image: "grafana/grafana:9.1.1"
   service:
     type: "NodePort"
     port: 3000
