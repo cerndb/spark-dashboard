@@ -1,7 +1,8 @@
 # Spark Performance Dashboard
 
-This repository is meant to streamline the deployment of Apache Spark Performance Dashboard using containers technology.
-It is implemented using Grafana, InfluxDB, and the [Spark metrics system](https://spark.apache.org/docs/latest/monitoring.html#metrics).
+This repository provides the tooling and configuration for deploying an Apache Spark Performance Dashboard using containers technology.
+The monitoring pipeline is implemented using the [Spark metrics system](https://spark.apache.org/docs/latest/monitoring.html#metrics),
+InfluxDB, and Grafana.
 
 **Why:** Troubleshooting Spark jobs and understanding how system resources are used by Spark executors can be complicated.
 This type of data is precious for visualizing and understanding root causes of performance issues.
@@ -25,7 +26,7 @@ performance troubleshooting of Apache Spark workloads
 ---
 ### Architecture
 The Spark Dashboard collects and displays Apache Spark workload metrics produced by
-the [Spark metrics system](https://spark.apache.org/docs/latest/monitoring.html#metrics).  
+the [Spark metrics system](https://spark.apache.org/docs/latest/monitoring.html#metrics).
 Spark metrics are exported via a Graphite endpoint and stored in InfluxDB.
 Metrics are then queried from InfluxDB and displayed using a set of pre-configured Grafana dashboards distributed with this repo.   
 Note that the provided installation instructions and code are intended as examples for testing and experimenting.
@@ -36,18 +37,15 @@ Hardening the installation will be necessary for production-quality use.
 ---
 ## Deploy the Spark Dashboard in 3 Steps
 
-## Step 1/3: Run the Spark dashboard using a container
+## Step 1/3: Run the Spark dashboard using a container technology
 
 Two different installation options are packaged in this repository, use the one that best suits your environment:
-- [**dockerfiles**](dockerfiles) -> Docker build files for a Docker container image, use this to deploy the Spark Dashboard using Docker.
-- [**charts**](charts) -> a Helm chart for deploying the Spark Dashboard on Kubernetes.
 
-
-### Deploy the dashboard using Docker
+### Option Docker: Deploy the dashboard using Docker
  - Quickstart: `docker run --network=host -d lucacanali/spark-dashboard:v01`
  - Details: [dockerfiles](dockerfiles)
 
-### Deploy the dashboard using Helm
+### Option Helm: Deploy the dashboard using Helm
  - Quickstart: `helm install spark-dashboard https://github.com/cerndb/spark-dashboard/raw/master/charts/spark-dashboard-0.3.0.tgz`
  - Details: [charts](charts)
 
@@ -110,7 +108,7 @@ Annotations provide additional info on start and end times for queries, jobs and
 To activate annotations, add the following additional configuration, needed for collecting and writing extra performance data:
 ```
 INFLUXDB_HTTP_ENDPOINT="http://`hostname`:8086"
---packages ch.cern.sparkmeasure:spark-measure_2.12:0.21 \
+--packages ch.cern.sparkmeasure:spark-measure_2.12:0.22 \
 --conf spark.sparkmeasure.influxdbURL=$INFLUXDB_HTTP_ENDPOINT \
 --conf spark.extraListeners=ch.cern.sparkmeasure.InfluxDBSink \
 ```
