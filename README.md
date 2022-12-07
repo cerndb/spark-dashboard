@@ -54,7 +54,7 @@ Two different installation options are packaged in this repository, use the one 
 
 You will need to set a few Spark configuration parameters to hook the Spark metrics system instrumentation
 to the dashboard.
-In particular, you need to point Spark to write to the InfluxDB instance (via a Graphite endpoint).  
+In particular, you need to point Spark to the InfluxDB instance (via a Graphite endpoint set up on InfluxDB 1.x).  
 
 ```
 # InfluxDB endpoint, as started using the docker container
@@ -75,15 +75,16 @@ bin/spark-shell (or spark-submit or pyspark) ...addtitional options...
 --conf spark.metrics.appStatusSource.enabled=true \
 ```
 
+Note: You can also set the configuration using the `metrics.properties` file in `SPARK_CONF_DIR`
 
 ## Step 3/3: Visualize the metrics using a Grafana dashboard
 
-### Docker:
+### Option Docker:
  - The Grafana dashboard should be reachable at port 3000 of your machine/VM where you started the container
  - Point your browser to `http://hostname:3000` (edit `hostname` as relevant)
  - Credentials: use the default for the first login (user: admin, password: admin)
 
-### Helm:
+### Option Helm:
  - The Grafana dashboard is reachable at port 3000 of the spark-dashboard-service.  
    See service details: `kubectl get service spark-dashboard-grafana`  
    When using NodePort and an internal cluster IP address, this is how you can port forward to the service from
@@ -93,9 +94,9 @@ bin/spark-shell (or spark-submit or pyspark) ...addtitional options...
 - See some [examples of the graphs available in the dashboard at this link](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard#example-graphs)
 
 ### Notes:
-- First logon: use user "admin", with password admin (you can change that after logon)
+- At the first logon to the Grafana dashboard use user "admin", with password admin (you can change that after logon)
 - Choose one of the provided dashboards (for example start with **Spark_Perf_Dashboard_v03**) and select the user,
-  applicationId and timerange.
+  applicationId and time range.
 - You will need a running Spark application configured to use the dashboard to be able to select and application
   and display the metrics.
 
