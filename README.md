@@ -70,12 +70,23 @@ bin/spark-shell (or spark-submit or pyspark) ...addtitional options...
 --conf "spark.metrics.conf.*.sink.graphite.port"=2003 \
 --conf "spark.metrics.conf.*.sink.graphite.period"=10 \
 --conf "spark.metrics.conf.*.sink.graphite.unit"=seconds \
---conf "spark.metrics.conf.*.sink.graphite.prefix"="luca" \
+--conf "spark.metrics.conf.*.sink.graphite.prefix"="lucatest" \
 --conf "spark.metrics.conf.*.source.jvm.class"="org.apache.spark.metrics.source.JvmSource" \
---conf spark.metrics.appStatusSource.enabled=true \
+--conf "spark.metrics.staticSources.enabled"=true \
+--conf "spark.metrics.appStatusSource.enabled"=true
 ```
 
-Note: You can also set the configuration using the `metrics.properties` file in `SPARK_CONF_DIR`
+Note: You can also set the configuration using the `metrics.properties` file in `SPARK_CONF_DIR`  
+Example `metrics.properties` file:
+  ```
+  *.sink.graphite.host=localhost
+  *.sink.graphite.port=2003
+  *.sink.graphite.period=10
+  *.sink.graphite.unit=seconds
+  *.sink.graphite.prefix=lucatest
+  *.source.jvm.class=org.apache.spark.metrics.source.JvmSource
+  ```
+
 
 ## Step 3/3: Visualize the metrics using a Grafana dashboard
 
