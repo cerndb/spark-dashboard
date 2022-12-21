@@ -95,7 +95,7 @@ Note: You can also set the configuration using the `metrics.properties` file in 
 
 ### Notes:
 - At the first logon to the Grafana dashboard use user "admin", with password admin (you can change that after logon)
-- Choose one of the provided dashboards (for example start with **Spark_Perf_Dashboard_v03**) and select the user,
+- Choose one of the provided dashboards (for example start with **Spark_Perf_Dashboard_v04**) and select the user,
   applicationId and time range.
 - You will need a running Spark application configured to use the dashboard to be able to select and application
   and display the metrics.
