@@ -43,6 +43,7 @@ Two different installation options are packaged in this repository, use the one 
 
 ### Option Docker: Deploy the dashboard using Docker
  - Quickstart: `docker run --network=host -d lucacanali/spark-dashboard:v01`
+   - Or `docker run -p 3000:3000 -p 2003:2003 -d lucacanali/spark-dashboard:v01` 
  - Details: [dockerfiles](dockerfiles)
 
 ### Option Helm: Deploy the dashboard using Helm

@@ -5,6 +5,10 @@ How to run the dashboard contained using the image on [Dockerhub](https://hub.do
   using the local host machine's network.   Note that this will use ports 3000, 2003 and 8086 on the host.
 ```
 docker run --network=host -d lucacanali/spark-dashboard:v01
+or
+docker run -p 3000:3000 -p 2003:2003 -d lucacanali/spark-dashboard:v01
+or
+docker run -p 3000:3000 -p 2003:2003 -p 8086:8086 -d lucacanali/spark-dashboard:v01
 ```
 
 How to build the image locally:
