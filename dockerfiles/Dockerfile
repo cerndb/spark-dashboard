@@ -4,12 +4,12 @@
 FROM ubuntu:22.04
 
 ENV INFLUXDB_VERSION 1.8.10
-ENV GRAFANA_VERSION 10.0.3
+ENV GRAFANA_VERSION 10.2.3
 ENV ARCH amd64
 
 RUN set -ex && \
     apt-get update && \
-    apt-get install -qq -y curl libfontconfig && \
+    apt-get install -qq -y curl libfontconfig musl && \
     curl -O https://dl.grafana.com/oss/release/grafana_${GRAFANA_VERSION}_${ARCH}.deb && \
     dpkg -i grafana_${GRAFANA_VERSION}_${ARCH}.deb && \
     rm -f grafana_${GRAFANA_VERSION}_${ARCH}.deb && \
