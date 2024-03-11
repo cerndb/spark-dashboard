@@ -1,6 +1,6 @@
-# How to install the Helm Chart for Spark Dashboard
+# How to install the Helm Chart for the Spark Dashboard
 
-The helm chart is installed using [helm](https://helm.sh/docs/intro/quickstart/):
+The Helm chart is installed using [helm](https://helm.sh/docs/intro/quickstart/):
 ```
 helm install spark-dashboard https://github.com/cerndb/spark-dashboard/raw/master/charts/spark-dashboard-0.3.0.tgz
 ```  
@@ -36,7 +36,7 @@ kubectl get configmaps |grep spark-dashboard
 
 ## Configuration options
 
-The provided configuration is for testig purposes, for production use you may need further configuration, as typical for these type of components.
+The provided configuration is for testing purposes, for production use you may need further configuration, as typical for these type of components.
 - The storage for influxDB can be defined in the `values.yaml`
   - If no storageClass is provided, an `EmptyDir` will be allocated: the dashboard history will be lost when the
    underlying pod is restarted. You may rather want to use a persistent backend in the configuration.
