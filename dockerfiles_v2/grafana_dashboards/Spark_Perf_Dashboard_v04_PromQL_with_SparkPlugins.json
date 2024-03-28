@@ -27,7 +27,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -90,8 +90,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -107,7 +106,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 1
+            "y": 9
           },
           "id": 94,
           "interval": "5s",
@@ -233,8 +232,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -250,7 +248,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 1
+            "y": 9
           },
           "id": 95,
           "interval": "5s",
@@ -379,8 +377,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -396,7 +393,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 11
+            "y": 19
           },
           "id": 96,
           "interval": "5s",
@@ -525,8 +522,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -542,7 +538,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 11
+            "y": 19
           },
           "id": 97,
           "interval": "5s",
@@ -671,8 +667,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -688,7 +683,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 21
+            "y": 29
           },
           "id": 98,
           "interval": "5s",
@@ -817,8 +812,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -834,7 +828,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 21
+            "y": 29
           },
           "id": 99,
           "interval": "5s",
@@ -977,8 +971,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -994,7 +987,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 1
+            "y": 9
           },
           "id": 110,
           "interval": "5s",
@@ -1123,8 +1116,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1140,7 +1132,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 1
+            "y": 9
           },
           "id": 111,
           "interval": "5s",
@@ -1269,8 +1261,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1286,7 +1277,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 11
+            "y": 19
           },
           "id": 112,
           "interval": "5s",
@@ -1415,8 +1406,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1432,7 +1422,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 11
+            "y": 19
           },
           "id": 113,
           "interval": "5s",
@@ -1575,8 +1565,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1592,7 +1581,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 33
+            "y": 41
           },
           "id": 101,
           "interval": "5s",
@@ -1721,8 +1710,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1738,7 +1726,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 33
+            "y": 41
           },
           "id": 102,
           "interval": "5s",
@@ -1867,8 +1855,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1884,7 +1871,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 43
+            "y": 51
           },
           "id": 103,
           "interval": "5s",
@@ -2013,8 +2000,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2030,7 +2016,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 43
+            "y": 51
           },
           "id": 104,
           "interval": "5s",
@@ -2159,8 +2145,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2176,7 +2161,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 53
+            "y": 61
           },
           "id": 105,
           "interval": "5s",
@@ -2305,8 +2290,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2322,7 +2306,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 53
+            "y": 61
           },
           "id": 107,
           "interval": "5s",
@@ -2467,7 +2451,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 63
+            "y": 71
           },
           "id": 108,
           "interval": "5s",
@@ -2612,7 +2596,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 63
+            "y": 71
           },
           "id": 106,
           "interval": "5s",
@@ -2779,7 +2763,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "10.4.1",
       "targets": [
         {
           "datasource": {
@@ -2894,7 +2878,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "10.4.1",
       "targets": [
         {
           "datasource": {
@@ -2958,7 +2942,7 @@
         "type": "victoriametrics-datasource",
         "uid": "P4169E866C3094E38"
       },
-      "description": "Total task CPU usage from task metrics in the selected time range. Displays CPU time used for all the completed tasks, from the task metrics data source. Note, values from executors that are no more active in the selected time window are not counted.\n",
+      "description": "Driver CPU time computed from executor metrics for the selected time range. ",
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -2991,6 +2975,122 @@
         "x": 8,
         "y": 4
       },
+      "id": 114,
+      "interval": "5s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.4.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PAB4C6DB7858A5C06"
+          },
+          "editorMode": "code",
+          "expr": "sum (\r\n  max_over_time(jvmCpuTime_value{applicationid=\"$ApplicationId\", executorid=\"driver\"}[$__range]) \r\n  - \r\n  min_over_time(jvmCpuTime_value{applicationid=\"$ApplicationId\", executorid=\"driver\"}[$__range])\r\n)",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "legendFormat": "__auto",
+          "measurement": "jvmCpuTime",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "select sum(lastvalperprocess) - sum(firstvalperprocess) from \n( SELECT process, last(value) as lastvalperprocess FROM jvmCpuTime WHERE \"applicationid\" = '$ApplicationId' and $timeFilter GROUP BY process),\n( SELECT process, first(value) as firstvalperprocess FROM jvmCpuTime WHERE \"applicationid\" = '$ApplicationId' and $timeFilter GROUP BY process) ",
+          "range": true,
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "applicationid",
+              "operator": "=~",
+              "value": "/^$ApplicationId$/"
+            }
+          ]
+        }
+      ],
+      "title": "Driver CPU time",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-datasource",
+        "uid": "P4169E866C3094E38"
+      },
+      "description": "Total task CPU usage from task metrics in the selected time range. Displays CPU time used for all the completed tasks, from the task metrics data source. Note, values from executors that are no more active in the selected time window are not counted.\n",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "ns"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 12,
+        "y": 4
+      },
       "id": 9,
       "interval": "5s",
       "options": {
@@ -3010,7 +3110,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "10.4.1",
       "targets": [
         {
           "datasource": {
@@ -3100,7 +3200,7 @@
       "gridPos": {
         "h": 5,
         "w": 4,
-        "x": 12,
+        "x": 16,
         "y": 4
       },
       "id": 46,
@@ -3121,7 +3221,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "10.4.1",
       "targets": [
         {
           "datasource": {
@@ -3214,7 +3314,7 @@
       "gridPos": {
         "h": 5,
         "w": 4,
-        "x": 16,
+        "x": 20,
         "y": 4
       },
       "id": 34,
@@ -3236,7 +3336,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "10.4.1",
       "targets": [
         {
           "datasource": {
@@ -3286,116 +3386,6 @@
         }
       ],
       "title": "N# of Tasks, Compled",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "P4169E866C3094E38"
-      },
-      "description": "Number of running stages from the DAG scheduler.",
-      "fieldConfig": {
-        "defaults": {
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 4,
-        "x": 20,
-        "y": 4
-      },
-      "id": 79,
-      "interval": "5s",
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "text": {},
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "10.4.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PAB4C6DB7858A5C06"
-          },
-          "editorMode": "code",
-          "expr": "stage_runningStages_value{applicationid=\"$ApplicationId\"}",
-          "groupBy": [
-            {
-              "params": [
-                "process"
-              ],
-              "type": "tag"
-            }
-          ],
-          "hide": false,
-          "legendFormat": "__auto",
-          "measurement": "stage.failedStages",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT \"value\" FROM \"stage.runningStages\" WHERE (\"applicationid\" =~ /^$ApplicationId$/) AND $timeFilter ",
-          "range": true,
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "applicationid",
-              "operator": "=~",
-              "value": "/^$ApplicationId$/"
-            }
-          ]
-        }
-      ],
-      "title": "Current N# of Running Stages - latest value",
       "type": "stat"
     },
     {
@@ -3461,7 +3451,7 @@
         "sizing": "auto",
         "text": {}
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "10.4.1",
       "targets": [
         {
           "datasource": {
@@ -3583,7 +3573,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "10.4.1",
       "targets": [
         {
           "datasource": {
@@ -3698,7 +3688,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "10.4.1",
       "targets": [
         {
           "datasource": {
@@ -3813,7 +3803,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "10.4.1",
       "targets": [
         {
           "datasource": {
@@ -3928,7 +3918,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "10.4.1",
       "targets": [
         {
           "datasource": {
@@ -4034,7 +4024,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "10.4.1",
       "targets": [
         {
           "datasource": {
@@ -4144,7 +4134,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "10.4.1",
       "targets": [
         {
           "datasource": {
@@ -4250,7 +4240,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "10.4.1",
       "targets": [
         {
           "datasource": {
@@ -4304,123 +4294,7 @@
         "type": "victoriametrics-datasource",
         "uid": "P4169E866C3094E38"
       },
-      "description": "Total executor CPU time, from executor metrics since the start of the Spark application. Displays CPU time used by all the executors' JVMs for the duration of the application. It contains CPU time used for executing tasks and for other activities in the JVM, notably garbage collection.",
-      "fieldConfig": {
-        "defaults": {
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "ns"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 4,
-        "x": 8,
-        "y": 14
-      },
-      "id": 57,
-      "interval": "5s",
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "text": {},
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "10.4.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PAB4C6DB7858A5C06"
-          },
-          "editorMode": "code",
-          "expr": "sum(max_over_time(jvmCpuTime_value{applicationid=\"$ApplicationId\", executorid!=\"driver\"}[$__range]))",
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "0"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "legendFormat": "__auto",
-          "measurement": "jvmCpuTime",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "select sum(lastvalperprocess) as JCMCPU from ( SELECT process, last(value) as lastvalperprocess FROM jvmCpuTime WHERE \"applicationid\" = '$ApplicationId' GROUP BY process) ",
-          "range": true,
-          "rawQuery": true,
-          "refId": "A",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "value"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "sum"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "applicationid",
-              "operator": "=~",
-              "value": "/^$ApplicationId$/"
-            }
-          ]
-        }
-      ],
-      "title": "Total - CPU Time, Executors",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "victoriametrics-datasource",
-        "uid": "P4169E866C3094E38"
-      },
-      "description": "Number of completed tasks, from JVM threadpool metrics since the start of the Spark application.",
+      "description": "Number of running stages from the DAG scheduler.",
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -4450,13 +4324,14 @@
       "gridPos": {
         "h": 5,
         "w": 4,
-        "x": 12,
+        "x": 8,
         "y": 14
       },
-      "id": 84,
+      "id": 79,
+      "interval": "5s",
       "options": {
         "colorMode": "value",
-        "graphMode": "none",
+        "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
@@ -4471,7 +4346,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "10.4.1",
       "targets": [
         {
           "datasource": {
@@ -4479,7 +4354,7 @@
             "uid": "PAB4C6DB7858A5C06"
           },
           "editorMode": "code",
-          "expr": "sum(max_over_time(threadpool_completeTasks_value{applicationid=\"$ApplicationId\"}))",
+          "expr": "stage_runningStages_value{applicationid=\"$ApplicationId\"}",
           "groupBy": [
             {
               "params": [
@@ -4488,11 +4363,12 @@
               "type": "tag"
             }
           ],
+          "hide": false,
           "legendFormat": "__auto",
-          "measurement": "threadpool.completeTasks",
+          "measurement": "stage.failedStages",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "select sum(lastperprocessval) from \n(SELECT process, last(\"value\") as lastperprocessval FROM \"threadpool.completeTasks\" WHERE \"applicationid\" = '$ApplicationId' GROUP BY process)",
+          "query": "SELECT \"value\" FROM \"stage.runningStages\" WHERE (\"applicationid\" =~ /^$ApplicationId$/) AND $timeFilter ",
           "range": true,
           "rawQuery": true,
           "refId": "A",
@@ -4507,7 +4383,7 @@
               },
               {
                 "params": [],
-                "type": "last"
+                "type": "sum"
               }
             ]
           ],
@@ -4520,7 +4396,7 @@
           ]
         }
       ],
-      "title": "Total - N# of Tasks, Completed ",
+      "title": "Current N# of Running Stages - latest value",
       "type": "stat"
     },
     {
@@ -4558,7 +4434,7 @@
       "gridPos": {
         "h": 5,
         "w": 4,
-        "x": 16,
+        "x": 12,
         "y": 14
       },
       "id": 13,
@@ -4579,7 +4455,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "10.4.1",
       "targets": [
         {
           "datasource": {
@@ -4635,6 +4511,230 @@
         }
       ],
       "title": "Succeeded Jobs Count",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-datasource",
+        "uid": "P4169E866C3094E38"
+      },
+      "description": "Number of completed tasks, from JVM threadpool metrics since the start of the Spark application.",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 16,
+        "y": 14
+      },
+      "id": 84,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.4.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PAB4C6DB7858A5C06"
+          },
+          "editorMode": "code",
+          "expr": "sum (\r\n  max_over_time(threadpool_completeTasks_value{applicationid=\"$ApplicationId\"}[10d]) \r\n  - \r\n  min_over_time(threadpool_completeTasks_value{applicationid=\"$ApplicationId\"}[10d])\r\n)",
+          "groupBy": [
+            {
+              "params": [
+                "process"
+              ],
+              "type": "tag"
+            }
+          ],
+          "legendFormat": "__auto",
+          "measurement": "threadpool.completeTasks",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "select sum(lastperprocessval) from \n(SELECT process, last(\"value\") as lastperprocessval FROM \"threadpool.completeTasks\" WHERE \"applicationid\" = '$ApplicationId' GROUP BY process)",
+          "range": true,
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "applicationid",
+              "operator": "=~",
+              "value": "/^$ApplicationId$/"
+            }
+          ]
+        }
+      ],
+      "title": "Total - N# of Tasks, Completed ",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "victoriametrics-datasource",
+        "uid": "P4169E866C3094E38"
+      },
+      "description": "Total executor CPU time, from executor metrics since the start of the Spark application. Displays CPU time used by all the executors' JVMs for the duration of the application. It contains CPU time used for executing tasks and for other activities in the JVM, notably garbage collection.",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "ns"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 20,
+        "y": 14
+      },
+      "id": 57,
+      "interval": "5s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.4.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "PAB4C6DB7858A5C06"
+          },
+          "editorMode": "code",
+          "expr": "sum (\r\n  max_over_time(jvmCpuTime_value{applicationid=\"$ApplicationId\", executorid!=\"driver\"}[10d]) \r\n  - \r\n  min_over_time(jvmCpuTime_value{applicationid=\"$ApplicationId\", executorid!=\"driver\"}[10d])\r\n)",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "legendFormat": "__auto",
+          "measurement": "jvmCpuTime",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "select sum(lastvalperprocess) as JCMCPU from ( SELECT process, last(value) as lastvalperprocess FROM jvmCpuTime WHERE \"applicationid\" = '$ApplicationId' GROUP BY process) ",
+          "range": true,
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "applicationid",
+              "operator": "=~",
+              "value": "/^$ApplicationId$/"
+            }
+          ]
+        }
+      ],
+      "title": "Total - CPU Time, Executors",
       "type": "stat"
     },
     {
@@ -4893,7 +4993,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "rate(jvmCpuTime_value{applicationid=\"$ApplicationId\", executorid!=\"driver\"}[$AggrInterval]) / 1000000000",
+          "expr": "rate(jvmCpuTime_value{applicationid=\"$ApplicationId\"}[$AggrInterval]) / 1000000000",
           "format": "time_series",
           "groupBy": [
             {
@@ -4997,7 +5097,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5424,7 +5525,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5988,7 +6090,7 @@
           "refId": "A"
         }
       ],
-      "title": "Spark Executors Memory Metrics (Spark 3.0)",
+      "title": "Spark Memory Metrics",
       "type": "row"
     },
     {
@@ -6081,7 +6183,7 @@
             "uid": "PAB4C6DB7858A5C06"
           },
           "editorMode": "code",
-          "expr": "JVMHeapMemory_value{applicationid=\"$ApplicationId\", executorid!=\"driver\"}",
+          "expr": "JVMHeapMemory_value{applicationid=\"$ApplicationId\"}",
           "groupBy": [
             {
               "params": [
@@ -6355,7 +6457,7 @@
             "uid": "PAB4C6DB7858A5C06"
           },
           "editorMode": "code",
-          "expr": "OnHeapUnifiedMemory_value{applicationid=\"$ApplicationId\", executorid!=\"driver\"}",
+          "expr": "OnHeapUnifiedMemory_value{applicationid=\"$ApplicationId\"}",
           "groupBy": [
             {
               "params": [
@@ -6492,7 +6594,7 @@
             "uid": "PAB4C6DB7858A5C06"
           },
           "editorMode": "code",
-          "expr": "OffHeapUnifiedMemory_value{applicationid=\"$ApplicationId\", executorid!=\"driver\"}",
+          "expr": "OffHeapUnifiedMemory_value{applicationid=\"$ApplicationId\"}",
           "groupBy": [
             {
               "params": [
@@ -6629,7 +6731,7 @@
             "uid": "PAB4C6DB7858A5C06"
           },
           "editorMode": "code",
-          "expr": "OnHeapExecutionMemory_value{applicationid=\"$ApplicationId\", executorid!=\"driver\"}",
+          "expr": "OnHeapExecutionMemory_value{applicationid=\"$ApplicationId\"}",
           "groupBy": [
             {
               "params": [
@@ -6766,7 +6868,7 @@
             "uid": "PAB4C6DB7858A5C06"
           },
           "editorMode": "code",
-          "expr": "OnHeapStorageMemory_value{applicationid=\"$ApplicationId\", executorid!=\"driver\"}",
+          "expr": "OnHeapStorageMemory_value{applicationid=\"$ApplicationId\"}",
           "groupBy": [
             {
               "params": [
@@ -8976,9 +9078,9 @@
       },
       {
         "current": {
-          "selected": true,
-          "text": "spark-26669bff862048b180f8aa1d7c4d0ca5",
-          "value": "spark-26669bff862048b180f8aa1d7c4d0ca5"
+          "selected": false,
+          "text": "spark-323d8c2d7d144414afb7a1246e6f0177",
+          "value": "spark-323d8c2d7d144414afb7a1246e6f0177"
         },
         "datasource": {
           "type": "victoriametrics-datasource",
