@@ -67,8 +67,10 @@ If you chose to run on container image, these are steps:
 **1. Start the container**
 The provided container image has been built configured to run InfluxDB and Grafana
  - `docker run -p 3000:3000 -p 2003:2003 -d lucacanali/spark-dashboard` 
- - Note: port 2003 is for Graphite ingestion, port 3000 is for Grafana
- - More options, including on how to persist InfluxDB data across restarts at: [Spark dashboard in a container](dockerfiles_v2)
+ - Note: port 2003 is for ingesting metrics with Telegraf using the Graphite protocol,
+   port 3000 is the UI with Grafana dashboards
+ - More details, including how to persist metrics stored with VictoriaMetrics across container
+   restarts, at: [Spark dashboard in a container](dockerfiles_v2)
 
 **2. Spark configuration**
 You need to configure Spark to send the metrics to the desired Graphite endpoint + the add the related configuration.
@@ -107,25 +109,25 @@ bin/spark-shell (or spark-submit or pyspark)
 --conf "spark.metrics.appStatusSource.enabled"=true
 ```
 
-Optional configuration if you want to display "Tree Process Memory Details":
+Optional configuration if you want to collect and display "Tree Process Memory Details":
 ```
 --conf spark.executor.processTreeMetrics.enabled=true
 ```
 
 **3. Visualize the metrics using a Grafana dashboard**
-  - Point your browser to `http://hostname:3000` (edit `hostname` as relevant)
-  - Credentials: use the default for the first login (user: admin, password: admin)
-  - Use the default dashboard bundled with the container (**Spark_Perf_Dashboard_v04_promQL**) and select the user name,
-    applicationId and time range (default is last 5 minutes).
-    - You will need a running Spark application configured to use the dashboard to be able to select an application
+  - Point your browser to `http://localhost:3000` (edit `locahost` to point to your Grafana, as relevant)
+  - Credentials: use the defaults for the first login (user: admin, password: admin)
+  - Use the default dashboard bundled with the container (**Spark_Perf_Dashboard_v04_promQL**) and select the username,
+    applicationId and time range to display (default is last 5 minutes).
+    - Note: you will need a running Spark application configured to use the dashboard to be able to select an application
     and display the metrics. 
-    - See also [TPCDS_PySpark](https://github.com/LucaCanali/Miscellaneous/tree/master/Performance_Testing/TPCDS_PySpark)
+    - For testing, you can create some load using [TPCDS_PySpark](https://github.com/LucaCanali/Miscellaneous/tree/master/Performance_Testing/TPCDS_PySpark)
     a TPC-DS workload generator written in Python and designed to run at scale using Apache Spark.
 
 ### Extended Spark dashboard
 An extended Spark dashboard is available to collect and visualize OS and storage data.
-This utilizes Spark Plugins to collect the extended metrics. The metrics are collected and stored in the
-same VictoriaMetrics database as the Spark metrics.
+This utilizes [Spark Plugins](https://github.com/cerndb/SparkPlugins) to collect the extended
+metrics. The metrics are collected and stored in the same VictoriaMetrics database as the Spark metrics.
 
 - Configuration:
   - Add the following to the Spark configuration:  
@@ -135,11 +137,12 @@ same VictoriaMetrics database as the Spark metrics.
   -  Manually select the dashboard **Spark_Perf_Dashboard_v04_PromQL_with_SparkPlugins**
   - The dashboard includes additional graphs for OS and storage metrics.
   - Three new tabs are available: 
-    - CGroup Metrics (use with Spark running on Kubernetes) 
-    - Cloud Storage (use with S3A, GZ, WASB, and cloud storage in general)
-    - HDFS Advanced Statistics (use with HDFS)
+    - **CGroup Metrics** (use with Spark running on Kubernetes) 
+    - **Cloud Storage** (use with S3A, GZ, WASB, and cloud storage in general)
+    - **HDFS Advanced** Statistics (use with HDFS)
 
-### Examples and testing the dashboard:
+---
+### Examples and getting started with Spark Performance dashboards:
 - See some [examples of the graphs available in the dashboard at this link](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard#example-graphs)
 
 - You can use the [TPCDS_PySpark](https://github.com/LucaCanali/Miscellaneous/tree/master/Performance_Testing/TPCDS_PySpark)
@@ -249,8 +252,8 @@ INFLUXDB_HTTP_ENDPOINT="http://`hostname`:8086"
 
 ### Customizing and adding new dashboards 
 
-- This implementation comes with some example dashboards based on the authors' use. Note that only a subset of the
-metrics values logged into InfluxDB are visualized in the provided dashboard.
+- This implementation comes with some example dashboards. Note that only a subset of the
+metrics values logged into VictoriaMetrics are visualized in the provided dashboard.
 - For a full list of the available metrics see the [documentation of Spark metrics system](https://github.com/apache/spark/blob/master/docs/monitoring.md#metrics).
 - New dashboards can be added by putting them in the relevant `grafana_dashboards` folder and re-building the container image
 (or  re-packaging the helm chart).
