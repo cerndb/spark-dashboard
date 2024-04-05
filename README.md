@@ -15,6 +15,8 @@ Spark-dashboard is a solution for monitoring Apache Spark jobs.
   - [How to run the Spark Dashboard V2 on a Docker container](#how-to-run-the-spark-dashboard-v2-on-a-docker-container)
   - [Advanced configurations and notes](#advanced-configurations-and-notes)
   - [Examples and testing the dashboard](#examples-and-testing-the-dashboard) 
+  - [Start small, testing with Spark in local mode](#start-small-testing-with-spark-in-local-mode)
+  - [Running TPCDS on a Spark cluster](#running-tpcds-on-a-spark-cluster)
 - [Old implementation (v1)](#old-implementation-v1)
   - [How to run the Spark dashboard V1 on a Docker container](#how-to-run-the-spark-dashboard-v1-on-a-docker-container)
   - [How to run the dashboard V1 on Kubernetes using Helm](#how-to-run-the-dashboard-v1-on-kubernetes-using-helm)
@@ -94,12 +96,12 @@ Additional configuration, that you should pass as command line options (or add t
 Instead of using metrics.properties, you may prefer to use Spark configuration options directly.
 It's a matter of convenience and depends on your use case. This is an example of how to do it:  
 ```
-# InfluxDB endpoint, point to the host where the InfluxDB container is running
-INFLUXDB_ENDPOINT=`hostname`
+# VictoriaMetrics Graphite endpoint, point to the host where the VictoriaMetrics container is running
+VICTORIAMETRICS_ENDPOINT=`hostname`
 
 bin/spark-shell (or spark-submit or pyspark)
 --conf "spark.metrics.conf.*.sink.graphite.class"="org.apache.spark.metrics.sink.GraphiteSink" \
---conf "spark.metrics.conf.*.sink.graphite.host"=$INFLUXDB_ENDPOINT \
+--conf "spark.metrics.conf.*.sink.graphite.host"=$VICTORIAMETRICS_ENDPOINT \
 --conf "spark.metrics.conf.*.sink.graphite.port"=2003 \
 --conf "spark.metrics.conf.*.sink.graphite.period"=10 \
 --conf "spark.metrics.conf.*.sink.graphite.unit"=seconds \
@@ -143,11 +145,58 @@ metrics. The metrics are collected and stored in the same VictoriaMetrics databa
 
 ---
 ### Examples and getting started with Spark Performance dashboards:
-- See some [examples of the graphs available in the dashboard at this link](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard#example-graphs)
+- See some [examples of the dashboard graphs at this link](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard#example-graphs)
 
-- You can use the [TPCDS_PySpark](https://github.com/LucaCanali/Miscellaneous/tree/master/Performance_Testing/TPCDS_PySpark)
-package to generate a TPC-DS workload and test the dashboard.
+#### Start small, testing with Spark in local mode
+- You can use the [TPCDS_PySpark](https://github.com/LucaCanali/Miscellaneous/tree/master/Performance_Testing/TPCDS_PySpark) package to generate a TPC-DS workload and test the dashboard.
+- Run the following on local resources or cloud, for example use GitHub Codespaces from this repo
+  - [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/cerndb/spark-dashboard)
+```
+# Install the tool and dependencies
+pip install pyspark 
+pip install sparkmeasure 
+pip install tpcds_pyspark 
 
+# Download the test data
+wget https://sparkdltrigger.web.cern.ch/sparkdltrigger/TPCDS/tpcds_10.zip
+unzip -q tpcds_10.zip
+
+# 1. Run the tool for a minimal test
+tpcds_pyspark_run.py -d tpcds_10 -n 1 -r 1 --queries q1,q2
+
+# 2. Start the dashboard and visualize the metrics
+docker run -p 2003:2003 -p 3000:3000 -d lucacanali/spark-dashboard
+
+# 3. run the tpcds workload sending metrics to the dashboard
+TPCDS_PYSPARK=`which tpcds_pyspark_run.py`
+spark-submit --master local[*] \
+--conf "spark.metrics.conf.*.sink.graphite.class"="org.apache.spark.metrics.sink.GraphiteSink" \
+--conf "spark.metrics.conf.*.sink.graphite.host"="localhost" \
+--conf "spark.metrics.conf.*.sink.graphite.port"=2003 \
+--conf "spark.metrics.conf.*.sink.graphite.period"=10 \
+--conf "spark.metrics.conf.*.sink.graphite.unit"=seconds \
+--conf "spark.metrics.conf.*.sink.graphite.prefix"="lucatest" \
+--conf "spark.metrics.conf.*.source.jvm.class"="org.apache.spark.metrics.source.JvmSource" \
+--conf "spark.metrics.staticSources.enabled"=true \
+--conf "spark.metrics.appStatusSource.enabled"=true \
+--conf spark.driver.memory=4g \
+--conf spark.log.level=error \
+--packages ch.cern.sparkmeasure:spark-measure_2.12:0.24 \
+$TPCDS_PYSPARK -d tpcds_10
+
+# 4. Open the browser and point to the Grafana dashboard 
+#      Point to https://localhost:3000
+#      When using GitHub Codespaces, go to the "ports" tab to open a browser window there
+#      Grafanas credentials are the defaults: admin/admin
+#    Optionally also open the Spark WebUI on port 4040 to monitor the Spark job  
+
+# Wait a few minutes as the metrics come into the dashboard
+# Note: the dashbord if more useful when running on cluster resources, as
+  opposed to the local mode used in this example, see also next paragraph.
+```
+
+
+#### Running TPCDS on a Spark cluster
 - Example of running TPCDS on a YARN Spark cluster, monitor with the Spark dashboard:
 ```
 TPCDS_PYSPARK=`which tpcds_pyspark_run.py`
