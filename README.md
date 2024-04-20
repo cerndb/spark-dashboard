@@ -7,7 +7,7 @@ Spark-dashboard is a solution for monitoring Apache Spark jobs.
 - You can find here all the components to deploy a monitoring application for Apache Spark
 - Spark-dashboard collects metrics from Spark and visualizes them in a Grafana   
 - This tool is intended for performance troubleshooting and DevOps monitoring of Spark workloads.
-- Use it with Spark 2.4 and higher (3.x)
+- Compatibility: Spark 2.4 and higher
 
 ### Contents
 - [Architecture](#architecture)
