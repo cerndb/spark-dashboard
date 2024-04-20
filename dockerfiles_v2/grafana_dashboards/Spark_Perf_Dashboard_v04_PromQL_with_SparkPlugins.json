@@ -9106,8 +9106,8 @@
       {
         "current": {
           "selected": false,
-          "text": "20s",
-          "value": "20s"
+          "text": "10s",
+          "value": "10s"
         },
         "description": "The aggregation time interval applied when aggregating task metrics. Use 10s (default) when your tasks run <= 10s, use a large value when you have long-running tasks.\n",
         "hide": 0,
@@ -9122,12 +9122,12 @@
             "value": "2s"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "10s",
             "value": "10s"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "20s",
             "value": "20s"
           },
