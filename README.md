@@ -1,24 +1,26 @@
 # Spark-Dashboard
 ![Docker Pulls](https://img.shields.io/docker/pulls/lucacanali/spark-dashboard)  
 
-Spark-dashboard is a solution for monitoring Apache Spark jobs.
+Spark-Dashboard is a monitoring tool that collects Apache Spark metrics and
+displays them on a customizable Grafana dashboard for real-time performance
+tracking and optimization. 
 
 ### Key Features
 - You can find here all the components to deploy a monitoring application for Apache Spark
-- Spark-dashboard collects metrics from Spark and visualizes them in a Grafana   
+- Spark-Dashboard collects metrics from Spark and visualizes them in a Grafana   
 - This tool is intended for performance troubleshooting and DevOps monitoring of Spark workloads.
 - Compatibility: Spark 2.4 and higher
 
 ### Contents
 - [Architecture](#architecture)
 - [How To Deploy the Spark Dashboard](#how-to-deploy-the-spark-dashboard)
-  - [How to run the Spark Dashboard V2 on a Docker container](#how-to-run-the-spark-dashboard-v2-on-a-docker-container)
+  - [How to run the Spark Dashboard V2 on a container](#how-to-run-the-spark-dashboard-v2-on-a-container)
   - [Advanced configurations and notes](#advanced-configurations-and-notes)
   - [Examples and testing the dashboard](#examples-and-testing-the-dashboard) 
   - [Start small, testing with Spark in local mode](#start-small-testing-with-spark-in-local-mode)
   - [Running TPCDS on a Spark cluster](#running-tpcds-on-a-spark-cluster)
 - [Old implementation (v1)](#old-implementation-v1)
-  - [How to run the Spark dashboard V1 on a Docker container](#how-to-run-the-spark-dashboard-v1-on-a-docker-container)
+  - [How to run the Spark dashboard V1 on a container](#how-to-run-the-spark-dashboard-v1-on-a-container)
   - [How to run the dashboard V1 on Kubernetes using Helm](#how-to-run-the-dashboard-v1-on-kubernetes-using-helm)
 - [Advanced configurations and notes](#advanced-configurations-and-notes)
 
@@ -58,17 +60,18 @@ Note: spark-dashboard v1 (the original implementation) uses InfluxDB as the time
 ---
 ## How To Deploy the Spark Dashboard 
 
-This provides a quickstart guide to deploy the Spark Dashboard. Three different installation methods are described:
-- **Recommended:** Dashboard v2 on a Docker container 
-- Dashboard v1 on a Docker container
-- Dashboard v1 on Helm
+This quickstart guide outlines three methods for deploying Spark Dashboard:
+- **Recommended:** Deploy Spark-Dashboard v2 on a container 
+- Deploy Spark-Dashboard v1 on a container
+- Deploy Spark-Dashboard v1 on Helm
 
-### How to run the Spark Dashboard V2 on a Docker container
-If you chose to run on container image, these are steps:
+### How to run the Spark Dashboard V2 on a container
+If you opt to deploy using a container image, follow these steps:
 
 **1. Start the container**
 The provided container image has been built configured to run InfluxDB and Grafana
  - `docker run -p 3000:3000 -p 2003:2003 -d lucacanali/spark-dashboard` 
+ - The container runs also with podman: `podman run -p 3000:3000 -p 2003:2003 -d lucacanali/spark-dashboard` 
  - Note: port 2003 is for ingesting metrics with Telegraf using the Graphite protocol,
    port 3000 is the UI with Grafana dashboards
  - More details, including how to persist metrics stored with VictoriaMetrics across container
@@ -164,7 +167,7 @@ unzip -q tpcds_10.zip
 # 1. Run the tool for a minimal test
 tpcds_pyspark_run.py -d tpcds_10 -n 1 -r 1 --queries q1,q2
 
-# 2. Start the dashboard and visualize the metrics
+# 2. Start the dashboard and visualize the metrics (use docker or podman)
 docker run -p 2003:2003 -p 3000:3000 -d lucacanali/spark-dashboard
 
 # 3. run the tpcds workload sending metrics to the dashboard
@@ -184,15 +187,15 @@ spark-submit --master local[*] \
 --packages ch.cern.sparkmeasure:spark-measure_2.12:0.24 \
 $TPCDS_PYSPARK -d tpcds_10
 
-# 4. Open the browser and point to the Grafana dashboard 
-#      Point to https://localhost:3000
-#      When using GitHub Codespaces, go to the "ports" tab to open a browser window there
-#      Grafanas credentials are the defaults: admin/admin
-#    Optionally also open the Spark WebUI on port 4040 to monitor the Spark job  
+# 4. Accessing the Grafana Dashboard:
+#    - Navigate to https://localhost:3000 to access the Grafana dashboard.
+#    - If using GitHub Codespaces, use the "Ports" tab to open a browser window for this address.
+#    - Default credentials for Grafana are username: admin and password: admin.
+#    - Optionally, open the Spark WebUI at http://localhost:4040 to monitor the Spark job.
 
-# Wait a few minutes as the metrics come into the dashboard
-# Note: the dashbord if more useful when running on cluster resources, as
-  opposed to the local mode used in this example, see also next paragraph.
+# Wait a few minutes for metrics to populate the dashboard.
+# Note: This dashboard is more effective when Spark runs on cluster resources
+#       rather than in the local mode demonstrated here. For more details, refer to the next paragraph.
 ```
 
 
@@ -230,7 +233,7 @@ $TPCDS_PYSPARK -d s3a://luca/tpcds_100
 ---
 ## Old implementation (v1)
 
-### How to run the Spark dashboard V1 on a Docker container
+### How to run the Spark dashboard V1 on a container
 This is the original implementation of the tool using InfluxDB and Grafana 
 
 **1. Start the container**
@@ -287,11 +290,11 @@ INFLUXDB_HTTP_ENDPOINT="http://`hostname`:8086"
 - The dashboard can be used when running Spark on a cluster (Kubernetes, YARN, Standalone) or in local mode.  
 - When using Spark in local mode, use Spark version 3.1 or higher, see [SPARK-31711](https://issues.apache.org/jira/browse/SPARK-31711)
 
-### Docker
+### Docker / Podman
 - Telegraf will use port 2003 (graphite endpoint) and port 8428 (VictoriaMetrics source) of your machine/VM.
 - For dashboard v1: InfluxDB will use port 2003 (graphite endpoint), and port 8086 (http endpoint) of
   your machine/VM (when running using `--network=host`).
-- Note: the endpoints need to be available on the node where you started the Docker container and
+- Note: the endpoints need to be available on the node where you started the container and
   reachable by Spark executors and driver (mind the firewall).
 
 ### Helm
