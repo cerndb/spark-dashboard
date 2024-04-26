@@ -13,22 +13,23 @@ tracking and optimization.
 
 ### Contents
 - [Architecture](#architecture)
-- [How To Deploy the Spark Dashboard](#how-to-deploy-the-spark-dashboard)
+- [How To Deploy the Spark Dashboard V2](#how-to-deploy-the-spark-dashboard)
   - [How to run the Spark Dashboard V2 on a container](#how-to-run-the-spark-dashboard-v2-on-a-container)
-  - [Advanced configurations and notes](#advanced-configurations-and-notes)
+  - [Extended Spark dashboard](#extended-spark-dashboard)
   - [Examples and testing the dashboard](#examples-and-testing-the-dashboard) 
   - [Start small, testing with Spark in local mode](#start-small-testing-with-spark-in-local-mode)
   - [Running TPCDS on a Spark cluster](#running-tpcds-on-a-spark-cluster)
-- [Old implementation (v1)](#old-implementation-v1)
+- [Old implementation (V1)](#old-implementation-v1)
   - [How to run the Spark dashboard V1 on a container](#how-to-run-the-spark-dashboard-v1-on-a-container)
   - [How to run the dashboard V1 on Kubernetes using Helm](#how-to-run-the-dashboard-v1-on-kubernetes-using-helm)
 - [Advanced configurations and notes](#advanced-configurations-and-notes)
 
 ### Resources
-  - **[Short demo of Spark dashboard](https://canali.web.cern.ch/docs/Spark_Dashboard_Demo.mp4)**
-  - [Blog entry on Spark Dashboard](https://db-blog.web.cern.ch/blog/luca-canali/2019-02-performance-dashboard-apache-spark)
-  - Talk on Spark performance at [Data+AI Summit 2021](https://databricks.com/session_na21/monitor-apache-spark-3-on-kubernetes-using-metrics-and-plugins), [slides](http://canali.web.cern.ch/docs/Monitor_Spark3_on_Kubernetes_DataAI2021_LucaCanali.pdf)
-  - Notes on [Spark Dashboard](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard)
+- [![Watch the video](https://www.youtube.com/s/desktop/050e6796/img/favicon_32x32.png) Watch Spark-Dashboard demo and tutorial](https://www.youtube.com/watch?v=sLjAyDwpg80)
+- Notes on [Spark Dashboard](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard)
+- Blog on [building an Apache Spark Performance Lab](https://db-blog.web.cern.ch/node/195)
+- Blog [on Spark Dashboard](https://db-blog.web.cern.ch/blog/luca-canali/2019-02-performance-dashboard-apache-spark)
+- Talk on Spark performance at [Data+AI Summit 2021](https://databricks.com/session_na21/monitor-apache-spark-3-on-kubernetes-using-metrics-and-plugins), [slides](http://canali.web.cern.ch/docs/Monitor_Spark3_on_Kubernetes_DataAI2021_LucaCanali.pdf)
 - [sparkMeasure](https://github.com/LucaCanali/sparkMeasure) a tool for performance troubleshooting of Apache Spark workloads
 - [TPCDS_PySpark](https://github.com/LucaCanali/Miscellaneous/tree/master/Performance_Testing/TPCDS_PySpark) a TPC-DS workload generator written in Python and designed to run at scale using Apache Spark
 
@@ -68,7 +69,7 @@ This quickstart guide outlines three methods for deploying Spark Dashboard:
 ### How to run the Spark Dashboard V2 on a container
 If you opt to deploy using a container image, follow these steps:
 
-**1. Start the container**
+#### 1. Start the container
 The provided container image has been built configured to run InfluxDB and Grafana
  - `docker run -p 3000:3000 -p 2003:2003 -d lucacanali/spark-dashboard` 
  - The container runs also with podman: `podman run -p 3000:3000 -p 2003:2003 -d lucacanali/spark-dashboard` 
@@ -77,7 +78,7 @@ The provided container image has been built configured to run InfluxDB and Grafa
  - More details, including how to persist metrics stored with VictoriaMetrics across container
    restarts, at: [Spark dashboard in a container](dockerfiles_v2)
 
-**2. Spark configuration**
+#### 2. Spark configuration
 You need to configure Spark to send the metrics to the desired Graphite endpoint + the add the related configuration.
 You can do this by editing the file `metrics.properties` located in `$SPARK_CONF_DIR` as follows:  
   ```
@@ -119,32 +120,45 @@ Optional configuration if you want to collect and display "Tree Process Memory D
 --conf spark.executor.processTreeMetrics.enabled=true
 ```
 
-**3. Visualize the metrics using a Grafana dashboard**
+#### 3. Visualize the metrics using a Grafana dashboard  
+The dashboard provides visualization of the collected metrics:
+  - Summary of key metrics, as Run Time, CPU Time, I/O, Shuffle, number of tasks, and more.
+  - Timeseries graphs for the metrics collected by Spark.
+
+How to use:
   - Point your browser to `http://localhost:3000` (edit `locahost` to point to your Grafana, as relevant)
   - Credentials: use the defaults for the first login (user: admin, password: admin)
   - Use the default dashboard bundled with the container (**Spark_Perf_Dashboard_v04_promQL**) and select the username,
     applicationId and time range to display (default is last 5 minutes).
-    - Note: you will need a running Spark application configured to use the dashboard to be able to select an application
-    and display the metrics. 
-    - For testing, you can create some load using [TPCDS_PySpark](https://github.com/LucaCanali/Miscellaneous/tree/master/Performance_Testing/TPCDS_PySpark)
+
+Notes: 
+  - you will need a running Spark application configured to use the dashboard as detailed in point 1. and 2.
+    to be able to select an application and display the metrics. 
+  - For testing purposes, you can create load on Spark by using [TPCDS_PySpark](https://github.com/LucaCanali/Miscellaneous/tree/master/Performance_Testing/TPCDS_PySpark)
     a TPC-DS workload generator written in Python and designed to run at scale using Apache Spark.
+   
 
 ### Extended Spark dashboard
-An extended Spark dashboard is available to collect and visualize OS and storage data.
+An extended Spark dashboard pipeline is available to collect and visualize OS and storage data.
 This utilizes [Spark Plugins](https://github.com/cerndb/SparkPlugins) to collect the extended
 metrics. The metrics are collected and stored in the same VictoriaMetrics database as the Spark metrics.
+
+- The extended Spark dashboard has three additional groups of graphs compared to the "standard" SPark Dashboard: 
+    - **CGroup Metrics** 
+      - Relevant when running Spark on Kubernetes, as it uses CGroup instrumentation) 
+    - **Cloud Storage**
+      - Relevant when using Spark with block storage: S3A, GZ, WASB, and cloud storage in general
+    - **HDFS Advanced Statistics**
+      - Provides additional metrics related to HDFS use, relevant when using Spark with HDFS
 
 - Configuration:
   - Add the following to the Spark configuration:  
     `--conf ch.cern.sparkmeasure:spark-plugins_2.12:0.3`  
     `--conf spark.plugins=ch.cern.HDFSMetrics,ch.cern.CgroupMetrics,ch.cern.CloudFSMetrics`  
+
 - Use the extended dashboard
   -  Manually select the dashboard **Spark_Perf_Dashboard_v04_PromQL_with_SparkPlugins**
   - The dashboard includes additional graphs for OS and storage metrics.
-  - Three new tabs are available: 
-    - **CGroup Metrics** (use with Spark running on Kubernetes) 
-    - **Cloud Storage** (use with S3A, GZ, WASB, and cloud storage in general)
-    - **HDFS Advanced** Statistics (use with HDFS)
 
 ---
 ### Examples and getting started with Spark Performance dashboards:
