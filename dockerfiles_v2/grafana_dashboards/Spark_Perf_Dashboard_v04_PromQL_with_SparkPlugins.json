@@ -90,7 +90,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -106,7 +107,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 9
+            "y": 1
           },
           "id": 94,
           "interval": "5s",
@@ -118,6 +119,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -130,7 +132,7 @@
                 "uid": "influx-graphite"
               },
               "editorMode": "code",
-              "expr": "rate(ch_cern_CgroupMetrics_CPUTimeNanosec_value) / 1000000000",
+              "expr": "rate(ch_cern_CgroupMetrics_CPUTimeNanosec_value{applicationid=\"$ApplicationId\"}[$AggrInterval]) / 1000000000",
               "groupBy": [
                 {
                   "params": [
@@ -232,7 +234,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -248,7 +251,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 9
+            "y": 1
           },
           "id": 95,
           "interval": "5s",
@@ -260,6 +263,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -272,7 +276,7 @@
                 "uid": "influx-graphite"
               },
               "editorMode": "code",
-              "expr": "rate(ch_cern_CgroupMetrics_NetworkBytesIn_value)",
+              "expr": "rate(ch_cern_CgroupMetrics_NetworkBytesIn_value{applicationid=\"$ApplicationId\"}[$AggrInterval])",
               "groupBy": [
                 {
                   "params": [
@@ -377,7 +381,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -393,7 +398,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 19
+            "y": 11
           },
           "id": 96,
           "interval": "5s",
@@ -405,6 +410,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -417,7 +423,7 @@
                 "uid": "influx-graphite"
               },
               "editorMode": "code",
-              "expr": "rate(ch_cern_CgroupMetrics_NetworkBytesOut_value)",
+              "expr": "rate(ch_cern_CgroupMetrics_NetworkBytesOut_value{applicationid=\"$ApplicationId\"}[$AggrInterval])",
               "groupBy": [
                 {
                   "params": [
@@ -522,7 +528,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -538,7 +545,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 19
+            "y": 11
           },
           "id": 97,
           "interval": "5s",
@@ -550,6 +557,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -562,7 +570,7 @@
                 "uid": "influx-graphite"
               },
               "editorMode": "code",
-              "expr": "rate(ch_cern_CgroupMetrics_MemoryRss_value)",
+              "expr": "rate(ch_cern_CgroupMetrics_MemoryRss_value{applicationid=\"$ApplicationId\"}[$AggrInterval])",
               "groupBy": [
                 {
                   "params": [
@@ -667,7 +675,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -683,7 +692,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 29
+            "y": 21
           },
           "id": 98,
           "interval": "5s",
@@ -695,6 +704,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -707,7 +717,7 @@
                 "uid": "influx-graphite"
               },
               "editorMode": "code",
-              "expr": "rate(ch_cern_CgroupMetrics_MemorySwap_value) ",
+              "expr": "rate(ch_cern_CgroupMetrics_MemorySwap_value{applicationid=\"$ApplicationId\"}[$AggrInterval]) ",
               "groupBy": [
                 {
                   "params": [
@@ -812,7 +822,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -828,7 +839,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 29
+            "y": 21
           },
           "id": 99,
           "interval": "5s",
@@ -840,6 +851,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -852,7 +864,7 @@
                 "uid": "influx-graphite"
               },
               "editorMode": "code",
-              "expr": "rate(ch_cern_CgroupMetrics_MemoryCache_value) ",
+              "expr": "rate(ch_cern_CgroupMetrics_MemoryCache_value{applicationid=\"$ApplicationId\"}[$AggrInterval]) ",
               "groupBy": [
                 {
                   "params": [
@@ -971,7 +983,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -987,7 +1000,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 9
+            "y": 2
           },
           "id": 110,
           "interval": "5s",
@@ -999,6 +1012,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -1011,7 +1025,7 @@
                 "uid": "influx-graphite"
               },
               "editorMode": "code",
-              "expr": "rate(ch_cern_CloudFSMetrics_bytesRead_value)",
+              "expr": "rate(ch_cern_CloudFSMetrics_bytesRead_value{applicationid=\"$ApplicationId\"}[$AggrInterval])",
               "groupBy": [
                 {
                   "params": [
@@ -1116,7 +1130,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1132,7 +1147,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 9
+            "y": 2
           },
           "id": 111,
           "interval": "5s",
@@ -1144,6 +1159,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -1156,7 +1172,7 @@
                 "uid": "influx-graphite"
               },
               "editorMode": "code",
-              "expr": "rate(ch_cern_CloudFSMetrics_bytesWritten_value)",
+              "expr": "rate(ch_cern_CloudFSMetrics_bytesWritten_value{applicationid=\"$ApplicationId\"}[$AggrInterval])",
               "groupBy": [
                 {
                   "params": [
@@ -1261,7 +1277,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1277,7 +1294,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 19
+            "y": 12
           },
           "id": 112,
           "interval": "5s",
@@ -1289,6 +1306,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -1301,7 +1319,7 @@
                 "uid": "influx-graphite"
               },
               "editorMode": "code",
-              "expr": "rate(ch_cern_CloudFSMetrics_readOps_value)",
+              "expr": "rate(ch_cern_CloudFSMetrics_readOps_value{applicationid=\"$ApplicationId\"}[$AggrInterval])",
               "groupBy": [
                 {
                   "params": [
@@ -1406,7 +1424,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1422,7 +1441,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 19
+            "y": 12
           },
           "id": 113,
           "interval": "5s",
@@ -1434,6 +1453,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -1446,7 +1466,7 @@
                 "uid": "influx-graphite"
               },
               "editorMode": "code",
-              "expr": "rate(ch_cern_CloudFSMetrics_writeOps_value)",
+              "expr": "rate(ch_cern_CloudFSMetrics_writeOps_value{applicationid=\"$ApplicationId\"}[$AggrInterval])",
               "groupBy": [
                 {
                   "params": [
@@ -1565,7 +1585,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1581,7 +1602,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 41
+            "y": 3
           },
           "id": 101,
           "interval": "5s",
@@ -1593,6 +1614,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -1605,7 +1627,7 @@
                 "uid": "influx-graphite"
               },
               "editorMode": "code",
-              "expr": "rate(ch_cern_HDFSMetrics_bytesRead_value)",
+              "expr": "rate(ch_cern_HDFSMetrics_bytesRead_value{applicationid=\"$ApplicationId\"}[$AggrInterval])",
               "groupBy": [
                 {
                   "params": [
@@ -1710,7 +1732,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1726,7 +1749,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 41
+            "y": 3
           },
           "id": 102,
           "interval": "5s",
@@ -1738,6 +1761,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -1750,7 +1774,7 @@
                 "uid": "influx-graphite"
               },
               "editorMode": "code",
-              "expr": "rate(ch_cern_HDFSMetrics_bytesWritten_value) ",
+              "expr": "rate(ch_cern_HDFSMetrics_bytesWritten_value{applicationid=\"$ApplicationId\"}[$AggrInterval]) ",
               "groupBy": [
                 {
                   "params": [
@@ -1855,7 +1879,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -1871,7 +1896,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 51
+            "y": 13
           },
           "id": 103,
           "interval": "5s",
@@ -1883,6 +1908,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -1895,7 +1921,7 @@
                 "uid": "influx-graphite"
               },
               "editorMode": "code",
-              "expr": "rate(ch_cern_HDFSMetrics_readOps_value)",
+              "expr": "rate(ch_cern_HDFSMetrics_readOps_value{applicationid=\"$ApplicationId\"}[$AggrInterval])",
               "groupBy": [
                 {
                   "params": [
@@ -2000,7 +2026,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2016,7 +2043,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 51
+            "y": 13
           },
           "id": 104,
           "interval": "5s",
@@ -2028,6 +2055,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -2040,7 +2068,7 @@
                 "uid": "influx-graphite"
               },
               "editorMode": "code",
-              "expr": "rate(ch_cern_HDFSMetrics_largeReadOps_value)",
+              "expr": "rate(ch_cern_HDFSMetrics_largeReadOps_value{applicationid=\"$ApplicationId\"}[$AggrInterval])",
               "groupBy": [
                 {
                   "params": [
@@ -2145,7 +2173,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2161,7 +2190,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 61
+            "y": 23
           },
           "id": 105,
           "interval": "5s",
@@ -2173,6 +2202,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -2185,7 +2215,7 @@
                 "uid": "influx-graphite"
               },
               "editorMode": "code",
-              "expr": "rate(ch_cern_HDFSMetrics_bytesReadLocalHost_value)",
+              "expr": "rate(ch_cern_HDFSMetrics_bytesReadLocalHost_value{applicationid=\"$ApplicationId\"}[$AggrInterval])",
               "groupBy": [
                 {
                   "params": [
@@ -2290,7 +2320,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2306,7 +2337,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 61
+            "y": 23
           },
           "id": 107,
           "interval": "5s",
@@ -2318,6 +2349,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -2330,7 +2362,7 @@
                 "uid": "influx-graphite"
               },
               "editorMode": "code",
-              "expr": "rate(ch_cern_HDFSMetrics_bytesReadDistanceOfOneOrTwo_value)",
+              "expr": "rate(ch_cern_HDFSMetrics_bytesReadDistanceOfOneOrTwo_value{applicationid=\"$ApplicationId\"}[$AggrInterval])",
               "groupBy": [
                 {
                   "params": [
@@ -2435,7 +2467,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2451,7 +2484,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 71
+            "y": 33
           },
           "id": 108,
           "interval": "5s",
@@ -2463,6 +2496,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -2475,7 +2509,7 @@
                 "uid": "influx-graphite"
               },
               "editorMode": "code",
-              "expr": "rate(ch_cern_HDFSMetrics_bytesReadDistanceOfThreeOrFour_value)",
+              "expr": "rate(ch_cern_HDFSMetrics_bytesReadDistanceOfThreeOrFour_value{applicationid=\"$ApplicationId\"}[$AggrInterval])",
               "groupBy": [
                 {
                   "params": [
@@ -2580,7 +2614,8 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green"
+                    "color": "green",
+                    "value": null
                   },
                   {
                     "color": "red",
@@ -2596,7 +2631,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 71
+            "y": 33
           },
           "id": 106,
           "interval": "5s",
@@ -2608,6 +2643,7 @@
               "showLegend": true
             },
             "tooltip": {
+              "maxHeight": 600,
               "mode": "multi",
               "sort": "none"
             }
@@ -2620,7 +2656,7 @@
                 "uid": "influx-graphite"
               },
               "editorMode": "code",
-              "expr": "rate(ch_cern_HDFSMetrics_bytesReadDistanceOfFiveOrLarger_value)",
+              "expr": "rate(ch_cern_HDFSMetrics_bytesReadDistanceOfFiveOrLarger_value{applicationid=\"$ApplicationId\"}[$AggrInterval])",
               "groupBy": [
                 {
                   "params": [
@@ -2763,7 +2799,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -2878,7 +2914,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -2994,7 +3030,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -3110,7 +3146,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -3221,7 +3257,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -3336,7 +3372,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -3451,7 +3487,7 @@
         "sizing": "auto",
         "text": {}
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -3573,7 +3609,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -3688,7 +3724,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -3803,7 +3839,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -3918,7 +3954,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -4024,7 +4060,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -4134,7 +4170,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -4240,7 +4276,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -4346,7 +4382,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -4455,7 +4491,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -4569,7 +4605,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -4678,7 +4714,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.0.0",
       "targets": [
         {
           "datasource": {
@@ -4841,6 +4877,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -4979,6 +5016,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -5139,6 +5177,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -5554,6 +5593,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -5672,7 +5712,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5700,6 +5741,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -5818,7 +5860,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5846,6 +5889,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -5970,7 +6014,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -5998,6 +6043,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -6142,7 +6188,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6170,6 +6217,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -6279,7 +6327,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6307,6 +6356,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -6416,7 +6466,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6444,6 +6495,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -6553,7 +6605,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6581,6 +6634,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -6690,7 +6744,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6718,6 +6773,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -6827,7 +6883,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6855,6 +6912,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -6964,7 +7022,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -6992,6 +7051,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -7110,7 +7170,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -7138,6 +7199,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -7256,7 +7318,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -7284,6 +7347,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -7393,7 +7457,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -7421,6 +7486,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -7556,7 +7622,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -7584,6 +7651,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -7702,7 +7770,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -7730,6 +7799,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -7849,7 +7919,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -7877,6 +7948,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -8000,7 +8072,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -8028,6 +8101,7 @@
           "showLegend": true
         },
         "tooltip": {
+          "maxHeight": 600,
           "mode": "multi",
           "sort": "none"
         }
@@ -9078,9 +9152,9 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "spark-323d8c2d7d144414afb7a1246e6f0177",
-          "value": "spark-323d8c2d7d144414afb7a1246e6f0177"
+          "selected": true,
+          "text": "spark-31dc4d49b2174993a08435fdb8ef8db3",
+          "value": "spark-31dc4d49b2174993a08435fdb8ef8db3"
         },
         "datasource": {
           "type": "victoriametrics-datasource",
@@ -9105,7 +9179,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "10s",
           "value": "10s"
         },
@@ -9153,7 +9227,7 @@
           }
         ],
         "query": "2s, 10s, 20s, 30s, 1m, 2m, 5m",
-        "queryValue": "20s",
+        "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
       }
@@ -9163,6 +9237,7 @@
     "from": "now-5m",
     "to": "now"
   },
+  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {
     "refresh_intervals": [
       "5s",
