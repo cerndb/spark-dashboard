@@ -1,16 +1,16 @@
 FROM ubuntu:24.04
 
-ENV TELEGRAF_VERSION 1.31.1-1
-ENV GRAFANA_VERSION 11.1.0
-ENV VM_VERSION v1.101.0
+ENV TELEGRAF_VERSION 1.31.3-1
+ENV GRAFANA_VERSION 11.1.3
+ENV VM_VERSION v1.102.1
 ENV ARCH amd64
-ENV GRAFANA_VM_PLUGIN_VERSION v0.8.4
+ENV GRAFANA_VM_PLUGIN_VERSION v0.8.5
 ENV PLUGIN_PATH /var/lib/grafana/plugins
 
 # Download and install Grafana
 RUN set -ex && \
     apt-get update && \
-    apt-get install -qq -y curl libfontconfig musl && \
+    apt-get install -qq -y curl libfontconfig musl adduser && \
     curl -O https://dl.grafana.com/oss/release/grafana_${GRAFANA_VERSION}_${ARCH}.deb && \
     dpkg -i grafana_${GRAFANA_VERSION}_${ARCH}.deb && \
     rm -f grafana_${GRAFANA_VERSION}_${ARCH}.deb
