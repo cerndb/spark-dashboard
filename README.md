@@ -1,16 +1,18 @@
-# Spark-Dashboard
+# Spark-Dashboard: Monitoring Tool for Apache Spark
 [![DOI](https://zenodo.org/badge/212368829.svg)](https://doi.org/10.5281/zenodo.14718682)
 [![Docker Pulls](https://img.shields.io/docker/pulls/lucacanali/spark-dashboard)](https://hub.docker.com/r/lucacanali/spark-dashboard)
 
-Spark-Dashboard is a monitoring tool that collects Apache Spark metrics and
-displays them on a customizable Grafana dashboard for real-time performance
-tracking and optimization. 
+**Spark-Dashboard** is a tool is intended for users seeking to optimize and monitor their Apache Spark clusters efficiently.
+The Spark Performance Dashboard provides real-time insights into metrics such as CPU usage, active sessions, task throughput, memory utilization, HDFS usage, and more.
 
-### Key Features
-- You can find here all the components to deploy a monitoring application for Apache Spark
-- Spark-Dashboard collects metrics from Spark and visualizes them in a Grafana   
-- This tool is intended for performance troubleshooting and DevOps monitoring of Spark workloads.
-- Compatibility: Spark 2.4 and higher
+
+## Key Features
+
+- **Integrated Monitoring Solution**: Includes all components required to deploy a monitoring application for Apache Spark.
+- **Real-Time Visualization**: Collects Spark metrics and displays them in Grafana for dynamic performance tracking.
+- **Performance Troubleshooting**: Facilitates the identification and resolution of performance bottlenecks in Spark applications.
+- **DevOps Integration**: Suitable for DevOps workflows to monitor and manage Spark environments effectively.
+- **Compatibility**: Supports Apache Spark versions 2.4 and higher.
 
 ### Contents
 - [Architecture](#architecture)
