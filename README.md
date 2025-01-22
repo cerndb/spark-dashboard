@@ -1,4 +1,5 @@
 # Spark-Dashboard
+[![DOI](https://zenodo.org/badge/212368829.svg)](https://doi.org/10.5281/zenodo.14718682)
 ![Docker Pulls](https://img.shields.io/docker/pulls/lucacanali/spark-dashboard)  
 
 Spark-Dashboard is a monitoring tool that collects Apache Spark metrics and
