@@ -27,16 +27,11 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 2,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
-      "datasource": {
-        "type": "influxdb",
-        "uid": "PAB4C6DB7858A5C06"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -45,15 +40,6 @@
       },
       "id": 56,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PAB4C6DB7858A5C06"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "Summary metrics",
       "type": "row"
     },
@@ -102,6 +88,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -114,7 +101,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -217,6 +204,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -229,7 +217,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -333,6 +321,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -345,7 +334,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -449,6 +438,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -461,7 +451,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -560,6 +550,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -572,7 +563,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -675,6 +666,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -687,7 +679,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -783,7 +775,6 @@
         "x": 0,
         "y": 6
       },
-      "hideTimeOverride": false,
       "id": 32,
       "interval": "5s",
       "options": {
@@ -802,7 +793,7 @@
         "sizing": "auto",
         "text": {}
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -912,6 +903,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -924,7 +916,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -1027,6 +1019,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -1039,7 +1032,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -1142,6 +1135,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -1154,7 +1148,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -1257,6 +1251,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -1269,7 +1264,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -1363,6 +1358,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -1375,7 +1371,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -1473,6 +1469,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -1485,7 +1482,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -1493,7 +1490,7 @@
             "uid": "PAB4C6DB7858A5C06"
           },
           "editorMode": "code",
-          "expr": "sum(last_over_time(threadpool_activeTasks_value{applicationid=\"$ApplicationId\"}[$__range]))",
+          "expr": "sum(threadpool_activeTasks_value{applicationid=\"$ApplicationId\"})",
           "groupBy": [
             {
               "params": [
@@ -1579,6 +1576,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -1591,7 +1589,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -1599,7 +1597,7 @@
             "uid": "PAB4C6DB7858A5C06"
           },
           "editorMode": "code",
-          "expr": "sum(avg_over_time(threadpool_activeTasks_value{applicationid=\"$ApplicationId\"}[$__range]))\r\n",
+          "expr": "sum(avg_over_time(threadpool_activeTasks_value{applicationid=\"$ApplicationId\"}[$__range]))",
           "groupBy": [
             {
               "params": [
@@ -1685,6 +1683,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -1697,7 +1696,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -1794,6 +1793,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -1806,7 +1806,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -1908,6 +1908,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -1920,7 +1921,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -2017,6 +2018,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -2029,7 +2031,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "datasource": {
@@ -2090,10 +2092,6 @@
     },
     {
       "collapsed": false,
-      "datasource": {
-        "type": "influxdb",
-        "uid": "PAB4C6DB7858A5C06"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2102,15 +2100,6 @@
       },
       "id": 28,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PAB4C6DB7858A5C06"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "Spark workload metrics",
       "type": "row"
     },
@@ -2132,6 +2121,7 @@
             "axisLabel": "N# Active Tasks",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 20,
             "gradientMode": "none",
@@ -2192,11 +2182,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "alias": "N# active tasks - Executor $tag_process",
@@ -2270,6 +2261,7 @@
             "axisLabel": "CPU Utilization (N# cores equivalent)",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 20,
             "gradientMode": "none",
@@ -2330,11 +2322,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "alias": "JVM CPU - Executor $tag_process",
@@ -2417,6 +2410,7 @@
             "axisLabel": "Time component (N# cores equivalent)",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "bars",
             "fillOpacity": 18,
             "gradientMode": "none",
@@ -2490,11 +2484,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "alias": "deserializeCpuTime",
@@ -2845,6 +2840,7 @@
             "axisLabel": "Task Run Time (N# cores equivalent)",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 20,
             "gradientMode": "none",
@@ -2905,11 +2901,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
           "sort": "none"
         }
       },
-      "pluginVersion": "10.4.0",
+      "pluginVersion": "11.5.2",
       "targets": [
         {
           "alias": "run time - Executor $tag_process",
@@ -3420,10 +3417,6 @@
     },
     {
       "collapsed": false,
-      "datasource": {
-        "type": "influxdb",
-        "uid": "PAB4C6DB7858A5C06"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3432,15 +3425,6 @@
       },
       "id": 69,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PAB4C6DB7858A5C06"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "Spark Memory Metrics",
       "type": "row"
     },
@@ -4834,10 +4818,6 @@
     },
     {
       "collapsed": false,
-      "datasource": {
-        "type": "influxdb",
-        "uid": "PAB4C6DB7858A5C06"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -4846,15 +4826,6 @@
       },
       "id": 63,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PAB4C6DB7858A5C06"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "JVM source  memory metrics (conditional to spark.metrics.conf.*.source.jvm.class=org.apache.spark.metrics.source.JvmSource)",
       "type": "row"
     },
@@ -5447,10 +5418,6 @@
     },
     {
       "collapsed": false,
-      "datasource": {
-        "type": "influxdb",
-        "uid": "PAB4C6DB7858A5C06"
-      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -5459,15 +5426,6 @@
       },
       "id": 60,
       "panels": [],
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "PAB4C6DB7858A5C06"
-          },
-          "refId": "A"
-        }
-      ],
       "title": "Spark I/O metrics",
       "type": "row"
     },
@@ -6395,14 +6353,14 @@
       "type": "timeseries"
     }
   ],
+  "preload": false,
   "refresh": "10s",
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": false,
           "text": "luca",
           "value": "luca"
         },
@@ -6411,10 +6369,8 @@
           "uid": "P4169E866C3094E38"
         },
         "definition": "label_values(username)",
-        "hide": 0,
         "includeAll": false,
         "label": "User",
-        "multi": false,
         "name": "UserName",
         "options": [],
         "query": {
@@ -6423,13 +6379,10 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "selected": false,
           "text": "spark-323d8c2d7d144414afb7a1246e6f0177",
           "value": "spark-323d8c2d7d144414afb7a1246e6f0177"
         },
@@ -6438,10 +6391,8 @@
           "uid": "P4169E866C3094E38"
         },
         "definition": "label_values({username=~\"$UserName\"}, applicationid)",
-        "hide": 0,
         "includeAll": false,
         "label": "Spark Application Id",
-        "multi": false,
         "name": "ApplicationId",
         "options": [],
         "query": {
@@ -6450,21 +6401,17 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 4,
         "type": "query"
       },
       {
         "current": {
-          "selected": false,
           "text": "10s",
           "value": "10s"
         },
         "description": "The aggregation time interval applied when aggregating task metrics. Use 10s (default) when your tasks run <= 10s, use a large value when you have long-running tasks.\n",
-        "hide": 0,
         "includeAll": false,
         "label": "Task metrics time average",
-        "multi": false,
         "name": "AggrInterval",
         "options": [
           {
@@ -6504,8 +6451,6 @@
           }
         ],
         "query": "2s, 10s, 20s, 30s, 1m, 2m, 5m",
-        "queryValue": "20s",
-        "skipUrlSync": false,
         "type": "custom"
       }
     ]
@@ -6514,31 +6459,7 @@
     "from": "now-5m",
     "to": "now"
   },
-  "timepicker": {
-    "refresh_intervals": [
-      "5s",
-      "10s",
-      "30s",
-      "1m",
-      "5m",
-      "15m",
-      "30m",
-      "1h",
-      "2h",
-      "1d"
-    ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
-  },
+  "timepicker": {},
   "timezone": "",
   "title": "Spark_Perf_Dashboard_v04_PromQL",
   "uid": "cdfq4554jii9sa",
