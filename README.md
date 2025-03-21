@@ -1,27 +1,35 @@
-# Spark-Dashboard: Monitoring Tool for Apache Spark
+# Spark-Dashboard
+Real-Time Spark Monitoring & Optimization
+
 [![DOI](https://zenodo.org/badge/212368829.svg)](https://doi.org/10.5281/zenodo.14718682)
 [![Docker Pulls](https://img.shields.io/docker/pulls/lucacanali/spark-dashboard)](https://hub.docker.com/r/lucacanali/spark-dashboard)
 
-**Spark-Dashboard** is a tool is intended for users seeking to optimize and monitor their Apache Spark clusters efficiently.
-The Spark Performance Dashboard provides real-time insights into metrics such as CPU usage, active sessions, task throughput, memory utilization, HDFS usage, and more.
-
+**Spark-Dashboard** is an intuitive and comprehensive tool designed to help you optimize and monitor your Apache Spark clusters with ease. 
+By delivering real-time insights into critical performance metrics—including CPU usage, active sessions, task throughput,
+memory utilization, HDFS usage, and more—this dashboard empowers you to quickly identify and resolve performance bottlenecks,
+ensuring your Spark applications run smoothly.
 
 ## Key Features
 
-- **Integrated Monitoring Solution**: Includes all components required to deploy a monitoring application for Apache Spark.
-- **Real-Time Visualization**: Collects Spark metrics and displays them in Grafana for dynamic performance tracking.
-- **Performance Troubleshooting**: Facilitates the identification and resolution of performance bottlenecks in Spark applications.
-- **DevOps Integration**: Suitable for DevOps workflows to monitor and manage Spark environments effectively.
-- **Compatibility**: Supports Apache Spark versions 2.4 and higher.
+- **Real-Time Visualization:**  
+  Leverage Grafana dashboards to visualize Spark metrics dynamically, allowing for prompt performance analysis.
 
+- **Performance Troubleshooting:**  
+  Quickly pinpoint and address performance issues in your Spark applications with comprehensive metric tracking.
+
+- **Broad Compatibility:**  
+  Designed to support all current Apache Spark versions (2.4 and higher) and all supported clusters (Hadoop, Kubernetes, stand-alone)
+- ensuring wide-ranging applicability.
+  
 ### Contents
 - [Architecture](#architecture)
 - [How To Deploy the Spark Dashboard V2](#how-to-deploy-the-spark-dashboard)
   - [How to run the Spark Dashboard V2 on a container](#how-to-run-the-spark-dashboard-v2-on-a-container)
   - [Extended Spark dashboard](#extended-spark-dashboard)
-  - [Examples and testing the dashboard](#examples-and-testing-the-dashboard) 
+- [Notes on Running Spark Dashboard on Spark Connect](#notes-on-running-spark-dashboard-on-spark-connect) 
+- [Examples and getting started with Spark Performance dashboards](#examples-and-getting-started-with-spark-performance-dashboards) 
   - [Start small, testing with Spark in local mode](#start-small-testing-with-spark-in-local-mode)
-  - [Running TPCDS on a Spark cluster](#running-tpcds-on-a-spark-cluster)
+  - [Measuring with Spark Dashboard while running TPCDS on a Spark cluster](#running-tpcds-on-a-spark-cluster)
 - [Old implementation (V1)](#old-implementation-v1)
   - [How to run the Spark dashboard V1 on a container](#how-to-run-the-spark-dashboard-v1-on-a-container)
   - [How to run the dashboard V1 on Kubernetes using Helm](#how-to-run-the-dashboard-v1-on-kubernetes-using-helm)
@@ -43,131 +51,160 @@ Main author and contact: Luca.Canali@cern.ch
 
 ![Spark metrics dashboard architecture](https://raw.githubusercontent.com/LucaCanali/Miscellaneous/master/Spark_Dashboard/images/Spark_MetricsSystem_Grafana_Dashboard_V2.0.png "Spark metrics dashboard architecture")
 
-This technical drawing outlines an integrated monitoring pipeline for Apache Spark using open-source components. The flow of the diagram illustrates the following components and their interactions:
-- **Apache Spark's metrics:** This is the source of metrics data: [Spark metrics system](https://spark.apache.org/docs/latest/monitoring.html#metrics). Spark's executors and the driver emit metrics such 
-  as executors' run time, CPU time, garbage collection (GC) time, memory usage, shuffle metrics, I/O metrics, and more.
-  Spark metrics are exported in Graphite format by Spark and then ingested by Telegraf. 
-- **Telegraf:** This component acts as the metrics collection agent (the sink in this context). It receives the
-   metrics emitted by Apache Spark's executors and driver, and it adds labels to the measurements to organize 
-   the data effectively. Telegraf send the measurements to VitoriaMetrics for storage and later querying.
-- **VictoriaMetrics:** This is a time-series database that stores the labeled metrics data collected by Telegraf. 
-  The use of a time-series database is appropriate for storing and querying the type of data emitted by 
-  monitoring systems, which is often timestamped and sequential.
-- **Grafana:** Finally, Grafana is used for visualization. It reads the metrics stored in VictoriaMetrics 
-  using PromQL/MetricsQL, which is a query language for time series data in Prometheus. Grafana provides
-  dashboards that present the data in the form of metrics and graphs, offering insights into the performance
-  and health of the Spark application.
+This diagram illustrates an end-to-end monitoring pipeline for Apache Spark built entirely on open-source components. 
+The architecture is designed to deliver real-time insights into the performance and health of your Spark clusters through
+a seamless flow of data from metric generation to visualization.
 
-Note: spark-dashboard v1 (the original implementation) uses InfluxDB as the time-series database, see also
-[spark-dashabord v1 architecture](https://raw.githubusercontent.com/LucaCanali/Miscellaneous/master/Spark_Dashboard/images/Spark_metrics_dashboard_arch.PNG)
+- **Apache Spark Metrics:**  
+  Apache Spark generates detailed performance metrics via its [metrics system](https://spark.apache.org/docs/latest/monitoring.html#metrics).
+  Both the driver and executors emit a wide range of metrics—such as runtime, CPU usage, garbage collection (GC) time, memory utilization, shuffle statistics, and I/O metrics—in Graphite format.
+
+- **Telegraf:**  
+  Acting as the collection agent, Telegraf ingests the metrics emitted by Spark. It enriches these measurements with additional
+  labels and tags to facilitate effective organization and analysis before forwarding them to the storage backend.
+
+- **VictoriaMetrics:**  
+  This robust time-series database efficiently stores the labeled metrics data. Its design is optimized for handling large volumes
+  of timestamped, sequential data, making it ideal for monitoring and historical trend analysis.
+
+- **Grafana:**  
+  Grafana provides a dynamic visualization layer, querying VictoriaMetrics using PromQL/MetricsQL. The result is a set of interactive
+  dashboards that display real-time metrics and trends, empowering users to monitor system performance and swiftly identify any bottlenecks.
+
+Together, these components form a cohesive and scalable monitoring solution tailored for Apache Spark environments.
 
 ---
 ## How To Deploy the Spark Dashboard 
 
-This quickstart guide outlines three methods for deploying Spark Dashboard:
-- **Recommended:** Deploy Spark-Dashboard v2 on a container 
-- Deploy Spark-Dashboard v1 on a container
-- Deploy Spark-Dashboard v1 on Helm
+This quickstart guide presents multiple methods for deploying Spark Dashboard. The **recommended** approach is to deploy 
+Spark-Dashboard v2 using a container.
 
 ### How to run the Spark Dashboard V2 on a container
-If you opt to deploy using a container image, follow these steps:
+Follow these steps to get started with the container image:
 
 #### 1. Start the container
-The provided container image has been built configured to run InfluxDB and Grafana
- - `docker run -p 3000:3000 -p 2003:2003 -d lucacanali/spark-dashboard` 
- - The container runs also with podman: `podman run -p 3000:3000 -p 2003:2003 -d lucacanali/spark-dashboard` 
- - Note: port 2003 is for ingesting metrics with Telegraf using the Graphite protocol,
-   port 3000 is the UI with Grafana dashboards
- - More details, including how to persist metrics stored with VictoriaMetrics across container
-   restarts, at: [Spark dashboard in a container](dockerfiles_v2)
+The provided container image is pre-configured to run VictoriaMetrics (for metrics storage) and Grafana (for visualization). 
+You can start the container using either Docker or Podman:
 
-#### 2. Spark configuration
-You need to configure Spark to send the metrics to the desired Graphite endpoint + the add the related configuration.
-You can do this by editing the file `metrics.properties` located in `$SPARK_CONF_DIR` as follows:  
-  ```
-  # Add this to metrics.properties 
-  *.sink.graphite.host=localhost
-  *.sink.graphite.port=2003
-  *.sink.graphite.period=10
-  *.sink.graphite.unit=seconds
-  *.sink.graphite.prefix=lucatest
-  *.source.jvm.class=org.apache.spark.metrics.source.JvmSource
-  ```
+- **Using Docker:**
 
-Additional configuration, that you should pass as command line options (or add to spark-defaults.conf): 
-```
---conf spark.metrics.staticSources.enabled=true
---conf spark.metrics.appStatusSource.enabled=true
-```
+  `docker run -p 3000:3000 -p 2003:2003 -d lucacanali/spark-dashboard`
 
-Instead of using metrics.properties, you may prefer to use Spark configuration options directly.
-It's a matter of convenience and depends on your use case. This is an example of how to do it:  
-```
-# VictoriaMetrics Graphite endpoint, point to the host where the VictoriaMetrics container is running
-VICTORIAMETRICS_ENDPOINT=`hostname`
+- **Using Podman:**
 
-bin/spark-shell (or spark-submit or pyspark)
---conf "spark.metrics.conf.*.sink.graphite.class"="org.apache.spark.metrics.sink.GraphiteSink" \
---conf "spark.metrics.conf.*.sink.graphite.host"=$VICTORIAMETRICS_ENDPOINT \
---conf "spark.metrics.conf.*.sink.graphite.port"=2003 \
---conf "spark.metrics.conf.*.sink.graphite.period"=10 \
---conf "spark.metrics.conf.*.sink.graphite.unit"=seconds \
---conf "spark.metrics.conf.*.sink.graphite.prefix"="lucatest" \
---conf "spark.metrics.conf.*.source.jvm.class"="org.apache.spark.metrics.source.JvmSource" \
---conf "spark.metrics.staticSources.enabled"=true \
---conf "spark.metrics.appStatusSource.enabled"=true
-```
+  `podman run -p 3000:3000 -p 2003:2003 -d lucacanali/spark-dashboard`
 
-Optional configuration if you want to collect and display "Tree Process Memory Details":
-```
---conf spark.executor.processTreeMetrics.enabled=true
-```
+#### 2. Configure Apache Spark
 
-#### 3. Visualize the metrics using a Grafana dashboard  
-The dashboard provides visualization of the collected metrics:
-  - Summary of key metrics, as Run Time, CPU Time, I/O, Shuffle, number of tasks, and more.
-  - Timeseries graphs for the metrics collected by Spark.
+To send metrics from Spark to the dashboard, configure Spark to export its metrics to the Graphite endpoint provided by the container.
 
-How to use:
-  - Point your browser to `http://localhost:3000` (edit `locahost` to point to your Grafana, as relevant)
-  - Credentials: use the defaults for the first login (user: admin, password: admin)
-  - Use the default dashboard bundled with the container (**Spark_Perf_Dashboard_v04_promQL**) and select the username,
-    applicationId and time range to display (default is last 5 minutes).
+**Method A: Using `metrics.properties`**
 
-Notes: 
-  - you will need a running Spark application configured to use the dashboard as detailed in point 1. and 2.
-    to be able to select an application and display the metrics. 
-  - For testing purposes, you can create load on Spark by using [TPCDS_PySpark](https://github.com/LucaCanali/Miscellaneous/tree/master/Performance_Testing/TPCDS_PySpark)
-    a TPC-DS workload generator written in Python and designed to run at scale using Apache Spark.
-   
+Edit the `metrics.properties` file located in `$SPARK_CONF_DIR` and add the following configuration:
 
-### Extended Spark dashboard
-An extended Spark dashboard pipeline is available to collect and visualize OS and storage data.
-This utilizes [Spark Plugins](https://github.com/cerndb/SparkPlugins) to collect the extended
-metrics. The metrics are collected and stored in the same VictoriaMetrics database as the Spark metrics.
+    # Configure Graphite sink for Spark metrics
+    *.sink.graphite.host=localhost
+    *.sink.graphite.port=2003
+    *.sink.graphite.period=10
+    *.sink.graphite.unit=seconds
+    *.sink.graphite.prefix=lucatest
 
-- The extended Spark dashboard has three additional groups of graphs compared to the "standard" SPark Dashboard: 
-    - **CGroup Metrics** 
-      - Relevant when running Spark on Kubernetes, as it uses CGroup instrumentation) 
-    - **Cloud Storage**
-      - Relevant when using Spark with block storage: S3A, GZ, WASB, and cloud storage in general
-    - **HDFS Advanced Statistics**
-      - Provides additional metrics related to HDFS use, relevant when using Spark with HDFS
+    # Enable JVM metrics collection
+    *.source.jvm.class=org.apache.spark.metrics.source.JvmSource
 
-- Configuration:
-  - Add the following to the Spark configuration:  
-    `--conf ch.cern.sparkmeasure:spark-plugins_2.12:0.3`  
-    `--conf spark.plugins=ch.cern.HDFSMetrics,ch.cern.CgroupMetrics,ch.cern.CloudFSMetrics`  
+Optionally, add these settings to your Spark launch configuration (or `spark-defaults.conf`):
 
-- Use the extended dashboard
-  -  Manually select the dashboard **Spark_Perf_Dashboard_v04_PromQL_with_SparkPlugins**
-  - The dashboard includes additional graphs for OS and storage metrics.
+    --conf spark.metrics.staticSources.enabled=true
+    --conf spark.metrics.appStatusSource.enabled=true
+
+**Method B: Passing Configuration via Command-Line**
+
+Alternatively, you can specify Spark metrics settings directly when launching your Spark application. For example:
+
+    # Define the VictoriaMetrics Graphite endpoint (replace `hostname` with your actual host if needed)
+    VICTORIAMETRICS_ENDPOINT=$(hostname)
+
+    bin/spark-shell \
+      --conf "spark.metrics.conf.*.sink.graphite.class=org.apache.spark.metrics.sink.GraphiteSink" \
+      --conf "spark.metrics.conf.*.sink.graphite.host=${VICTORIAMETRICS_ENDPOINT}" \
+      --conf "spark.metrics.conf.*.sink.graphite.port=2003" \
+      --conf "spark.metrics.conf.*.sink.graphite.period=10" \
+      --conf "spark.metrics.conf.*.sink.graphite.unit=seconds" \
+      --conf "spark.metrics.conf.*.sink.graphite.prefix=lucatest" \
+      --conf "spark.metrics.conf.*.source.jvm.class=org.apache.spark.metrics.source.JvmSource" \
+      --conf "spark.metrics.staticSources.enabled=true" \
+      --conf "spark.metrics.appStatusSource.enabled=true"
+
+*Optional:* To also collect and display "Tree Process Memory Details", add:
+
+    --conf spark.executor.processTreeMetrics.enabled=true
+
+#### 3. Visualize Metrics in Grafana
+
+Once the container is running and Spark is configured to export metrics, you can view the performance data through Grafana:
+
+- **Access Grafana:**  
+  Open your web browser and navigate to [http://localhost:3000](http://localhost:3000) (replace `localhost` with your server's address if necessary).
+
+- **Login Credentials:**  
+  Use the default credentials:  
+  **User:** `admin`  
+  **Password:** `admin`
+
+- **Dashboard Overview:**  
+  The bundled dashboard (**Spark_Perf_Dashboard_v04_promQL**) displays a summary of key metrics (such as runtime, CPU usage, I/O, shuffle, task counts, etc.) along with detailed timeseries graphs. Select the appropriate username, application ID, and time range (default is the last 5 minutes) to customize your view.
+
+> **Important:**  
+> Ensure that you have a running Spark application configured as detailed above so that metrics are available for selection and display.
+
+For testing purposes, you can simulate load on Spark using [TPCDS_PySpark](https://github.com/LucaCanali/Miscellaneous/tree/master/Performance_Testing/TPCDS_PySpark), a TPC-DS workload generator written in Python and designed to run at scale with Apache Spark.
 
 ---
-### Examples and getting started with Spark Performance dashboards:
+### Extended Spark Dashboard
+
+Enhance your monitoring capabilities with the Extended Spark Dashboard, which collects and visualizes OS and storage metrics alongside standard Spark performance data. This enhanced pipeline leverages [Spark Plugins](https://github.com/cerndb/SparkPlugins) to gather additional metrics, all stored within the same VictoriaMetrics database as the standard Spark metrics.
+
+#### Additional Dashboard Features
+
+The extended dashboard introduces three extra groups of graphs beyond those available in the standard Spark Dashboard:
+
+- **CGroup Metrics**  
+  Collects data via CGroup instrumentation—ideal for Spark running on Kubernetes.
+
+- **Cloud Storage**  
+  Displays metrics from block storage systems such as S3A, GZ, WASB, and other cloud storage services.
+
+- **HDFS Advanced Statistics**  
+  Provides deeper insights into HDFS usage, offering additional performance metrics when Spark leverages HDFS.
+
+#### Configuration
+
+To enable extended metrics, add the following configurations to your Spark setup:
+
+    --conf ch.cern.sparkmeasure:spark-plugins_2.12:0.3
+    --conf spark.plugins=ch.cern.HDFSMetrics,ch.cern.CgroupMetrics,ch.cern.CloudFSMetrics
+
+#### Using the Extended Dashboard
+
+After configuring Spark, select the extended dashboard in Grafana to view the additional metrics:
+
+- **Dashboard Name:** `Spark_Perf_Dashboard_v04_PromQL_with_SparkPlugins`
+- The dashboard includes extra graphs for OS and storage metrics, offering a comprehensive view of your system's performance.
+
+----
+### Notes on Running Spark Dashboard on Spark Connect
+Spark Connect allows you to run a thin Spark client connected to a Spark cluster. In that environment, Spark Dashboard needs to be run when starting Spark Connect.
+1. Start the Spark Dashboard container (as detailed above).
+2. Edit the `metrics.properties` file in the Spark Connect `conf` directory (as detailed above).
+3. Start Spark Connect with the command:
+   `sbin/start-connect-server.sh`  
+   You will find that the metrics are sent to the Spark Dashboard container and visualized in Grafana
+
+-----
+## Examples and getting started with Spark Performance dashboards:
 - See some [examples of the dashboard graphs at this link](https://github.com/LucaCanali/Miscellaneous/tree/master/Spark_Dashboard#example-graphs)
 
-#### Start small, testing with Spark in local mode
+### Start small, testing with Spark in local mode
 - You can use the [TPCDS_PySpark](https://github.com/LucaCanali/Miscellaneous/tree/master/Performance_Testing/TPCDS_PySpark) package to generate a TPC-DS workload and test the dashboard.
 - Run the following on local resources or cloud, for example use GitHub Codespaces from this repo
   - [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/cerndb/spark-dashboard)
@@ -216,7 +253,7 @@ $TPCDS_PYSPARK -d tpcds_10
 ```
 
 
-#### Running TPCDS on a Spark cluster
+### Running TPCDS on a Spark cluster
 - Example of running TPCDS on a YARN Spark cluster, monitor with the Spark dashboard:
 ```
 TPCDS_PYSPARK=`which tpcds_pyspark_run.py`
@@ -249,6 +286,9 @@ $TPCDS_PYSPARK -d s3a://luca/tpcds_100
 
 ---
 ## Old implementation (v1)
+
+Note: spark-dashboard v1 (the original implementation) uses InfluxDB as the time-series database, see also
+[spark-dashabord v1 architecture](https://raw.githubusercontent.com/LucaCanali/Miscellaneous/master/Spark_Dashboard/images/Spark_metrics_dashboard_arch.PNG)
 
 ### How to run the Spark dashboard V1 on a container
 This is the original implementation of the tool using InfluxDB and Grafana 
