@@ -45,7 +45,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Total task Run Time from task metrics in the selected time range. \n",
@@ -161,7 +161,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Executor CPU time computed from executor metrics for the selected time range. Displays CPU time used by all the executors' JVMs active in the selected time filter interval. It contains CPU time used for executing tasks and for other activities in the JVM, notably garbage collection. Note, values from executors that are no more active in the selected time window are not accounted for.",
@@ -278,7 +278,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Driver CPU time computed from executor metrics for the selected time range. ",
@@ -395,7 +395,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Total task CPU usage from task metrics in the selected time range. Displays CPU time used for all the completed tasks, from the task metrics data source. Note, values from executors that are no more active in the selected time window are not counted.\n",
@@ -623,7 +623,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Number of completed tasks, from JVM threadpool metrics in the selected time range. Note, values from executors that are no more active in the selected time window are not counted.",
@@ -733,7 +733,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Latest value of the % of heap memory used, averaging over executors and driver. JVM metric from MemoryMXBean. Conditional to spark.metrics.conf.*.source.jvm.class=org.apache.spark.metrics.source.JvmSource",
@@ -860,7 +860,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Total number of bytes read from task metrics in the selected time range. \n",
@@ -976,7 +976,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Total number of bytes written from task metrics in the selected time range. \n",
@@ -1092,7 +1092,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Total number of shuffle bytes written from task metrics in the selected time range. \n",
@@ -1208,7 +1208,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Failed tasks for the appStatus metrics. Conditional to spark.metrics.appStatusSource.enabled=true (default is false)",
@@ -1426,7 +1426,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Latest sample of the value of number of active tasks, summed over all executors",
@@ -1533,7 +1533,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Average value of number of active tasks",
@@ -1640,7 +1640,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Number of running stages from the DAG scheduler.",
@@ -1751,7 +1751,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Number of succeeded jobs, from the appStatus metric (introduced in Spark 3.0). Conditional to spark.metrics.appStatusSource.enabled=true (default is false)",
@@ -1866,7 +1866,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Number of completed tasks, from JVM threadpool metrics since the start of the Spark application.",
@@ -1975,7 +1975,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Total executor CPU time, from executor metrics since the start of the Spark application. Displays CPU time used by all the executors' JVMs for the duration of the application. It contains CPU time used for executing tasks and for other activities in the JVM, notably garbage collection.",
@@ -2105,7 +2105,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Number of active tasks per executor.\n",
@@ -2245,7 +2245,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Total executor CPU utilization computed from executors' JVM instrumentation. The value is normalized in \"N# of core equivalent\", that is the number of cores running at 100% that would give an equivalent value of CPU utilization.\n",
@@ -2394,7 +2394,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Executor run time and wait time components compared. The run time spent by Spark executors is aggregated per area of activity. The difference between run time measurements and wait time measurements can be interpreted as due to time not instrumented (e.g. HDFS/filesystem I/O wait time). The values are normalized in \"N# of core equivalent\", that is the number of cores running at 100% that would yield an equivalent value for the given metric.",
@@ -2824,7 +2824,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Time the Executor has spent running tasks, including idle time and wait time (for I/O or other event). The value is normalized in \"N# of core equivalent\", that is the hypothetical number of cores working at 100% running tasks that would give an equivalent result.",
@@ -2973,7 +2973,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Time the JVM process has spent in garbage collection. The value is normalized in \"N# of core equivalent\", that is the hypothetical number of cores working at 100% on GC that would give an equivalent result.",
@@ -3119,7 +3119,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Total task CPU utilization computed from task metrics. The value is normalized in \"N# of core equivalent\", that is the number of cores running at 100% that would give an equivalent value of CPU utilization.",
@@ -3271,7 +3271,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Time the Executor has spent writing shuffle data. The value is normalized in \"N# of core equivalent\", that is the hypothetical number of cores working at 100% on shuffle writing that would give an equivalent result.",
@@ -3430,7 +3430,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "JVM Heap Memory",
@@ -3567,7 +3567,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "JVM Off Heap Memory",
@@ -3704,7 +3704,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "OnHeapUnifiedMemory",
@@ -3841,7 +3841,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "OffHeapUnifiedMemory",
@@ -3978,7 +3978,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "OnHeapExecutionMemory",
@@ -4115,7 +4115,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "OnHeap Storage Memory",
@@ -4252,7 +4252,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "MinorGCTime",
@@ -4398,7 +4398,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "MajorGCTime",
@@ -4544,7 +4544,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "ProcessTreeJVMRSSMemory. Conditional to --conf spark.executor.processTreeMetrics.enabled=true",
@@ -4681,7 +4681,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "ProcessTreePythonRSSMemory. Conditional to --conf spark.executor.processTreeMetrics.enabled=true",
@@ -4831,7 +4831,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Total memory (heap + non-heap) used per executor.  From MemoryMXBean.",
@@ -4977,7 +4977,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Heap memory used per executor.  From MemoryMXBean.",
@@ -5123,7 +5123,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Total memory (heap + non-heap) used by the driver.  From MemoryMXBean.",
@@ -5270,7 +5270,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Driver CPU utilization computed from the JVM instrumentation. The value is normalized in \"N# of core equivalent\", that is the number of cores running at 100% that would give an equivalent value of CPU utilization.\n",
@@ -5431,7 +5431,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "HDFS read throughput.",
@@ -5577,7 +5577,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "HDFS write throughput.",
@@ -5723,7 +5723,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Shuffle read throughput.",
@@ -5869,7 +5869,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Shuffle write throughput.",
@@ -6015,7 +6015,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Details of shuffle I/O operations, local and remote.",
@@ -6208,7 +6208,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "victoriametrics-metrics-datasource",
         "uid": "P4169E866C3094E38"
       },
       "description": "Bytes spilled to disk per second",
@@ -6365,7 +6365,7 @@
           "value": "luca"
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
+          "type": "victoriametrics-metrics-datasource",
           "uid": "P4169E866C3094E38"
         },
         "definition": "label_values(username)",
@@ -6387,7 +6387,7 @@
           "value": "spark-323d8c2d7d144414afb7a1246e6f0177"
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
+          "type": "victoriametrics-metrics-datasource",
           "uid": "P4169E866C3094E38"
         },
         "definition": "label_values({username=~\"$UserName\"}, applicationid)",

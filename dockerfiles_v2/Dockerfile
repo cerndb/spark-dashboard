@@ -4,7 +4,7 @@ ENV TELEGRAF_VERSION 1.33.1-1
 ENV GRAFANA_VERSION 11.5.2
 ENV VM_VERSION v1.112.0
 ENV ARCH amd64
-ENV GRAFANA_VM_PLUGIN_VERSION v0.11.1
+ENV GRAFANA_VM_PLUGIN_VERSION v0.14.0
 ENV PLUGIN_PATH /var/lib/grafana/plugins
 
 # Download and install Grafana
@@ -21,15 +21,15 @@ COPY spark.yaml /etc/grafana/provisioning/dashboards/spark.yaml
 
 # Install and configure Grafana datasource for VictoriaMetric
 RUN set -ex && \
-    curl -L -O https://github.com/VictoriaMetrics/grafana-datasource/releases/download/${GRAFANA_VM_PLUGIN_VERSION}/victoriametrics-datasource-${GRAFANA_VM_PLUGIN_VERSION}.tar.gz && \
-    tar -xzf victoriametrics-datasource-${GRAFANA_VM_PLUGIN_VERSION}.tar.gz && \
-    find victoriametrics-datasource -type f -name "victoriametrics_backend_plugin*" ! -name "*linux_amd64" -exec rm -f {} + && \
+    curl -L -O https://github.com/VictoriaMetrics/victoriametrics-datasource/releases/download/${GRAFANA_VM_PLUGIN_VERSION}/victoriametrics-metrics-datasource-${GRAFANA_VM_PLUGIN_VERSION}.tar.gz && \
+    tar -xzf victoriametrics-metrics-datasource-${GRAFANA_VM_PLUGIN_VERSION}.tar.gz && \
+    find victoriametrics-metrics-datasource -type f -name "victoriametrics_backend_plugin*" ! -name "*linux_amd64" -exec rm -f {} + && \
     mkdir ${PLUGIN_PATH} && \
-    mv victoriametrics-datasource ${PLUGIN_PATH} && \
-    rm victoriametrics-datasource-${GRAFANA_VM_PLUGIN_VERSION}.tar.gz
+    mv victoriametrics-metrics-datasource ${PLUGIN_PATH} && \
+    rm victoriametrics-metrics-datasource-${GRAFANA_VM_PLUGIN_VERSION}.tar.gz
 
 COPY grafana.ini /etc/grafana/grafana.ini
-COPY victoriametrics-datasource.yml /etc/grafana/provisioning/datasources/victoriametrics-datasource.yml
+COPY victoriametrics-metrics-datasource.yml /etc/grafana/provisioning/datasources/victoriametrics-metrics-datasource.yml
 
 # Install and configure Telegraf
 RUN set -ex && \
