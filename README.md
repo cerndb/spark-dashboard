@@ -11,15 +11,14 @@ ensuring your Spark applications run smoothly.
 
 ## Key Features
 
-- **Real-Time Visualization:**  
-  Leverage Grafana dashboards to visualize Spark metrics dynamically, allowing for prompt performance analysis.
-
 - **Performance Troubleshooting:**  
   Quickly pinpoint and address performance issues in your Spark applications with comprehensive metric tracking.
 
+- **Real-Time Visualization:**  
+  Leverage Grafana dashboards to visualize Spark metrics dynamically, allowing for prompt performance analysis.
+
 - **Broad Compatibility:**  
-  Designed to support all current Apache Spark versions (2.4 and higher) and all supported clusters (Hadoop, Kubernetes, stand-alone)
-- ensuring wide-ranging applicability.
+  Designed to support all current Apache Spark versions (3.x, 2.4 and higher) and all supported clusters (Hadoop, Kubernetes, stand-alone)
   
 ### Contents
 - [Architecture](#architecture)
