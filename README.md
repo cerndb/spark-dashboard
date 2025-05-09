@@ -180,7 +180,7 @@ The extended dashboard introduces three extra groups of graphs beyond those avai
 
 To enable extended metrics, add the following configurations to your Spark setup:
 
-    --conf ch.cern.sparkmeasure:spark-plugins_2.12:0.3
+    --conf ch.cern.sparkmeasure:spark-plugins_2.12:0.4
     --conf spark.plugins=ch.cern.HDFSMetrics,ch.cern.CgroupMetrics,ch.cern.CloudFSMetrics
 
 #### Using the Extended Dashboard
@@ -237,7 +237,7 @@ spark-submit --master local[*] \
 --conf "spark.metrics.appStatusSource.enabled"=true \
 --conf spark.driver.memory=4g \
 --conf spark.log.level=error \
---packages ch.cern.sparkmeasure:spark-measure_2.12:0.24 \
+--packages ch.cern.sparkmeasure:spark-measure_2.12:0.25 \
 $TPCDS_PYSPARK -d tpcds_10
 
 # 4. Accessing the Grafana Dashboard:
@@ -258,7 +258,7 @@ $TPCDS_PYSPARK -d tpcds_10
 TPCDS_PYSPARK=`which tpcds_pyspark_run.py`
 
 spark-submit --master yarn --conf spark.log.level=error --conf spark.executor.cores=8 --conf spark.executor.memory=64g \
---conf spark.driver.memory=16g --conf spark.driver.extraClassPath=tpcds_pyspark/spark-measure_2.12-0.24.jar \
+--conf spark.driver.memory=16g --conf spark.driver.extraClassPath=tpcds_pyspark/spark-measure_2.12-0.25.jar \
 --conf spark.dynamicAllocation.enabled=false --conf spark.executor.instances=32 --conf spark.sql.shuffle.partitions=512 \
 $TPCDS_PYSPARK -d hdfs://<PATH>/tpcds_10000_parquet_1.13.1
 ```
@@ -269,7 +269,7 @@ TPCDS_PYSPARK=`which tpcds_pyspark_run.py`
 
 spark-submit --master k8s://https://xxx.xxx.xxx.xxx:6443 --conf spark.kubernetes.container.image=<URL>/spark:v3.5.1 --conf spark.kubernetes.namespace=xxx \
 --conf spark.eventLog.enabled=false --conf spark.task.maxDirectResultSize=2000000000 --conf spark.shuffle.service.enabled=false --conf spark.executor.cores=8 --conf spark.executor.memory=32g --conf spark.driver.memory=4g \
---packages org.apache.hadoop:hadoop-aws:3.3.4,ch.cern.sparkmeasure:spark-measure_2.12:0.24,ch.cern.sparkmeasure:spark-plugins_2.12:0.3 --conf spark.plugins=ch.cern.HDFSMetrics,ch.cern.CgroupMetrics,ch.cern.CloudFSMetrics \
+--packages org.apache.hadoop:hadoop-aws:3.3.4,ch.cern.sparkmeasure:spark-measure_2.12:0.25,ch.cern.sparkmeasure:spark-plugins_2.12:0.4 --conf spark.plugins=ch.cern.HDFSMetrics,ch.cern.CgroupMetrics,ch.cern.CloudFSMetrics \
 --conf spark.cernSparkPlugin.cloudFsName=s3a \
 --conf spark.dynamicAllocation.enabled=false --conf spark.executor.instances=4 \
 --conf spark.hadoop.fs.s3a.secret.key=$SECRET_KEY \
