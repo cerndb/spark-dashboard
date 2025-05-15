@@ -1,24 +1,24 @@
 # Spark-Dashboard
-Real-Time Spark Monitoring & Optimization
+Real-Time Spark Monitoring & Performance Troubleshooting
 
 [![DOI](https://zenodo.org/badge/212368829.svg)](https://doi.org/10.5281/zenodo.14718682)
 [![Docker Pulls](https://img.shields.io/docker/pulls/lucacanali/spark-dashboard)](https://hub.docker.com/r/lucacanali/spark-dashboard)
 
-**Spark-Dashboard** is an intuitive and comprehensive tool designed to help you optimize and monitor your Apache Spark clusters with ease. 
-By delivering real-time insights into critical performance metrics—including CPU usage, active sessions, task throughput,
-memory utilization, HDFS usage, and more—this dashboard empowers you to quickly identify and resolve performance bottlenecks,
-ensuring your Spark applications run smoothly.
+**Spark-Dashboard** offers a simple, intuitive interface for real-time monitoring of Apache Spark clusters.
+It visualizes key metrics, CPU, memory, task throughput, I/O, and more, as time series, making it easy to track trends, spot issues,
+and analyze workload evolution.
+Ideal for engineers and data teams, Spark-Dashboard streamlines Spark troubleshooting and root cause analysis.
 
 ## Key Features
 
-- **Performance Troubleshooting:**  
-  Quickly pinpoint and address performance issues in your Spark applications with comprehensive metric tracking.
+- **Real-time Performance Monitoring:**   
+  Visualize the evolution of Spark and system metrics, including CPU, memory, active tasks, and I/O, over time. Instantly spot trends and anomalies.
 
 - **Real-Time Visualization:**  
-  Leverage Grafana dashboards to visualize Spark metrics dynamically, allowing for prompt performance analysis.
+  Integrated with Grafana for dynamic, interactive visualizations, enabling fast and effective performance analysis.
 
 - **Broad Compatibility:**  
-  Designed to support all current Apache Spark versions (3.x, 2.4 and higher) and all supported clusters (Hadoop, Kubernetes, stand-alone)
+  Works with all major Apache Spark versions (4.x, 3.x) and across diverse cluster environments: Hadoop, Kubernetes, and Spark Standalone.
   
 ### Contents
 - [Architecture](#architecture)
@@ -46,7 +46,7 @@ ensuring your Spark applications run smoothly.
 Main author and contact: Luca.Canali@cern.ch  
 
 ---
-### Architecture
+## Architecture
 
 ![Spark metrics dashboard architecture](https://raw.githubusercontent.com/LucaCanali/Miscellaneous/master/Spark_Dashboard/images/Spark_MetricsSystem_Grafana_Dashboard_V2.0.png "Spark metrics dashboard architecture")
 
@@ -156,7 +156,7 @@ Once the container is running and Spark is configured to export metrics, you can
 > **Important:**  
 > Ensure that you have a running Spark application configured as detailed above so that metrics are available for selection and display.
 
-For testing purposes, you can simulate load on Spark using [TPCDS_PySpark](https://github.com/LucaCanali/Miscellaneous/tree/master/Performance_Testing/TPCDS_PySpark), a TPC-DS workload generator written in Python and designed to run at scale with Apache Spark.
+For testing purposes, you can generate load on Spark using [TPCDS_PySpark](https://github.com/LucaCanali/Miscellaneous/tree/master/Performance_Testing/TPCDS_PySpark), a TPC-DS workload generator written in Python and designed to run at scale with Apache Spark.
 
 ---
 ### Extended Spark Dashboard
@@ -192,12 +192,19 @@ After configuring Spark, select the extended dashboard in Grafana to view the ad
 
 ----
 ### Notes on Running Spark Dashboard on Spark Connect
-Spark Connect allows you to run a thin Spark client connected to a Spark cluster. In that environment, Spark Dashboard needs to be run when starting Spark Connect.
-1. Start the Spark Dashboard container (as detailed above).
-2. Edit the `metrics.properties` file in the Spark Connect `conf` directory (as detailed above).
-3. Start Spark Connect with the command:
-   `sbin/start-connect-server.sh`  
-   You will find that the metrics are sent to the Spark Dashboard container and visualized in Grafana
+
+[Spark Connect](https://spark.apache.org/docs/latest/spark-connect-overview.html) allows you to run a lightweight Spark client that connects remotely to your Spark cluster.  
+When using Spark Connect, **Spark-Dashboard must be started on the Spark Connect server**, not on the client. Follow these steps:
+
+1. **Start the Spark-Dashboard container**  
+   (see instructions above).
+2. **Edit the `metrics.properties` file**  
+   in the Spark Connect `conf` directory as described above.
+3. **Start Spark Connect**  
+   ```
+   sbin/start-connect-server.sh
+   ```
+Metrics from Spark Connect will now be sent to the Spark-Dashboard container and visualized in Grafana.
 
 -----
 ## Examples and getting started with Spark Performance dashboards:
@@ -284,7 +291,7 @@ $TPCDS_PYSPARK -d s3a://luca/tpcds_100
 ```
 
 ---
-## Old implementation (v1)
+## Legacy implementation (spark-dashboard v1)
 
 Note: spark-dashboard v1 (the original implementation) uses InfluxDB as the time-series database, see also
 [spark-dashabord v1 architecture](https://raw.githubusercontent.com/LucaCanali/Miscellaneous/master/Spark_Dashboard/images/Spark_metrics_dashboard_arch.PNG)
@@ -336,7 +343,7 @@ To activate annotations, add the following additional configuration, needed for 
 extra performance data:
 ```
 INFLUXDB_HTTP_ENDPOINT="http://`hostname`:8086"
---packages ch.cern.sparkmeasure:spark-measure_2.12:0.24 \
+--packages ch.cern.sparkmeasure:spark-measure_2.12:0.25 \
 --conf spark.sparkmeasure.influxdbURL=$INFLUXDB_HTTP_ENDPOINT \
 --conf spark.extraListeners=ch.cern.sparkmeasure.InfluxDBSink \
 ```
