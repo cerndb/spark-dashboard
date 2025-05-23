@@ -24,6 +24,7 @@ Ideal for engineers and data teams, Spark-Dashboard streamlines Spark troublesho
 - [Architecture](#architecture)
 - [How To Deploy the Spark Dashboard V2](#how-to-deploy-the-spark-dashboard)
   - [How to run the Spark Dashboard V2 on a container](#how-to-run-the-spark-dashboard-v2-on-a-container)
+  - [Persisting metric storage across container restarts](https://github.com/cerndb/spark-dashboard#persisting-victoriametrics-data-across-restarts)
   - [Extended Spark dashboard](#extended-spark-dashboard)
 - [Notes on Running Spark Dashboard on Spark Connect](#notes-on-running-spark-dashboard-on-spark-connect) 
 - [Examples and getting started with Spark Performance dashboards](#examples-and-getting-started-with-spark-performance-dashboards) 
@@ -157,6 +158,25 @@ Once the container is running and Spark is configured to export metrics, you can
 > Ensure that you have a running Spark application configured as detailed above so that metrics are available for selection and display.
 
 For testing purposes, you can generate load on Spark using [TPCDS_PySpark](https://github.com/LucaCanali/Miscellaneous/tree/master/Performance_Testing/TPCDS_PySpark), a TPC-DS workload generator written in Python and designed to run at scale with Apache Spark.
+
+----
+### Persisting VictoriaMetrics Data Across Restarts
+
+By default, VictoriaMetrics does not retain data between container restarts—each time the container starts, it begins with an empty dataset. 
+To preserve historical metrics, you need to mount a persistent volume for data storage.
+
+Below is an example of how to do this using a local directory:
+
+```
+# Create a directory to store VictoriaMetrics data
+mkdir metrics_data
+
+# Run the container with the local directory mounted as the data volume.
+# This ensures your metrics history survives container restarts.
+docker run --network=host \
+  -v ./metrics_data:/victoria-metrics-data \
+  -d lucacanali/spark-dashboard:v02
+```
 
 ---
 ### Extended Spark Dashboard
@@ -303,7 +323,7 @@ This is the original implementation of the tool using InfluxDB and Grafana
 The provided container image has been built configured to run InfluxDB and Grafana
   -`docker run -p 3000:3000 -p 2003:2003 -d lucacanali/spark-dashboard:v01` 
  - Note: port 2003 is for Graphite ingestion, port 3000 is for Grafana
- - More options, including on how to persist InfluxDB data across restarts at: [Spark dashboard in a container](dockerfiles)
+ - More options, including on how to persist InfluxDB data across restarts at: [Spark dashboard in a container](dockerfiles_v1)
 
 **2. Spark configuration**
 See above
@@ -339,10 +359,12 @@ More info at [Spark dashboard on Kubernetes](charts/README.md)
 ### Graph annotations: display query/job/stage start and end times  
 Optionally, you can add annotation instrumentation to the performance dashboard v1.
 Annotations provide additional info on start and end times for queries, jobs and stages.
-To activate annotations, add the following additional configuration, needed for collecting and writing 
-extra performance data:
+To activate annotations, add the following additional configuration to spark-submit/spark-shell/pyspark,
+needed for collecting and writing extra performance data:
 ```
 INFLUXDB_HTTP_ENDPOINT="http://`hostname`:8086"
+
+<spark-submit config>
 --packages ch.cern.sparkmeasure:spark-measure_2.12:0.25 \
 --conf spark.sparkmeasure.influxdbURL=$INFLUXDB_HTTP_ENDPOINT \
 --conf spark.extraListeners=ch.cern.sparkmeasure.InfluxDBSink \

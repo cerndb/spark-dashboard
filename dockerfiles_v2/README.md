@@ -14,13 +14,21 @@ or
 docker run -p 3000:3000 -p 2003:2003 -p 8428:8428 -d lucacanali/spark-dashboard
 ```
 
-## Advanced: persist InfluxDB data across restarts
-- This shows an example of how to use a volume to store data on VictoriaMetrics. 
-  It allows preserving the history across runs when the container is restarted,
-  otherwise InfluxDB starts from scratch each time.
+## Persisting VictoriaMetrics Data Across Restarts
+By default, VictoriaMetrics does not retain data between container restarts—each time the container starts, it begins with an empty dataset. 
+To preserve historical metrics, you need to mount a persistent volume for data storage.
+
+Below is an example of how to do this using a local directory:
+
 ```
+# Create a directory to store VictoriaMetrics data
 mkdir metrics_data
-docker run --network=host -v ./metrics_data:/victoria-metrics-data -d lucacanali/spark-dashboard:v02
+
+# Run the container with the local directory mounted as the data volume.
+# This ensures your metrics history survives container restarts.
+docker run --network=host \
+  -v ./metrics_data:/victoria-metrics-data \
+  -d lucacanali/spark-dashboard:v02
 ```
 
 ## Example of how to build the image:
