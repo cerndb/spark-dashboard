@@ -1,7 +1,7 @@
 # Spark-Dashboard
 Real-Time Spark Monitoring & Performance Troubleshooting
 
-[![DOI](https://zenodo.org/badge/212368829.svg)](https://doi.org/10.5281/zenodo.14718682)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14718682.svg)](https://doi.org/10.5281/zenodo.14718682)
 [![Docker Pulls](https://img.shields.io/docker/pulls/lucacanali/spark-dashboard)](https://hub.docker.com/r/lucacanali/spark-dashboard)
 
 **Spark-Dashboard** offers a simple, intuitive interface for real-time monitoring of Apache Spark clusters.
