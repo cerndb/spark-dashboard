@@ -179,7 +179,7 @@ docker run --network=host \
 ```
 
 ---
-### Extended Spark Dashboard
+## Extended Spark Dashboard
 
 Enhance your monitoring capabilities with the Extended Spark Dashboard, which collects and visualizes OS and storage metrics alongside standard Spark performance data. This enhanced pipeline leverages [Spark Plugins](https://github.com/cerndb/SparkPlugins) to gather additional metrics, all stored within the same VictoriaMetrics database as the standard Spark metrics.
 
@@ -200,7 +200,7 @@ The extended dashboard introduces three extra groups of graphs beyond those avai
 
 To enable extended metrics, add the following configurations to your Spark setup:
 
-    --conf ch.cern.sparkmeasure:spark-plugins_2.12:0.4
+    --conf spark.jars.packages=ch.cern.sparkmeasure:spark-plugins_2.12:0.4
     --conf spark.plugins=ch.cern.HDFSMetrics,ch.cern.CgroupMetrics,ch.cern.CloudFSMetrics
 
 #### Using the Extended Dashboard
