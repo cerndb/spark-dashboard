@@ -24,6 +24,7 @@ Ideal for engineers and data teams, Spark-Dashboard streamlines Spark troublesho
 - [Architecture](#architecture)
 - [How To Deploy the Spark Dashboard V2](#how-to-deploy-the-spark-dashboard)
   - [How to run the Spark Dashboard V2 on a container](#how-to-run-the-spark-dashboard-v2-on-a-container)
+  - [How to run the Spark Dashboard V2 on Kubernetes with Helm](#how-to-run-the-spark-dashboard-v2-on-kubernetes-with-helm)
   - [Persisting metric storage across container restarts](https://github.com/cerndb/spark-dashboard#persisting-victoriametrics-data-across-restarts)
   - [Extended Spark dashboard](#extended-spark-dashboard)
 - [Notes on Running Spark Dashboard on Spark Connect](#notes-on-running-spark-dashboard-on-spark-connect) 
@@ -177,6 +178,121 @@ docker run --network=host \
   -v ./metrics_data:/victoria-metrics-data \
   -d lucacanali/spark-dashboard:v02
 ```
+
+### How to run the Spark Dashboard V2 on Kubernetes with Helm
+
+The `charts_v2` directory contains the Helm chart for Spark Dashboard v2.
+
+Start with this if your cluster does not have a default storage class:
+
+```bash
+helm install spark-dashboard ./charts_v2 --set persistence.enabled=false
+```
+
+If your cluster does provide a suitable storage class and you want persistent VictoriaMetrics data, install with:
+
+```bash
+helm install spark-dashboard ./charts_v2 --set persistence.storageClass=<your-storage-class>
+```
+
+Check the deployment status:
+
+```bash
+kubectl get pods -l app.kubernetes.io/name=spark-dashboard-v2
+kubectl get svc spark-dashboard-v2
+```
+
+To expose Grafana and Graphite outside the cluster with a stable external address, install with a `LoadBalancer` service:
+
+```bash
+helm install spark-dashboard ./charts_v2 \
+  --set persistence.enabled=false \
+  --set service.type=LoadBalancer
+```
+
+This exposes Grafana on port `3000` and Graphite on port `2003`. VictoriaMetrics port `8428` is not exposed on the load balancer by default.
+
+If you explicitly want to expose VictoriaMetrics on the load balancer, enable it with:
+
+```bash
+helm install spark-dashboard ./charts_v2 \
+  --set persistence.enabled=false \
+  --set service.type=LoadBalancer \
+  --set service.victoriametrics.exposeOnLoadBalancer=true
+```
+
+When Spark runs inside the Kubernetes cluster, use the service DNS name as the Graphite endpoint:
+
+```text
+spark-dashboard-v2:2003
+```
+
+For Spark running outside the Kubernetes cluster, prefer the `LoadBalancer` service and wait for an external address:
+
+```bash
+kubectl get svc spark-dashboard-v2 -w
+```
+
+When `EXTERNAL-IP` is assigned, use:
+
+```text
+<external-ip>:2003
+```
+
+For Grafana:
+
+```text
+http://<external-ip>:3000
+```
+
+For browser access to Grafana during testing, use port-forward:
+
+```bash
+kubectl port-forward svc/spark-dashboard-v2 3000:3000 2003:2003
+```
+
+Then open:
+
+```text
+http://localhost:3000
+```
+
+If Spark runs on the same machine as the port-forward, use `localhost:2003` as the Graphite sink endpoint.
+
+#### Helm troubleshooting
+
+If the pod stays `Pending`, check for a missing storage class or an unbound PVC:
+
+```bash
+kubectl get pvc
+kubectl describe pod -l app.kubernetes.io/name=spark-dashboard-v2
+kubectl get storageclass
+```
+
+If needed, reinstall without persistence:
+
+```bash
+helm uninstall spark-dashboard
+helm install spark-dashboard ./charts_v2 --set persistence.enabled=false
+```
+
+If the service exists but external `NodePort` access is refused, verify the in-cluster path first:
+
+```bash
+kubectl get endpoints spark-dashboard-v2
+kubectl run netcheck --rm -it --image=busybox:1.36 --restart=Never -- sh
+```
+
+From the debug shell:
+
+```sh
+nc -vz spark-dashboard-v2 3000
+nc -vz spark-dashboard-v2 2003
+```
+
+If those checks pass, the chart is working and the remaining issue is external cluster networking, firewall rules, or `NodePort` exposure.
+
+If you use `service.type=LoadBalancer` and `EXTERNAL-IP` remains pending, your cluster likely does not have load balancer integration configured. In that case, use `NodePort`, deploy a load balancer solution such as MetalLB, or use the external exposure mechanism supported by your Kubernetes environment.
 
 ---
 ## Extended Spark Dashboard
