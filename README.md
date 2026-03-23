@@ -84,10 +84,10 @@ Repository layout:
 - `dockerfiles_v2/` and `charts_v2/` contain the current v2 implementation.
 - Legacy v1 assets are kept under `legacy/dockerfiles_v1/` and `legacy/charts_v1/`.
 
-### How to run the Spark Dashboard V2 on a container
+## How to run the Spark Dashboard V2 on a container
 Follow these steps to get started with the container image:
 
-#### 1. Start the container
+### 1. Start the container
 The provided container image is pre-configured to run VictoriaMetrics (for metrics storage) and Grafana (for visualization). 
 You can start the container using either Docker or Podman:
 
@@ -99,7 +99,7 @@ You can start the container using either Docker or Podman:
 
   `podman run -p 3000:3000 -p 2003:2003 -d lucacanali/spark-dashboard`
 
-#### 2. Configure Apache Spark
+### 2. Configure Apache Spark
 
 To send metrics from Spark to the dashboard, configure Spark to export its metrics to the Graphite endpoint provided by the container.
 
@@ -108,7 +108,7 @@ To send metrics from Spark to the dashboard, configure Spark to export its metri
 Edit the `metrics.properties` file located in `$SPARK_CONF_DIR` and add the following configuration:
 
     # Configure Graphite sink for Spark metrics
-    *.sink.graphite.host=localhost
+    *.sink.graphite.host=localhost # or use the hostname
     *.sink.graphite.port=2003
     *.sink.graphite.period=10
     *.sink.graphite.unit=seconds
@@ -144,7 +144,7 @@ Alternatively, you can specify Spark metrics settings directly when launching yo
 
     --conf spark.executor.processTreeMetrics.enabled=true
 
-#### 3. Visualize Metrics in Grafana
+### 3. Visualize Metrics in Grafana
 
 Once the container is running and Spark is configured to export metrics, you can view the performance data through Grafana:
 
@@ -183,7 +183,8 @@ docker run --network=host \
   -d lucacanali/spark-dashboard:v02
 ```
 
-### How to run the Spark Dashboard V2 on Kubernetes with Helm
+----
+## How to run the Spark Dashboard V2 on Kubernetes with Helm
 
 The `charts_v2` directory contains the Helm chart for Spark Dashboard v2.
 
@@ -263,7 +264,7 @@ http://localhost:3000
 
 If Spark runs on the same machine as the port-forward, use `localhost:2003` as the Graphite sink endpoint.
 
-#### Helm troubleshooting
+### Helm troubleshooting
 
 If the pod stays `Pending`, check for a missing storage class or an unbound PVC:
 
