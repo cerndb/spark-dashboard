@@ -1,4 +1,6 @@
-# How to install the Helm Chart for the Spark Dashboard
+# Legacy v1 Helm chart for Spark Dashboard
+
+This folder contains the legacy v1 Helm chart, moved under `legacy/charts_v1/`.
 
 The Helm chart is installed using [helm](https://helm.sh/docs/intro/quickstart/):
 ```
@@ -9,12 +11,13 @@ Other installation options:
  
 ```
 # Install from source.
-# Prerequisite: download the repo and cd into the charts directory
-helm install spark-dashboard -f values.yaml .
+# From the repository root:
+helm install spark-dashboard -f legacy/charts_v1/values.yaml ./legacy/charts_v1
 ```  
 
 ```
-# Re-package and install
+# Re-package and install from legacy/charts_v1
+cd legacy/charts_v1
 helm package .
 helm install spark-dashboard spark-dashboard-0.3.0.tgz
 ```

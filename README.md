@@ -31,7 +31,7 @@ Ideal for engineers and data teams, Spark-Dashboard streamlines Spark troublesho
 - [Examples and getting started with Spark Performance dashboards](#examples-and-getting-started-with-spark-performance-dashboards) 
   - [Start small, testing with Spark in local mode](#start-small-testing-with-spark-in-local-mode)
   - [Measuring with Spark Dashboard while running TPCDS on a Spark cluster](#running-tpcds-on-a-spark-cluster)
-- [Old implementation (V1)](#old-implementation-v1)
+- [Legacy implementation (V1)](#legacy-implementation-spark-dashboard-v1)
   - [How to run the Spark dashboard V1 on a container](#how-to-run-the-spark-dashboard-v1-on-a-container)
   - [How to run the dashboard V1 on Kubernetes using Helm](#how-to-run-the-dashboard-v1-on-kubernetes-using-helm)
 - [Advanced configurations and notes](#advanced-configurations-and-notes)
@@ -79,6 +79,10 @@ Together, these components form a cohesive and scalable monitoring solution tail
 
 This quickstart guide presents multiple methods for deploying Spark Dashboard. The **recommended** approach is to deploy 
 Spark-Dashboard v2 using a container.
+
+Repository layout:
+- `dockerfiles_v2/` and `charts_v2/` contain the current v2 implementation.
+- Legacy v1 assets are kept under `legacy/dockerfiles_v1/` and `legacy/charts_v1/`.
 
 ### How to run the Spark Dashboard V2 on a container
 Follow these steps to get started with the container image:
@@ -432,6 +436,12 @@ $TPCDS_PYSPARK -d s3a://luca/tpcds_100
 Note: spark-dashboard v1 (the original implementation) uses InfluxDB as the time-series database, see also
 [spark-dashabord v1 architecture](https://raw.githubusercontent.com/LucaCanali/Miscellaneous/master/Spark_Dashboard/images/Spark_metrics_dashboard_arch.PNG)
 
+The v1 container and Helm assets are stored under the `legacy/` folder:
+- `legacy/dockerfiles_v1/`
+- `legacy/charts_v1/`
+
+See also: [legacy/README.md](legacy/README.md)
+
 ### How to run the Spark dashboard V1 on a container
 This is the original implementation of the tool using InfluxDB and Grafana 
 
@@ -439,7 +449,7 @@ This is the original implementation of the tool using InfluxDB and Grafana
 The provided container image has been built configured to run InfluxDB and Grafana
   -`docker run -p 3000:3000 -p 2003:2003 -d lucacanali/spark-dashboard:v01` 
  - Note: port 2003 is for Graphite ingestion, port 3000 is for Grafana
- - More options, including on how to persist InfluxDB data across restarts at: [Spark dashboard in a container](dockerfiles_v1)
+ - More options, including on how to persist InfluxDB data across restarts at: [Spark dashboard in a container](legacy/dockerfiles_v1)
 
 **2. Spark configuration**
 See above
@@ -454,7 +464,7 @@ If you chose to run on Kubernetes, these are steps:
 
 1. The Helm chart takes care of configuring and running InfluxDB and Grafana:
    - Quickstart: `helm install spark-dashboard https://github.com/cerndb/spark-dashboard/raw/master/charts/spark-dashboard-0.3.0.tgz`
-   - Details: [charts](charts)
+  - Details: [legacy/charts_v1](legacy/charts_v1)
   
 2. Spark configuration:
    - Configure `metrics.properties` as detailed above.
@@ -467,7 +477,7 @@ If you chose to run on Kubernetes, these are steps:
    - When using NodePort and an internal cluster IP address, this is how you can port forward to the service from
      the local machine: `kubectl port-forward service/spark-dashboard-grafana 3000:3000`
 
-More info at [Spark dashboard on Kubernetes](charts/README.md)
+More info at [legacy/charts_v1/README.md](legacy/charts_v1/README.md)
 
 ---
 ## Advanced configurations and notes

@@ -1,5 +1,7 @@
 # How to build and run the legacy (v01) Spark dashboard in a container image
 
+This folder contains the legacy v1 container assets, moved under `legacy/dockerfiles_v1/`.
+
 ## How to run
 Run the dashboard v01 using a container image from [Dockerhub](https://hub.docker.com/r/lucacanali/spark-dashboard):
 - There are a few ports needed and multiple options on how to expose them
@@ -24,6 +26,6 @@ docker run --network=host -v MYPATH/myinfluxdir:/var/lib/influxdb -d lucacanali/
 
 ## How to build the image:
 ```
-docker build -t spark-dashboard:v01 .
+docker build -t spark-dashboard:v01 ./legacy/dockerfiles_v1
 ```
 
