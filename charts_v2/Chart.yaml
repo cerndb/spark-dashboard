@@ -1,0 +1,8 @@
+apiVersion: v2
+name: spark-dashboard-v2
+description: Helm chart for Spark Dashboard v2 using Grafana, Telegraf, and VictoriaMetrics
+type: application
+version: 0.1.0
+appVersion: "v02"
+home: https://github.com/cerndb/spark-dashboard
+icon: https://raw.githubusercontent.com/grafana/grafana/main/public/img/grafana_icon.svg

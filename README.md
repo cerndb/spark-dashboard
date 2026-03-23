@@ -24,13 +24,14 @@ Ideal for engineers and data teams, Spark-Dashboard streamlines Spark troublesho
 - [Architecture](#architecture)
 - [How To Deploy the Spark Dashboard V2](#how-to-deploy-the-spark-dashboard)
   - [How to run the Spark Dashboard V2 on a container](#how-to-run-the-spark-dashboard-v2-on-a-container)
+  - [How to run the Spark Dashboard V2 on Kubernetes with Helm](#how-to-run-the-spark-dashboard-v2-on-kubernetes-with-helm)
   - [Persisting metric storage across container restarts](https://github.com/cerndb/spark-dashboard#persisting-victoriametrics-data-across-restarts)
   - [Extended Spark dashboard](#extended-spark-dashboard)
 - [Notes on Running Spark Dashboard on Spark Connect](#notes-on-running-spark-dashboard-on-spark-connect) 
 - [Examples and getting started with Spark Performance dashboards](#examples-and-getting-started-with-spark-performance-dashboards) 
   - [Start small, testing with Spark in local mode](#start-small-testing-with-spark-in-local-mode)
   - [Measuring with Spark Dashboard while running TPCDS on a Spark cluster](#running-tpcds-on-a-spark-cluster)
-- [Old implementation (V1)](#old-implementation-v1)
+- [Legacy implementation (V1)](#legacy-implementation-spark-dashboard-v1)
   - [How to run the Spark dashboard V1 on a container](#how-to-run-the-spark-dashboard-v1-on-a-container)
   - [How to run the dashboard V1 on Kubernetes using Helm](#how-to-run-the-dashboard-v1-on-kubernetes-using-helm)
 - [Advanced configurations and notes](#advanced-configurations-and-notes)
@@ -79,10 +80,14 @@ Together, these components form a cohesive and scalable monitoring solution tail
 This quickstart guide presents multiple methods for deploying Spark Dashboard. The **recommended** approach is to deploy 
 Spark-Dashboard v2 using a container.
 
-### How to run the Spark Dashboard V2 on a container
+Repository layout:
+- `dockerfiles_v2/` and `charts_v2/` contain the current v2 implementation.
+- Legacy v1 assets are kept under `legacy/dockerfiles_v1/` and `legacy/charts_v1/`.
+
+## How to run the Spark Dashboard V2 on a container
 Follow these steps to get started with the container image:
 
-#### 1. Start the container
+### 1. Start the container
 The provided container image is pre-configured to run VictoriaMetrics (for metrics storage) and Grafana (for visualization). 
 You can start the container using either Docker or Podman:
 
@@ -94,7 +99,7 @@ You can start the container using either Docker or Podman:
 
   `podman run -p 3000:3000 -p 2003:2003 -d lucacanali/spark-dashboard`
 
-#### 2. Configure Apache Spark
+### 2. Configure Apache Spark
 
 To send metrics from Spark to the dashboard, configure Spark to export its metrics to the Graphite endpoint provided by the container.
 
@@ -103,7 +108,7 @@ To send metrics from Spark to the dashboard, configure Spark to export its metri
 Edit the `metrics.properties` file located in `$SPARK_CONF_DIR` and add the following configuration:
 
     # Configure Graphite sink for Spark metrics
-    *.sink.graphite.host=localhost
+    *.sink.graphite.host=localhost # or use the hostname
     *.sink.graphite.port=2003
     *.sink.graphite.period=10
     *.sink.graphite.unit=seconds
@@ -139,7 +144,7 @@ Alternatively, you can specify Spark metrics settings directly when launching yo
 
     --conf spark.executor.processTreeMetrics.enabled=true
 
-#### 3. Visualize Metrics in Grafana
+### 3. Visualize Metrics in Grafana
 
 Once the container is running and Spark is configured to export metrics, you can view the performance data through Grafana:
 
@@ -177,6 +182,122 @@ docker run --network=host \
   -v ./metrics_data:/victoria-metrics-data \
   -d lucacanali/spark-dashboard:v02
 ```
+
+----
+## How to run the Spark Dashboard V2 on Kubernetes with Helm
+
+The `charts_v2` directory contains the Helm chart for Spark Dashboard v2.
+
+Start with this if your cluster does not have a default storage class:
+
+```bash
+helm install spark-dashboard ./charts_v2 --set persistence.enabled=false
+```
+
+If your cluster does provide a suitable storage class and you want persistent VictoriaMetrics data, install with:
+
+```bash
+helm install spark-dashboard ./charts_v2 --set persistence.storageClass=<your-storage-class>
+```
+
+Check the deployment status:
+
+```bash
+kubectl get pods -l app.kubernetes.io/name=spark-dashboard-v2
+kubectl get svc spark-dashboard-v2
+```
+
+To expose Grafana and Graphite outside the cluster with a stable external address, install with a `LoadBalancer` service:
+
+```bash
+helm install spark-dashboard ./charts_v2 \
+  --set persistence.enabled=false \
+  --set service.type=LoadBalancer
+```
+
+This exposes Grafana on port `3000` and Graphite on port `2003`. VictoriaMetrics port `8428` is not exposed on the load balancer by default.
+
+If you explicitly want to expose VictoriaMetrics on the load balancer, enable it with:
+
+```bash
+helm install spark-dashboard ./charts_v2 \
+  --set persistence.enabled=false \
+  --set service.type=LoadBalancer \
+  --set service.victoriametrics.exposeOnLoadBalancer=true
+```
+
+When Spark runs inside the Kubernetes cluster, use the service DNS name as the Graphite endpoint:
+
+```text
+spark-dashboard-v2:2003
+```
+
+For Spark running outside the Kubernetes cluster, prefer the `LoadBalancer` service and wait for an external address:
+
+```bash
+kubectl get svc spark-dashboard-v2 -w
+```
+
+When `EXTERNAL-IP` is assigned, use:
+
+```text
+<external-ip>:2003
+```
+
+For Grafana:
+
+```text
+http://<external-ip>:3000
+```
+
+For browser access to Grafana during testing, use port-forward:
+
+```bash
+kubectl port-forward svc/spark-dashboard-v2 3000:3000 2003:2003
+```
+
+Then open:
+
+```text
+http://localhost:3000
+```
+
+If Spark runs on the same machine as the port-forward, use `localhost:2003` as the Graphite sink endpoint.
+
+### Helm troubleshooting
+
+If the pod stays `Pending`, check for a missing storage class or an unbound PVC:
+
+```bash
+kubectl get pvc
+kubectl describe pod -l app.kubernetes.io/name=spark-dashboard-v2
+kubectl get storageclass
+```
+
+If needed, reinstall without persistence:
+
+```bash
+helm uninstall spark-dashboard
+helm install spark-dashboard ./charts_v2 --set persistence.enabled=false
+```
+
+If the service exists but external `NodePort` access is refused, verify the in-cluster path first:
+
+```bash
+kubectl get endpoints spark-dashboard-v2
+kubectl run netcheck --rm -it --image=busybox:1.36 --restart=Never -- sh
+```
+
+From the debug shell:
+
+```sh
+nc -vz spark-dashboard-v2 3000
+nc -vz spark-dashboard-v2 2003
+```
+
+If those checks pass, the chart is working and the remaining issue is external cluster networking, firewall rules, or `NodePort` exposure.
+
+If you use `service.type=LoadBalancer` and `EXTERNAL-IP` remains pending, your cluster likely does not have load balancer integration configured. In that case, use `NodePort`, deploy a load balancer solution such as MetalLB, or use the external exposure mechanism supported by your Kubernetes environment.
 
 ---
 ## Extended Spark Dashboard
@@ -316,6 +437,12 @@ $TPCDS_PYSPARK -d s3a://luca/tpcds_100
 Note: spark-dashboard v1 (the original implementation) uses InfluxDB as the time-series database, see also
 [spark-dashabord v1 architecture](https://raw.githubusercontent.com/LucaCanali/Miscellaneous/master/Spark_Dashboard/images/Spark_metrics_dashboard_arch.PNG)
 
+The v1 container and Helm assets are stored under the `legacy/` folder:
+- `legacy/dockerfiles_v1/`
+- `legacy/charts_v1/`
+
+See also: [legacy/README.md](legacy/README.md)
+
 ### How to run the Spark dashboard V1 on a container
 This is the original implementation of the tool using InfluxDB and Grafana 
 
@@ -323,7 +450,7 @@ This is the original implementation of the tool using InfluxDB and Grafana
 The provided container image has been built configured to run InfluxDB and Grafana
   -`docker run -p 3000:3000 -p 2003:2003 -d lucacanali/spark-dashboard:v01` 
  - Note: port 2003 is for Graphite ingestion, port 3000 is for Grafana
- - More options, including on how to persist InfluxDB data across restarts at: [Spark dashboard in a container](dockerfiles_v1)
+ - More options, including on how to persist InfluxDB data across restarts at: [Spark dashboard in a container](legacy/dockerfiles_v1)
 
 **2. Spark configuration**
 See above
@@ -338,7 +465,7 @@ If you chose to run on Kubernetes, these are steps:
 
 1. The Helm chart takes care of configuring and running InfluxDB and Grafana:
    - Quickstart: `helm install spark-dashboard https://github.com/cerndb/spark-dashboard/raw/master/charts/spark-dashboard-0.3.0.tgz`
-   - Details: [charts](charts)
+  - Details: [legacy/charts_v1](legacy/charts_v1)
   
 2. Spark configuration:
    - Configure `metrics.properties` as detailed above.
@@ -351,7 +478,7 @@ If you chose to run on Kubernetes, these are steps:
    - When using NodePort and an internal cluster IP address, this is how you can port forward to the service from
      the local machine: `kubectl port-forward service/spark-dashboard-grafana 3000:3000`
 
-More info at [Spark dashboard on Kubernetes](charts/README.md)
+More info at [legacy/charts_v1/README.md](legacy/charts_v1/README.md)
 
 ---
 ## Advanced configurations and notes

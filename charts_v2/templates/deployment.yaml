@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "spark_dashboard_v2.fullname" . }}
+  labels:
+    {{- include "spark_dashboard_v2.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "spark_dashboard_v2.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "spark_dashboard_v2.selectorLabels" . | nindent 8 }}
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      containers:
+        - name: spark-dashboard-v2
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: grafana
+              containerPort: {{ .Values.service.grafana.targetPort }}
+              protocol: TCP
+            - name: graphite
+              containerPort: {{ .Values.service.graphite.targetPort }}
+              protocol: TCP
+            - name: vm
+              containerPort: {{ .Values.service.victoriametrics.targetPort }}
+              protocol: TCP
+          volumeMounts:
+            - name: dashboards
+              mountPath: /var/lib/grafana/dashboards
+            - name: config
+              mountPath: /etc/grafana/grafana.ini
+              subPath: grafana.ini
+            - name: config
+              mountPath: /etc/grafana/provisioning/dashboards/spark.yaml
+              subPath: spark.yaml
+            - name: config
+              mountPath: /etc/telegraf/telegraf.conf
+              subPath: telegraf.conf
+            - name: config
+              mountPath: /etc/grafana/provisioning/datasources/victoriametrics-metrics-datasource.yml
+              subPath: victoriametrics-metrics-datasource.yml
+            - name: metrics-data
+              mountPath: /victoria-metrics-data
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: dashboards
+          configMap:
+            name: {{ include "spark_dashboard_v2.fullname" . }}-dashboards
+        - name: config
+          configMap:
+            name: {{ include "spark_dashboard_v2.fullname" . }}-config
+        - name: metrics-data
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "spark_dashboard_v2.fullname" . }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

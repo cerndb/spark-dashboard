@@ -1,0 +1,39 @@
+fullnameOverride: "spark-dashboard-v2"
+
+image:
+  repository: lucacanali/spark-dashboard
+  tag: "v02"
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+
+service:
+  type: NodePort
+  grafana:
+    port: 3000
+    targetPort: 3000
+  graphite:
+    port: 2003
+    targetPort: 2003
+  victoriametrics:
+    enabled: true
+    exposeOnLoadBalancer: false
+    port: 8428
+    targetPort: 8428
+  loadBalancerSourceRanges: []
+
+persistence:
+  enabled: true
+  storageClass: ""
+  accessMode: ReadWriteOnce
+  size: 5Gi
+
+resources: {}
+
+podAnnotations: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
