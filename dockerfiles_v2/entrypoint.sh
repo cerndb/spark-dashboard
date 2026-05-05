@@ -11,10 +11,9 @@ configure_grafana_https() {
   local staged_cert_key="${staged_cert_dir}/tls.key"
   local root_url="${GRAFANA_ROOT_URL:-}"
 
-  sed -i '/^; spark-dashboard HTTPS settings$/,/^; end spark-dashboard HTTPS settings$/d' "${grafana_config}"
-
   case "${https_enabled}" in
     true|TRUE|1|yes|YES)
+      sed -i '/^; spark-dashboard HTTPS settings$/,/^; end spark-dashboard HTTPS settings$/d' "${grafana_config}"
       local cert_dir
       cert_dir="$(dirname "${cert_file}")"
       if [[ ! -r "${cert_file}" ]]; then
@@ -49,6 +48,30 @@ configure_grafana_https() {
   esac
 }
 
+configure_grafana_admin_password() {
+  local grafana_config="/etc/grafana/grafana.ini"
+  local admin_password="${GRAFANA_ADMIN_PASSWORD:-${GF_SECURITY_ADMIN_PASSWORD:-}}"
+  local admin_password_dir="/run/spark-dashboard/grafana-admin"
+  local admin_password_file="${admin_password_dir}/admin-password"
+
+  if [[ -n "${admin_password}" ]]; then
+    install -d -o grafana -g grafana -m 0750 "${admin_password_dir}"
+    printf '%s' "${admin_password}" > "${admin_password_file}"
+    chown grafana:grafana "${admin_password_file}"
+    chmod 0640 "${admin_password_file}"
+
+    sed -i '/^; spark-dashboard admin password settings$/,/^; end spark-dashboard admin password settings$/d' "${grafana_config}"
+    {
+      echo ""
+      echo "; spark-dashboard admin password settings"
+      echo "[security]"
+      echo "admin_password = \$__file{${admin_password_file}}"
+      echo "; end spark-dashboard admin password settings"
+    } >> "${grafana_config}"
+  fi
+}
+
+configure_grafana_admin_password
 configure_grafana_https
 
 wait_for_grafana() {

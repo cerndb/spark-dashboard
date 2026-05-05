@@ -8,6 +8,7 @@ image:
 nameOverride: ""
 
 grafana:
+  adminPassword: ""
   https:
     enabled: false
     secretName: ""

@@ -14,6 +14,18 @@ or
 docker run -p 3000:3000 -p 2003:2003 -p 8428:8428 -d lucacanali/spark-dashboard
 ```
 
+## Set the Grafana admin password
+
+Grafana uses `admin` as the default username. Set `GRAFANA_ADMIN_PASSWORD` to configure the admin password at container startup:
+
+```bash
+docker run -p 3000:3000 -p 2003:2003 \
+  -e GRAFANA_ADMIN_PASSWORD='change-me' \
+  -d lucacanali/spark-dashboard:v02
+```
+
+`GF_SECURITY_ADMIN_PASSWORD` is also supported for compatibility with Grafana's native environment variable.
+
 ## Run Grafana with HTTPS
 
 For testing, `openssl` can be used to generate a self-signed certificate. Mount the certificate and key into the container, then enable HTTPS with environment variables:

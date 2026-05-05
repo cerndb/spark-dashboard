@@ -43,6 +43,17 @@ helm install spark-dashboard ./charts_v2 \
   --set service.victoriametrics.exposeOnLoadBalancer=true
 ```
 
+## Grafana admin password
+
+Grafana uses `admin` as the default username. Set `grafana.adminPassword` to configure the admin password:
+
+```bash
+helm upgrade --install spark-dashboard ./charts_v2 \
+  --set grafana.adminPassword='change-me'
+```
+
+When set, the chart creates a Kubernetes Secret and configures Grafana to read the password from the mounted secret file.
+
 ## Grafana HTTPS
 
 By default, Grafana listens with HTTP on port `3000`. To use HTTPS, first create a certificate. For testing, `openssl` can be used to generate a self-signed certificate:

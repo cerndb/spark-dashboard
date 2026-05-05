@@ -158,6 +158,16 @@ Once the container is running and Spark is configured to export metrics:
   - **User:** `admin`
   - **Password:** `admin`
 
+To set a custom Grafana admin password when running with Docker, pass `GRAFANA_ADMIN_PASSWORD`:
+
+```bash
+docker run -p 3000:3000 -p 2003:2003 \
+  -e GRAFANA_ADMIN_PASSWORD='change-me' \
+  -d lucacanali/spark-dashboard:v02
+```
+
+`GF_SECURITY_ADMIN_PASSWORD` is also supported for compatibility with Grafana's native environment variable.
+
 The bundled dashboard, **Spark_Perf_Dashboard_v04_promQL**, displays key Spark metrics such as runtime, CPU, I/O, shuffle activity, and task counts, along with detailed time-series graphs.
 
 > Ensure that a Spark application is running and configured to send metrics, otherwise no data will appear in Grafana.
@@ -276,6 +286,13 @@ Grafana will be available at:
 
 ```text
 http://<external-ip>:3000
+```
+
+To set the Grafana admin password:
+
+```bash
+helm upgrade --install spark-dashboard ./charts_v2 \
+  --set grafana.adminPassword='change-me'
 ```
 
 To use HTTPS for Grafana, first create a certificate. For testing, `openssl` can be used to generate a self-signed certificate:

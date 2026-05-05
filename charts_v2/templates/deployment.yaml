@@ -54,6 +54,11 @@ spec:
               mountPath: {{ .Values.grafana.https.mountPath }}
               readOnly: true
             {{- end }}
+            {{- if .Values.grafana.adminPassword }}
+            - name: grafana-admin
+              mountPath: /etc/grafana/admin-password
+              readOnly: true
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
@@ -79,6 +84,14 @@ spec:
                 path: {{ .Values.grafana.https.certFile }}
               - key: {{ .Values.grafana.https.certKey }}
                 path: {{ .Values.grafana.https.certKey }}
+        {{- end }}
+        {{- if .Values.grafana.adminPassword }}
+        - name: grafana-admin
+          secret:
+            secretName: {{ include "spark_dashboard_v2.fullname" . }}-grafana-admin
+            items:
+              - key: admin-password
+                path: admin-password
         {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
