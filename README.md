@@ -164,6 +164,32 @@ The bundled dashboard, **Spark_Perf_Dashboard_v04_promQL**, displays key Spark m
 
 For test workloads, you can use [TPCDS_PySpark](https://github.com/LucaCanali/Miscellaneous/tree/master/Performance_Testing/TPCDS_PySpark).
 
+### Optional: enable HTTPS for Grafana
+
+For testing, `openssl` can be used to generate a self-signed certificate. Mount the certificate and key into the container, then enable HTTPS:
+
+```bash
+mkdir -p certs
+openssl req -x509 -newkey rsa:4096 -nodes -days 365 \
+  -keyout certs/tls.key \
+  -out certs/tls.crt \
+  -subj "/CN=localhost" \
+  -addext "subjectAltName=DNS:localhost,IP:127.0.0.1"
+
+docker run -p 3000:3000 -p 2003:2003 \
+  -v ./certs:/etc/grafana/certs:ro \
+  -e GRAFANA_HTTPS_ENABLED=true \
+  -d lucacanali/spark-dashboard:v02
+```
+
+Grafana will be available at:
+
+```text
+https://localhost:3000
+```
+
+By default, the container expects `tls.crt` and `tls.key` in `/etc/grafana/certs`. You can override the paths with `GRAFANA_CERT_FILE` and `GRAFANA_CERT_KEY`, and set `GRAFANA_ROOT_URL` when Grafana is served through a DNS name.
+
 ---
 
 ## Persisting VictoriaMetrics data across restarts
@@ -250,6 +276,35 @@ Grafana will be available at:
 
 ```text
 http://<external-ip>:3000
+```
+
+To use HTTPS for Grafana, first create a certificate. For testing, `openssl` can be used to generate a self-signed certificate:
+
+```bash
+openssl req -x509 -newkey rsa:4096 -nodes -days 365 \
+  -keyout tls.key \
+  -out tls.crt \
+  -subj "/CN=dashboard.example.com" \
+  -addext "subjectAltName=DNS:dashboard.example.com"
+```
+
+Then create a Kubernetes TLS secret and enable the chart option:
+
+```bash
+kubectl create secret tls spark-dashboard-grafana-tls \
+  --cert=./tls.crt \
+  --key=./tls.key
+
+helm upgrade --install spark-dashboard ./charts_v2 \
+  --set persistence.enabled=false \
+  --set grafana.https.enabled=true \
+  --set grafana.https.secretName=spark-dashboard-grafana-tls
+```
+
+Grafana will then be available at:
+
+```text
+https://<external-ip>:3000
 ```
 
 For testing, you can also use port-forwarding:

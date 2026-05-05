@@ -7,6 +7,15 @@ image:
 
 nameOverride: ""
 
+grafana:
+  https:
+    enabled: false
+    secretName: ""
+    certFile: tls.crt
+    certKey: tls.key
+    mountPath: /etc/grafana/certs
+    rootUrl: ""
+
 service:
   type: NodePort
   grafana:

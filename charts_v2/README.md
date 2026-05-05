@@ -43,6 +43,50 @@ helm install spark-dashboard ./charts_v2 \
   --set service.victoriametrics.exposeOnLoadBalancer=true
 ```
 
+## Grafana HTTPS
+
+By default, Grafana listens with HTTP on port `3000`. To use HTTPS, first create a certificate. For testing, `openssl` can be used to generate a self-signed certificate:
+
+```bash
+openssl req -x509 -newkey rsa:4096 -nodes -days 365 \
+  -keyout tls.key \
+  -out tls.crt \
+  -subj "/CN=dashboard.example.com" \
+  -addext "subjectAltName=DNS:dashboard.example.com"
+```
+
+Then create a Kubernetes TLS secret and enable the chart option:
+
+```bash
+kubectl create secret tls spark-dashboard-grafana-tls \
+  --cert=./tls.crt \
+  --key=./tls.key
+
+helm upgrade --install spark-dashboard ./charts_v2 \
+  --set persistence.enabled=false \
+  --set grafana.https.enabled=true \
+  --set grafana.https.secretName=spark-dashboard-grafana-tls
+```
+
+The chart expects the secret keys to be `tls.crt` and `tls.key`. If your secret uses different key names, set:
+
+```bash
+helm upgrade --install spark-dashboard ./charts_v2 \
+  --set grafana.https.enabled=true \
+  --set grafana.https.secretName=spark-dashboard-grafana-tls \
+  --set grafana.https.certFile=grafana.crt \
+  --set grafana.https.certKey=grafana.key
+```
+
+Set `grafana.https.rootUrl` when Grafana is served through a DNS name or external URL:
+
+```bash
+helm upgrade --install spark-dashboard ./charts_v2 \
+  --set grafana.https.enabled=true \
+  --set grafana.https.secretName=spark-dashboard-grafana-tls \
+  --set grafana.https.rootUrl=https://dashboard.example.com:3000/
+```
+
 ## Upgrade
 
 ```bash
@@ -57,7 +101,7 @@ helm uninstall spark-dashboard
 
 ## Notes
 
-- Grafana is exposed on port `3000`.
+- Grafana is exposed on port `3000` using HTTP by default, or HTTPS when `grafana.https.enabled=true`.
 - Spark metrics are ingested on port `2003` using Graphite protocol.
 - VictoriaMetrics listens on port `8428` inside the pod.
 - With `service.type=LoadBalancer`, port `8428` is not exposed by default; set `service.victoriametrics.exposeOnLoadBalancer=true` only when needed.

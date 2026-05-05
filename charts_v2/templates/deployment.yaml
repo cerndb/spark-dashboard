@@ -49,6 +49,11 @@ spec:
               subPath: victoriametrics-metrics-datasource.yml
             - name: metrics-data
               mountPath: /victoria-metrics-data
+            {{- if .Values.grafana.https.enabled }}
+            - name: grafana-certs
+              mountPath: {{ .Values.grafana.https.mountPath }}
+              readOnly: true
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
@@ -65,6 +70,16 @@ spec:
           {{- else }}
           emptyDir: {}
           {{- end }}
+        {{- if .Values.grafana.https.enabled }}
+        - name: grafana-certs
+          secret:
+            secretName: {{ required "grafana.https.secretName is required when grafana.https.enabled=true" .Values.grafana.https.secretName }}
+            items:
+              - key: {{ .Values.grafana.https.certFile }}
+                path: {{ .Values.grafana.https.certFile }}
+              - key: {{ .Values.grafana.https.certKey }}
+                path: {{ .Values.grafana.https.certKey }}
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

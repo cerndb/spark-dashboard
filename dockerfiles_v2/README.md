@@ -14,6 +14,43 @@ or
 docker run -p 3000:3000 -p 2003:2003 -p 8428:8428 -d lucacanali/spark-dashboard
 ```
 
+## Run Grafana with HTTPS
+
+For testing, `openssl` can be used to generate a self-signed certificate. Mount the certificate and key into the container, then enable HTTPS with environment variables:
+
+```bash
+mkdir -p certs
+openssl req -x509 -newkey rsa:4096 -nodes -days 365 \
+  -keyout certs/tls.key \
+  -out certs/tls.crt \
+  -subj "/CN=localhost" \
+  -addext "subjectAltName=DNS:localhost,IP:127.0.0.1"
+
+docker run -p 3000:3000 -p 2003:2003 \
+  -v ./certs:/etc/grafana/certs:ro \
+  -e GRAFANA_HTTPS_ENABLED=true \
+  -d lucacanali/spark-dashboard:v02
+```
+
+Grafana will be available at:
+
+```text
+https://localhost:3000
+```
+
+By default, the container expects `/etc/grafana/certs/tls.crt` and `/etc/grafana/certs/tls.key`.
+Use `GRAFANA_CERT_FILE`, `GRAFANA_CERT_KEY`, and optionally `GRAFANA_ROOT_URL` to override them:
+
+```bash
+docker run -p 3000:3000 -p 2003:2003 \
+  -v ./certs:/etc/grafana/certs:ro \
+  -e GRAFANA_HTTPS_ENABLED=true \
+  -e GRAFANA_CERT_FILE=/etc/grafana/certs/grafana.crt \
+  -e GRAFANA_CERT_KEY=/etc/grafana/certs/grafana.key \
+  -e GRAFANA_ROOT_URL=https://dashboard.example.com:3000/ \
+  -d lucacanali/spark-dashboard:v02
+```
+
 ## Persisting VictoriaMetrics Data Across Restarts
 By default, VictoriaMetrics does not retain data between container restarts—each time the container starts, it begins with an empty dataset. 
 To preserve historical metrics, you need to mount a persistent volume for data storage.
@@ -36,4 +73,3 @@ docker run --network=host \
 cd dockerfiles_v2
 docker build -t spark-dashboard:v02 .
 ```
-
